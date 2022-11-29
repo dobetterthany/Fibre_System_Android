@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Choose_Shape_Page">
+
+
+    <Button
+        android:id="@+id/button9"
+        android:layout_width="225dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#c6d8f5"
+        android:text="Back"
+        android:textColor="#1a2536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="936dp"
+        android:layout_height="93dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="44dp"
+        android:gravity="center"
+        android:text="Choose a Shape"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="276dp"
+        android:layout_height="421dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="41dp"
+        android:backgroundTint="#c6d8f5"
+        android:gravity="center"
+        android:text="Alcove"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toTopOf="@+id/button16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button9" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="276dp"
+        android:layout_height="421dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginBottom="38dp"
+        android:backgroundTint="#c6d8f5"
+        android:gravity="center"
+        android:text="Square"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toTopOf="@+id/button16"
+        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="276dp"
+        android:layout_height="421dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginBottom="41dp"
+        android:backgroundTint="#c6d8f5"
+        android:gravity="center"
+        android:text="Round"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toTopOf="@+id/button17"
+        app:layout_constraintStart_toEndOf="@+id/button13"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button15"
+        android:layout_width="276dp"
+        android:layout_height="421dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="41dp"
+        android:backgroundTint="#c6d8f5"
+        android:gravity="center"
+        android:text="Angle"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toTopOf="@+id/button17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toEndOf="@+id/button14"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/button16"
+        android:layout_width="550dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="#7184f0"
+        android:text="Bath"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button17"
+        app:layout_constraintHorizontal_bias="0.804"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="550dp"
+        android:layout_height="111dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="56dp"
+        android:backgroundTint="#7184f0"
+        android:text="Walk In"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
