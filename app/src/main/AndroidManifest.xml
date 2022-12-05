@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Fibre_System_Android"
         tools:targetApi="31">
         <activity
+            android:name=".Planner_Area"
+            android:exported="false"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Choose_Colour_Page"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Choose_Size_Page"
             android:exported="false"
             android:screenOrientation="landscape">
@@ -23,6 +38,7 @@
         <activity
             android:name=".Choose_Shape_Page"
             android:exported="false"
+            android:parentActivityName=".Choose_Size_Page"
             android:screenOrientation="landscape">
             <meta-data
                 android:name="android.app.lib_name"
@@ -31,6 +47,7 @@
         <activity
             android:name=".Planning_Method_Selection_Page"
             android:exported="false"
+            android:parentActivityName=".Planning_Method_Selection_Page"
             android:screenOrientation="landscape">
             <meta-data
                 android:name="android.app.lib_name"
