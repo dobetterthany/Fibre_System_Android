@@ -1,6 +1,7 @@
 package com.example.fibre_system_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -9,11 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.DisplayMetrics;
 import android.widget.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Planner_Area extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,6 +37,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
 
         setSpinner();
         initSearchWidget();
+        setRecyclerView();
         makeResponsive();
     }
 
@@ -70,6 +76,20 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
 
     public int calcWidth(float value) {
         return (int) (dpWidth * (value/designWidth));
+    }
+
+    private void setRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
+        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items));
     }
 
     private void setSpinner(){
