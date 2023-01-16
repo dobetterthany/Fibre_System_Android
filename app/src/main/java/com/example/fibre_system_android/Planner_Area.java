@@ -5,12 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.app.ActionBar;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -20,7 +25,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Planner_Area extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Planner_Area extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
     Spinner spinner;
     private int dpHeight;
@@ -29,11 +34,14 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    float dX = 0, dY = 0;
+    RelativeLayout plannerArea;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_area);
 
+        plannerArea = findViewById(R.id.plannerArea);
 
         setSpinner();
         initSearchWidget();
@@ -70,32 +78,32 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
         finishButtonParams.height = calcHeight(70);
     }
 
-    public int calcHeight (float value) {
-        return (int) (dpHeight * (value/designHeight));
+    public int calcHeight(float value) {
+        return (int) (dpHeight * (value / designHeight));
     }
 
     public int calcWidth(float value) {
-        return (int) (dpWidth * (value/designWidth));
+        return (int) (dpWidth * (value / designWidth));
     }
 
-    private void setRecyclerView(){
+    private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet","9x9",R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(),items));
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), items, this));
     }
 
-    private void setSpinner(){
+    private void setSpinner() {
         spinner = findViewById(R.id.spinner);
         //gets items from products array in string file, and plug it into spinner item list
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.products,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.products, android.R.layout.simple_spinner_item);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -107,7 +115,8 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_LONG).show();
+
+//        Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -129,5 +138,54 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
                 return false;
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(ImageView imageView) {
+        Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
+
+        AddImage(imageView.getDrawable());
+
+    }
+    private void AddImage(Drawable imageResource)
+    {
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+        ImageView icon = new ImageView(this);
+        icon.setImageDrawable(imageResource);
+        icon.setLayoutParams(lParams);
+
+
+        icon.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+
+                switch (event.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+
+                        dX = view.getX() - event.getRawX();
+                        dY = view.getY() - event.getRawY();
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+
+                        view.animate()
+                                .x(event.getRawX() + dX)
+                                .y(event.getRawY() + dY)
+                                .setDuration(0)
+                                .start();
+                        break;
+                    default:
+                        return false;
+                }
+                return true;
+            }
+        });
+
+        plannerArea.addView(icon);
+
     }
 }
