@@ -38,6 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.nameView.setText(items.get(position).getName());
         holder.sizeView.setText(items.get(position).getSizeString());
         holder.imageView.setImageResource(items.get(position).getImage());
+        holder.imageView.setTag(items.get(position).getImage());
 
         holder.imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override

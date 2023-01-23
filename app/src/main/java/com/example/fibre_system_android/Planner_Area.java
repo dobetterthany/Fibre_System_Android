@@ -36,8 +36,8 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     private int designWidth = 1280;
     private int designHeight = 800;
 
-    ArrayList<ImageView> plannerItemArray;
     ImageView selectedView;
+    ArrayList<ImageView> plannerItemArray;
     float dX = 0, dY = 0;
     RelativeLayout plannerArea;
     @Override
@@ -149,11 +149,11 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
 
-        AddImage(imageView.getDrawable());
+        AddImage((int) imageView.getTag());
     }
 
     //Add image to planner view
-    private void AddImage(Drawable imageResource)
+    private void AddImage(int tag)
     {
         deselectAll();
 
@@ -162,7 +162,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         ImageView icon = new ImageView(this);
-        icon.setImageDrawable(imageResource);
+        icon.setImageResource(tag);
         icon.setLayoutParams(lParams);
 
 
@@ -174,8 +174,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
                     case MotionEvent.ACTION_DOWN:
 
                         deselectAll();
-                        ImageView iv = (ImageView) view;
-                        iv.setColorFilter(Color.argb(255,255,0,0));
+                        selectItem((ImageView) view);
 
                         dX = view.getX() - event.getRawX();
                         dY = view.getY() - event.getRawY();
@@ -208,8 +207,20 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
 
             if(v instanceof ImageView)
             {
-                ((ImageView) v).setColorFilter(Color.argb(255,0,0,1));
+                deselectItem((ImageView) v);
             }
         }
+    }
+
+    private void selectItem(ImageView imageView)
+    {
+        selectedView = imageView;
+        selectedView.setColorFilter(Color.argb(255,255,0,0));
+        //TODO: Code to move item edit buttons(rotation, delete, etc)
+    }
+
+    private void deselectItem(ImageView imageView)
+    {
+        imageView.setColorFilter(Color.argb(255,0,0,1));
     }
 }
