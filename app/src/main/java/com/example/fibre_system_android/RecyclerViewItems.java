@@ -3,15 +3,32 @@ package com.example.fibre_system_android;
 public class RecyclerViewItems {
 
     String name;
-    String size;
+    int length; //side to side measurement
+    int height; //top to bottom measurement
     int image;
 
-    public RecyclerViewItems(String name, String size, int image) {
+    public RecyclerViewItems(String name, int length, int height, int image) {
         this.name = name;
-        this.size = size;
+        this.length = length;
+        this.height = height;
         this.image = image;
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 
     public String getName() {
         return name;
@@ -21,13 +38,6 @@ public class RecyclerViewItems {
         this.name = name;
     }
 
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
 
     public int getImage() {
         return image;
@@ -37,4 +47,9 @@ public class RecyclerViewItems {
         this.image = image;
     }
 
+    public String getSizeString()
+    {
+        String sizeString = length + " X " + height;
+        return sizeString;
+    }
 }

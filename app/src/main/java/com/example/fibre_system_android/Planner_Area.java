@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +36,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    ImageView selectedView;
     float dX = 0, dY = 0;
     RelativeLayout plannerArea;
     @Override
@@ -90,11 +93,11 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", "9x9", R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), items, this));
@@ -144,11 +147,21 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(ImageView imageView) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
-        AddImage(imageView.getDrawable());
 
+        AddImage(imageView.getDrawable());
     }
+
+    //Add image to planner view
     private void AddImage(Drawable imageResource)
     {
+
+        //Deselects view from planner area when selecting an item from the recycler view
+        if(selectedView != null)
+        {
+            selectedView.clearColorFilter();
+            selectedView = null;
+        }
+
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
@@ -165,6 +178,12 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
                 switch (event.getAction()) {
 
                     case MotionEvent.ACTION_DOWN:
+                        if(selectedView != null)
+                        {
+                            selectedView.clearColorFilter();
+                        }
+                        selectedView = (ImageView) view;
+                        selectedView.setColorFilter(Color.argb(255,255,0,0));
 
                         dX = view.getX() - event.getRawX();
                         dY = view.getY() - event.getRawY();
@@ -178,12 +197,13 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
                                 .setDuration(0)
                                 .start();
                         break;
+
                     default:
                         return false;
                 }
                 return true;
             }
-        });
+       } );
 
         plannerArea.addView(icon);
 
