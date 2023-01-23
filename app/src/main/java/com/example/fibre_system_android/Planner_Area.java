@@ -36,6 +36,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    ArrayList<ImageView> plannerItemArray;
     ImageView selectedView;
     float dX = 0, dY = 0;
     RelativeLayout plannerArea;
@@ -45,7 +46,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_planner_area);
 
         plannerArea = findViewById(R.id.plannerArea);
-
+        plannerItemArray = new ArrayList<ImageView>();
         setSpinner();
         initSearchWidget();
         setRecyclerView();
@@ -154,13 +155,7 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     //Add image to planner view
     private void AddImage(Drawable imageResource)
     {
-
-        //Deselects view from planner area when selecting an item from the recycler view
-        if(selectedView != null)
-        {
-            selectedView.clearColorFilter();
-            selectedView = null;
-        }
+        deselectAll();
 
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -176,14 +171,11 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
             public boolean onTouch(View view, MotionEvent event) {
 
                 switch (event.getAction()) {
-
                     case MotionEvent.ACTION_DOWN:
-                        if(selectedView != null)
-                        {
-                            selectedView.clearColorFilter();
-                        }
-                        selectedView = (ImageView) view;
-                        selectedView.setColorFilter(Color.argb(255,255,0,0));
+
+                        deselectAll();
+                        ImageView iv = (ImageView) view;
+                        iv.setColorFilter(Color.argb(255,255,0,0));
 
                         dX = view.getX() - event.getRawX();
                         dY = view.getY() - event.getRawY();
@@ -204,8 +196,20 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
                 return true;
             }
        } );
-
+       // plannerItemArray.add(icon);
         plannerArea.addView(icon);
+    }
 
+    //Deselects view from planner area when selecting an item from the recycler view
+    private void deselectAll() {
+        final int childCount = plannerArea.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View v = plannerArea.getChildAt(i);
+
+            if(v instanceof ImageView)
+            {
+                ((ImageView) v).setColorFilter(Color.argb(255,0,0,1));
+            }
+        }
     }
 }
