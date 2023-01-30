@@ -33,6 +33,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    //Planner area layout variables
     RelativeLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
 
@@ -41,6 +42,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_area);
 
+        //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
 
@@ -145,6 +147,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     public void onItemSelected(ImageView imageView) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
+        //Create image view in planner area layout
         bathroomPlannerLayout.AddImage((int) imageView.getTag());
     }
 }
