@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActionBar;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -27,7 +24,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Planner_Area extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
     Spinner spinner;
     private int dpHeight;
@@ -36,17 +33,17 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     private int designWidth = 1280;
     private int designHeight = 800;
 
-    ImageView selectedView;
-    ArrayList<ImageView> plannerItemArray;
-    float dX = 0, dY = 0;
     RelativeLayout plannerArea;
+    BathroomPlannerLayout bathroomPlannerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_area);
 
         plannerArea = findViewById(R.id.plannerArea);
-        plannerItemArray = new ArrayList<ImageView>();
+        bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
+
         setSpinner();
         initSearchWidget();
         setRecyclerView();
@@ -148,79 +145,6 @@ public class Planner_Area extends AppCompatActivity implements AdapterView.OnIte
     public void onItemSelected(ImageView imageView) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
-
-        AddImage((int) imageView.getTag());
-    }
-
-    //Add image to planner view
-    private void AddImage(int tag)
-    {
-        deselectAll();
-
-        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-
-        ImageView icon = new ImageView(this);
-        icon.setImageResource(tag);
-        icon.setLayoutParams(lParams);
-
-
-        icon.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-
-                        deselectAll();
-                        selectItem((ImageView) view);
-
-                        dX = view.getX() - event.getRawX();
-                        dY = view.getY() - event.getRawY();
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-
-                        view.animate()
-                                .x(event.getRawX() + dX)
-                                .y(event.getRawY() + dY)
-                                .setDuration(0)
-                                .start();
-                        break;
-
-                    default:
-                        return false;
-                }
-                return true;
-            }
-       } );
-       // plannerItemArray.add(icon);
-        plannerArea.addView(icon);
-    }
-
-    //Deselects view from planner area when selecting an item from the recycler view
-    private void deselectAll() {
-        final int childCount = plannerArea.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View v = plannerArea.getChildAt(i);
-
-            if(v instanceof ImageView)
-            {
-                deselectItem((ImageView) v);
-            }
-        }
-    }
-
-    private void selectItem(ImageView imageView)
-    {
-        selectedView = imageView;
-        selectedView.setColorFilter(Color.argb(255,255,0,0));
-        //TODO: Code to move item edit buttons(rotation, delete, etc)
-    }
-
-    private void deselectItem(ImageView imageView)
-    {
-        imageView.setColorFilter(Color.argb(255,0,0,1));
+        bathroomPlannerLayout.AddImage((int) imageView.getTag());
     }
 }

@@ -1,7 +1,6 @@
 package com.example.fibre_system_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +8,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.SearchView;
-import android.widget.Spinner;
 
 public class Choose_Size_Page extends AppCompatActivity {
 
@@ -31,7 +27,7 @@ public class Choose_Size_Page extends AppCompatActivity {
     }
     public void goPlannerPage(View v) {
         //launch a new activity
-        Intent i = new Intent(this, Planner_Area.class);
+        Intent i = new Intent(this, Planner_Area_Page.class);
         startActivity(i);
     }
 
@@ -46,7 +42,6 @@ public class Choose_Size_Page extends AppCompatActivity {
         Button button2 = (Button) findViewById(R.id.button6);
         Button button3 = (Button) findViewById(R.id.button7);
         Button button4 = (Button) findViewById(R.id.button8);
-
 
         ViewGroup.LayoutParams button1Params = (ViewGroup.MarginLayoutParams) button1.getLayoutParams();
         button1Params.width = calcWidth(300);
