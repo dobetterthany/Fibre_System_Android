@@ -3,22 +3,31 @@ package com.example.fibre_system_android;
 import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.ArrayList;
 
 public class BathroomPlannerLayout {
+
     RelativeLayout plannerArea;
     ImageView selectedView;
+
+    //Stores all items added to array.
     ArrayList<ImageView> plannerItemArray;
     float dX = 0, dY = 0;
     Context context;
 
     BathroomPlannerLayout(Context context, RelativeLayout plannerAreaLayout)
     {
+        //Init variables
+        this.context = context;
+        this.plannerArea = plannerAreaLayout;
         plannerItemArray = new ArrayList<ImageView>();
     }
 
@@ -34,7 +43,6 @@ public class BathroomPlannerLayout {
         ImageView icon = new ImageView(context);
         icon.setImageResource(tag);
         icon.setLayoutParams(lParams);
-
 
         icon.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -85,12 +93,13 @@ public class BathroomPlannerLayout {
     private void selectItem(ImageView imageView)
     {
         selectedView = imageView;
-        selectedView.setColorFilter(Color.argb(255,255,0,0));
+        selectedView.setColorFilter(ContextCompat.getColor(context,R.color.planner_selected_object));
         //TODO: Code to move item edit buttons(rotation, delete, etc)
     }
 
     private void deselectItem(ImageView imageView)
     {
-        imageView.setColorFilter(Color.argb(255,0,0,1));
+        //imageView.setColorFilter(Color.argb(255,0,0,1));
+        imageView.clearColorFilter();
     }
 }

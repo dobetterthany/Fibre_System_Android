@@ -47,7 +47,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
 
         setSpinner();
+
         initSearchWidget();
+
         setRecyclerView();
         makeResponsive();
     }
@@ -93,7 +95,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.square));
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
