@@ -1,9 +1,7 @@
-package com.example.fibre_system_android;
+package com.example.fibre_system_android.planner_layout;
 
 import android.app.ActionBar;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,30 +9,41 @@ import android.widget.RelativeLayout;
 
 import androidx.core.content.ContextCompat;
 
+import com.example.fibre_system_android.R;
+
 import java.util.ArrayList;
 
 public class BathroomPlannerLayout {
 
+    //Layout where all shapes are placed
     RelativeLayout plannerArea;
+
+    //When a view is clicked it will be "selected"
     ImageView selectedView;
+
 
     //Stores all items added to array.
     ArrayList<ImageView> plannerItemArray;
     float dX = 0, dY = 0;
     Context context;
 
-    BathroomPlannerLayout(Context context, RelativeLayout plannerAreaLayout)
+    EditButtons editButtons;
+
+    public BathroomPlannerLayout(Context context, RelativeLayout plannerAreaLayout)
     {
         //Init variables
         this.context = context;
         this.plannerArea = plannerAreaLayout;
         plannerItemArray = new ArrayList<ImageView>();
+
+        editButtons = new EditButtons(context, plannerAreaLayout);
     }
 
     //Add image to planner view
     public void AddImage(int tag)
     {
-        deselectAll();
+        deselectItem(selectedView);
+
 
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -51,7 +60,7 @@ public class BathroomPlannerLayout {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
 
-                        deselectAll();
+                        deselectItem(selectedView);
                         selectItem((ImageView) view);
 
                         dX = view.getX() - event.getRawX();
@@ -75,6 +84,8 @@ public class BathroomPlannerLayout {
         } );
         // plannerItemArray.add(icon);
         plannerArea.addView(icon);
+
+        editButtons.toggleButtonsVisable();
     }
 
     //Deselects view from planner area when selecting an item from the recycler view
@@ -93,13 +104,16 @@ public class BathroomPlannerLayout {
     private void selectItem(ImageView imageView)
     {
         selectedView = imageView;
-        selectedView.setColorFilter(ContextCompat.getColor(context,R.color.planner_selected_object));
+        selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));
         //TODO: Code to move item edit buttons(rotation, delete, etc)
     }
 
     private void deselectItem(ImageView imageView)
     {
         //imageView.setColorFilter(Color.argb(255,0,0,1));
-        imageView.clearColorFilter();
+
+        if(imageView != null) {
+            imageView.clearColorFilter();
+        }
     }
 }

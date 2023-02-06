@@ -5,10 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import android.app.ActionBar;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -20,6 +17,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.DisplayMetrics;
 import android.widget.Button;
+
+import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
 import java.util.List;
