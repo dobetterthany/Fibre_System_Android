@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -35,7 +37,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     //Planner area layout variables
     RelativeLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
-
+    RecyclerViewAdapter recyclerViewAdapter;
+    ArrayList<RecyclerViewItems> itemsArrayList = new ArrayList<RecyclerViewItems>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,15 +96,15 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.square));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+
+        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), items, this));
+        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this));
     }
 
     private void setSpinner() {
@@ -143,7 +146,33 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
     }
+    //set searchview on the menubar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        MenuItem menuItem = menu.findItem(R.id.app_bar_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("Search Here!");
 
+
+        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String userText) {
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String userText) {
+                recyclerViewAdapter.getFilter().filter(userText);
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
     @Override
     public void onItemSelected(ImageView imageView) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();

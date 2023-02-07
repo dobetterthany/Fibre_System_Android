@@ -7,23 +7,27 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
+import android.widget.Filter;
+import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> implements Filterable{
 
     Context context;
-    List<RecyclerViewItems> items;
+    ArrayList<RecyclerViewItems> itemsArrayList;
+    ArrayList<RecyclerViewItems> itemsArrayListFull;
     private SelectItemListener listener;
 
     RelativeLayout plannerLayout;
 
-    public RecyclerViewAdapter(Context context, List<RecyclerViewItems> items, SelectItemListener listener) {
+    public RecyclerViewAdapter(Context context, ArrayList<RecyclerViewItems> itemsArrayList, SelectItemListener listener) {        this.context = context;
         this.context = context;
-        this.items = items;
+        this.itemsArrayListFull = itemsArrayList;
+        this.itemsArrayList = new ArrayList<>(itemsArrayListFull);
         this.listener = listener;
     }
 
@@ -35,10 +39,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        holder.nameView.setText(items.get(position).getName());
-        holder.sizeView.setText(items.get(position).getSizeString());
-        holder.imageView.setImageResource(items.get(position).getImage());
-        holder.imageView.setTag(items.get(position).getImage());
+        holder.nameView.setText(itemsArrayListFull.get(position).getName());
+        holder.sizeView.setText(itemsArrayListFull.get(position).getSizeString());
+        holder.imageView.setImageResource(itemsArrayListFull.get(position).getImage());
+        holder.imageView.setTag(itemsArrayListFull.get(position).getImage());
 
         holder.imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -51,6 +55,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return itemsArrayListFull.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return itemsFilter;
+    }
+
+    private final Filter itemsFilter = new Filter(){
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<RecyclerViewItems> filteredItemsList = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0){
+                filteredItemsList.addAll(itemsArrayListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+
+                for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
+                    if(recyclerViewItems.name.toLowerCase().contains(filterPattern)){
+                        filteredItemsList.add(recyclerViewItems);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredItemsList;
+            results.count = filteredItemsList.size();
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults results) {
+            itemsArrayList.clear();
+            itemsArrayList.addAll((ArrayList)results.values);
+            notifyDataSetChanged();
+        }
+    };
 }
