@@ -38,22 +38,27 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     RelativeLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<RecyclerViewItems> itemsArrayList = new ArrayList<RecyclerViewItems>();
+    ArrayList<RecyclerViewItems> itemsArrayList;
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_area);
-
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
+        itemsArrayList  = new ArrayList<RecyclerViewItems>();
 
         setSpinner();
 
         initSearchWidget();
 
-        setRecyclerView();
+//        setRecyclerView();
         makeResponsive();
+        getData();
+
     }
 
     private void makeResponsive() {
@@ -93,20 +98,44 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         return (int) (dpWidth * (value / designWidth));
     }
 
-    private void setRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-
+    private void getData() {
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this));
+        recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
+    //set searchview on the menubar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_item,menu);
+        MenuItem menuItem = menu.findItem(R.id.app_bar_search );
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("Search Here!");
 
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String userText) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String userText) {
+                recyclerViewAdapter.getFilter().filter(userText);
+                return true;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
     private void setSpinner() {
         spinner = findViewById(R.id.spinner);
         //gets items from products array in string file, and plug it into spinner item list
@@ -146,33 +175,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
     }
-    //set searchview on the menubar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_item,menu);
-        MenuItem menuItem = menu.findItem(R.id.app_bar_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setQueryHint("Search Here!");
 
-
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String userText) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String userText) {
-                recyclerViewAdapter.getFilter().filter(userText);
-                return false;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
-    }
     @Override
     public void onItemSelected(ImageView imageView) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
