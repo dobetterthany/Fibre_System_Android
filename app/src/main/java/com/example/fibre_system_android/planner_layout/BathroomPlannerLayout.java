@@ -44,7 +44,6 @@ public class BathroomPlannerLayout {
     {
         deselectItem(selectedView);
 
-
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
@@ -74,6 +73,7 @@ public class BathroomPlannerLayout {
                                 .y(event.getRawY() + dY)
                                 .setDuration(0)
                                 .start();
+                        editButtons.update(view);
                         break;
 
                     default:
@@ -85,7 +85,6 @@ public class BathroomPlannerLayout {
         // plannerItemArray.add(icon);
         plannerArea.addView(icon);
 
-        editButtons.toggleButtonsVisable();
     }
 
     //Deselects view from planner area when selecting an item from the recycler view
@@ -105,6 +104,8 @@ public class BathroomPlannerLayout {
     {
         selectedView = imageView;
         selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));
+        editButtons.viewSelected(imageView);
+        editButtons.update(imageView);
         //TODO: Code to move item edit buttons(rotation, delete, etc)
     }
 
@@ -114,6 +115,7 @@ public class BathroomPlannerLayout {
 
         if(imageView != null) {
             imageView.clearColorFilter();
+            editButtons.viewDeselected();
         }
     }
 }
