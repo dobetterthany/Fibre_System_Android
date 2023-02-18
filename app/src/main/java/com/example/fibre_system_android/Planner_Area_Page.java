@@ -99,16 +99,16 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     }
 
 
-<<<<<<< Updated upstream
+
     private void getData() {
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-=======
+
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.small_square));
         itemsArrayList.add(new RecyclerViewItems("square", 9, 9, R.drawable.square));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.large_square));
->>>>>>> Stashed changes
+
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
