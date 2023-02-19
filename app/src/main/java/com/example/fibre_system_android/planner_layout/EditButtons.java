@@ -17,8 +17,6 @@ public class EditButtons {
     ImageView rotate;
     ImageView delete;
 
-    Textview
-
     View selectedView;
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
     float dX = 0, dY = 0;
