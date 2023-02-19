@@ -60,36 +60,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public Filter getFilter() {
-        return itemsFilter;
-    }
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                ArrayList<RecyclerViewItems> filteredItemsList = new ArrayList<>();
 
-    private final Filter itemsFilter = new Filter(){
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            ArrayList<RecyclerViewItems> filteredItemsList = new ArrayList<>();
+                if (charSequence == null || charSequence.length() == 0){
+                    filteredItemsList.addAll(itemsArrayListFull);
+                } else {
+                    String filterPattern = charSequence.toString().toLowerCase().trim();
 
-            if (charSequence == null || charSequence.length() == 0){
-                filteredItemsList.addAll(itemsArrayListFull);
-            } else {
-                String filterPattern = charSequence.toString().toLowerCase().trim();
-
-                for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
-                    if(recyclerViewItems.name.toLowerCase().contains(filterPattern)){
-                        filteredItemsList.add(recyclerViewItems);
+                    for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
+                        if(recyclerViewItems.name.toLowerCase().contains(filterPattern)){
+                            filteredItemsList.add(recyclerViewItems);
+                        }
                     }
                 }
+                FilterResults results = new FilterResults();
+                results.values = filteredItemsList;
+                results.count = filteredItemsList.size();
+                return results;
             }
-            FilterResults results = new FilterResults();
-            results.values = filteredItemsList;
-            results.count = filteredItemsList.size();
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults results) {
-            itemsArrayList.clear();
-            itemsArrayList.addAll((ArrayList)results.values);
-            notifyDataSetChanged();
-        }
-    };
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults results) {
+                itemsArrayList.clear();
+                itemsArrayList.addAll((ArrayList)results.values);
+                notifyDataSetChanged();
+            }
+        };
+    }
 }
+
