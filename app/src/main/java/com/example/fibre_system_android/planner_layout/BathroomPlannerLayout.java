@@ -61,6 +61,7 @@ public class BathroomPlannerLayout {
 
                         deselectItem(selectedView);
                         selectItem((ImageView) view);
+                        editButtons.update(view);
 
                         dX = view.getX() - event.getRawX();
                         dY = view.getY() - event.getRawY();
@@ -82,22 +83,8 @@ public class BathroomPlannerLayout {
                 return true;
             }
         } );
-        // plannerItemArray.add(icon);
+
         plannerArea.addView(icon);
-
-    }
-
-    //Deselects view from planner area when selecting an item from the recycler view
-    private void deselectAll() {
-        final int childCount = plannerArea.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View v = plannerArea.getChildAt(i);
-
-            if(v instanceof ImageView)
-            {
-                deselectItem((ImageView) v);
-            }
-        }
     }
 
     private void selectItem(ImageView imageView)
@@ -106,7 +93,6 @@ public class BathroomPlannerLayout {
         selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));
         editButtons.viewSelected(imageView);
         editButtons.update(imageView);
-        //TODO: Code to move item edit buttons(rotation, delete, etc)
     }
 
     private void deselectItem(ImageView imageView)

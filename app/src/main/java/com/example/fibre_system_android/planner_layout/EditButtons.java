@@ -17,13 +17,14 @@ public class EditButtons {
     ImageView rotate;
     ImageView delete;
 
+    Textview
+
     View selectedView;
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
-    Vector2 selectedViewCenter;
     float dX = 0, dY = 0;
     float newX, newY;
-    float radius = 150; //Radius of buttons from target view
-
+    float radius = 400; //Radius of buttons from target view
+    float selectedCenterX, selectedCenterY;
     //Rotation
     float angle;
 
@@ -50,8 +51,6 @@ public class EditButtons {
         plannerAreaLayout.addView(delete);
         //plannerAreaLayout.addView(delete);
 
-        selectedViewCenter = new Vector2(0,0);
-
         rotate.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -63,14 +62,15 @@ public class EditButtons {
                         break;
 
                     case MotionEvent.ACTION_MOVE:
-                        angle =  (float) Math.atan2(event.getRawY(), event.getRawX());
-                        newX = (float) (radius * Math.sin(angle));
-                        newY = (float) (radius * Math.cos(angle));
-                        view.animate()
-                                .x(newX + selectedViewCenter.getX())
-                                .y(newY + selectedViewCenter.getY())
-                                .setDuration(0)
-                                .start();
+                        float eventX = event.getRawX() + dX;
+                        float eventY = event.getRawY() + dY;
+                        float dot = (selectedCenterX * eventX + selectedCenterY * eventY);
+                        double den = (Math.sqrt(Math.pow(selectedCenterX, 2) + Math.pow(selectedCenterY, 2)) * (Math.sqrt(Math.pow(eventX, 2) + Math.pow(eventY, 2))));
+                        double cos =  (dot / den);
+
+                        angle =  (float) Math.atan2(eventX - selectedCenterX, eventY - selectedCenterY);
+                        //angle = (float)Math.toDegrees(angle);
+                        setAngleFromSelectedView(view, angle);
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -120,20 +120,6 @@ public class EditButtons {
         delete.setVisibility(View.GONE);
     }
 
-    private void updatePos() {
-        rotate.animate()
-                .x(selectedViewX + selectedViewW + radius)
-                .y(selectedViewY - rotate.getHeight()/2 - radius)
-                .setDuration(0)
-                .start();
-
-        delete.animate()
-                .x(selectedViewX - radius - delete.getWidth())
-                .y(selectedViewY - delete.getHeight()/2 - radius)
-                .setDuration(0)
-                .start();
-    }
-
     public void update(View view)
     {
         selectedViewX = view.getX();
@@ -141,9 +127,27 @@ public class EditButtons {
         selectedViewW = view.getWidth();
         selectedViewH = view.getHeight();
 
-        selectedViewCenter.setX(view.getX() + selectedViewW / 2);
-        selectedViewCenter.setY(view.getY() + selectedViewH / 2);
-
+        selectedCenterX = selectedViewX + (selectedViewW / 2);
+        selectedCenterY = selectedViewY + (selectedViewH / 2);
         updatePos();
+    }
+
+    private void updatePos() {
+
+        setAngleFromSelectedView(rotate, 0);
+
+        setAngleFromSelectedView(delete, 2);
+    }
+
+    private void setAngleFromSelectedView(View view, float angle)
+    {
+        newX = (float) (selectedCenterX + radius * Math.sin(angle));
+        newY = (float) (selectedCenterY + radius * Math.cos(angle));
+
+        view.animate()
+                .x(newX - view.getWidth() / 2)
+                .y(newY- view.getHeight() / 2)
+                .setDuration(0)
+                .start();
     }
 }
