@@ -47,7 +47,7 @@ public class Choose_Size_Page extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                Intent intent = new Intent (Choose_Size_Page.this, Add_Windows_Page.class);
+                Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
                 startActivity(intent);
             }
         });

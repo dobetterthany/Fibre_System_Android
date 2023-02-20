@@ -21,10 +21,12 @@ import android.widget.Toast;
 import android.util.DisplayMetrics;
 import android.widget.Button;
 
+import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Add_Windows_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
     Spinner spinner;
     private int dpHeight;
@@ -40,7 +42,7 @@ public class Add_Windows_Page extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_windows_page);
+        setContentView(R.layout.activity_add_window_page);
 
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
@@ -93,7 +95,7 @@ public class Add_Windows_Page extends AppCompatActivity implements AdapterView.O
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
-        List<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
+        ArrayList<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
