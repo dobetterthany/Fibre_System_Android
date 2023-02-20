@@ -1,13 +1,9 @@
 package com.example.fibre_system_android;
 
 import android.app.ActionBar;
-import android.app.Notification;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -43,7 +39,7 @@ public class Choose_Size_Page extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AddImage(R.drawable.toilet);
-
+                goAddwindowPage();
             }
         });
     }
@@ -65,13 +61,13 @@ public class Choose_Size_Page extends AppCompatActivity {
 
 
 
-        ImageView icon = (ImageView) findViewById(R.id.size_imageView);
+        ImageView icon = (ImageView) findViewById(R.id.AddwindowimageView);
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
     }
 
-    public void goPlannerPage(View v) {
-        //launch a new activity
+    public void goAddwindowPage() {
+        //launch a new activity， goes to
         Intent i = new Intent(this, Planner_Area_Page.class);
         startActivity(i);
     }
