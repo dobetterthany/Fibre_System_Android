@@ -23,6 +23,7 @@ public class Choose_Size_Page extends AppCompatActivity {
     EditText widthInput;
     EditText heightInput;
     Button confirmButton;
+    Button nextButton;
 
 
 
@@ -38,10 +39,19 @@ public class Choose_Size_Page extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddImage(R.drawable.toilet);
-                goAddwindowPage();
+                AddImage(R.drawable.square);
             }
         });
+
+        nextButton = (Button)findViewById(R.id.goAddwindowButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent intent = new Intent (Choose_Size_Page.this, Add_Windows_Page.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void AddImage(int imageID)
@@ -52,25 +62,18 @@ public class Choose_Size_Page extends AppCompatActivity {
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        lParams.addRule(RelativeLayout.CENTER_HORIZONTAL,RelativeLayout.TRUE);
-        lParams.addRule(RelativeLayout.ALIGN_BOTTOM);
-        lParams.bottomMargin = 100;
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         lParams.height = Height;
         lParams.width = Width;
 
 
-
-
-        ImageView icon = (ImageView) findViewById(R.id.AddwindowimageView);
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage);
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
+
     }
 
-    public void goAddwindowPage() {
-        //launch a new activity， goes to
-        Intent i = new Intent(this, Planner_Area_Page.class);
-        startActivity(i);
-    }
+
 
 
 }

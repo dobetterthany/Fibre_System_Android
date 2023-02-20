@@ -24,7 +24,7 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+public class Add_Windows_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
     Spinner spinner;
     private int dpHeight;
@@ -40,7 +40,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_window_page);
+        setContentView(R.layout.activity_add_windows_page);
 
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
@@ -50,6 +50,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         initSearchWidget();
         setRecyclerView();
         makeResponsive();
+
     }
 
     private void makeResponsive() {
