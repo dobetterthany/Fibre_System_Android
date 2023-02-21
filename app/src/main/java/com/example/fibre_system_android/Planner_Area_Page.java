@@ -27,7 +27,6 @@ import java.util.List;
 
 public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
-    Spinner spinner;
     private int dpHeight;
     private int dpWidth;
     private float dDensity;
@@ -52,8 +51,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList  = new ArrayList<RecyclerViewItems>();
 
         initSearchWidget();
-
-//        setRecyclerView();
         makeResponsive();
         getData();
 
@@ -118,8 +115,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setQueryHint("Search Here!");
 
-
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String userText) {
@@ -135,7 +130,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
         return super.onCreateOptionsMenu(menu);
     }
-    
+
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -159,8 +154,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
+            public boolean onQueryTextChange(String userText) {
+                recyclerViewAdapter.getFilter().filter(userText);
+                return true;
             }
         });
     }

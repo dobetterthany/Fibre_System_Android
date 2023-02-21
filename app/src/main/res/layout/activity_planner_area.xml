@@ -45,17 +45,10 @@
                 android:queryHint="Product Name"
                 />
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="300dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="300dp"
-                android:layout_height="440dp"
+                android:layout_height="585dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="78dp" />
