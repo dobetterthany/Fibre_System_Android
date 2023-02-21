@@ -45,6 +45,15 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Add_Window_Page"
+            android:exported="false"
+            android:parentActivityName=".Add_Window_Page"
+            android:screenOrientation="landscape">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Planning_Method_Selection_Page"
             android:exported="false"
             android:parentActivityName=".Planning_Method_Selection_Page"
