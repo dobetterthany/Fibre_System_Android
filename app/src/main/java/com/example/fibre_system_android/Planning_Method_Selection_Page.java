@@ -17,7 +17,7 @@ public class Planning_Method_Selection_Page extends AppCompatActivity {
     private int designWidth = 1280;
     private int designHeight = 800;
 
-    Button button;
+    Button buttonChooseSize;
 
 
     @Override
@@ -26,8 +26,8 @@ public class Planning_Method_Selection_Page extends AppCompatActivity {
         setContentView(R.layout.activity_planning_method_selection_page);
         makeResponsive();
 
-        button = (Button) findViewById(R.id.button4);
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonChooseSize = (Button) findViewById(R.id.button_choose_size);
+        buttonChooseSize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Planning_Method_Selection_Page.this,Choose_Size_Page.class);
@@ -49,8 +49,8 @@ public class Planning_Method_Selection_Page extends AppCompatActivity {
         dpWidth = (displayMetrics.widthPixels);
         dDensity = (displayMetrics.scaledDensity);
 
-        Button planningButton = (Button) findViewById(R.id.button2);
-        Button chooseSizeButton = (Button) findViewById(R.id.button4);
+        Button planningButton = (Button) findViewById(R.id.button_skip_to_planning);
+        Button chooseSizeButton = (Button) findViewById(R.id.button_choose_size);
 
 
         ViewGroup.LayoutParams planningButtonParams = (ViewGroup.MarginLayoutParams) planningButton.getLayoutParams();

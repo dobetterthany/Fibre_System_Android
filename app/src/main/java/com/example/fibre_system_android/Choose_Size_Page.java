@@ -77,8 +77,4 @@ public class Choose_Size_Page extends AppCompatActivity {
 
 
     }
-
-
-
-
 }

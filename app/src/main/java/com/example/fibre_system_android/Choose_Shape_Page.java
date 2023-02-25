@@ -31,7 +31,7 @@ public class Choose_Shape_Page extends AppCompatActivity {
 
     public void goChooseSizePage(View v) {
         //launch a new activity
-        Intent i = new Intent(this, Choose_Size_Page.class);
+        Intent i = new Intent(this, Planner_Area_Page.class);
         startActivity(i);
     }
 
