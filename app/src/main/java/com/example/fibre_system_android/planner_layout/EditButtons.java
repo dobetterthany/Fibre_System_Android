@@ -2,20 +2,31 @@ package com.example.fibre_system_android.planner_layout;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.fibre_system_android.R;
 import com.example.fibre_system_android.Vector2;
 
+import java.util.ArrayList;
+
 public class EditButtons {
+    String TAG = "editButtons";
     Context context;
     RelativeLayout plannerAreaLayout;
 
-    ImageView rotate;
-    ImageView delete;
+    ArrayList<ImageButton> buttonArray;
+
+    ImageButton rotateLeft, rotateRight, delete;
+    TextView degCounter;
 
     View selectedView;
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
@@ -23,99 +34,69 @@ public class EditButtons {
     float newX, newY;
     float radius = 400; //Radius of buttons from target view
     float selectedCenterX, selectedCenterY;
+
     //Rotation
     float angle;
 
     EditButtons(Context context, RelativeLayout plannerAreaLayout) {
         this.plannerAreaLayout = plannerAreaLayout;
         this.context = context;
+        buttonArray = new ArrayList<>();
         initControls();
+
     }
 
     private void initControls() {
-        delete = new ImageView(context);
-        rotate = new ImageView(context);
 
-        delete.setVisibility(View.GONE);
-        rotate.setVisibility(View.GONE);
-
-        rotate.setImageResource(R.drawable.small_square);
-        rotate.setColorFilter(Color.argb(150, 100, 0, 100));
-
-        delete.setImageResource(R.drawable.small_square);
-        delete.setColorFilter(Color.argb(150, 0, 100, 0));
-
-        plannerAreaLayout.addView(rotate);
-        plannerAreaLayout.addView(delete);
-        //plannerAreaLayout.addView(delete);
-
-        rotate.setOnTouchListener(new View.OnTouchListener() {
+        rotateLeft = new ImageButton(context);
+        initButton(rotateLeft, R.drawable.small_square, -90);
+        rotateLeft.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-
-                        dX = view.getX() - event.getRawX();
-                        dY = view.getY() - event.getRawY();
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-                        float eventX = event.getRawX() + dX;
-                        float eventY = event.getRawY() + dY;
-                        float dot = (selectedCenterX * eventX + selectedCenterY * eventY);
-                        double den = (Math.sqrt(Math.pow(selectedCenterX, 2) + Math.pow(selectedCenterY, 2)) * (Math.sqrt(Math.pow(eventX, 2) + Math.pow(eventY, 2))));
-                        double cos =  (dot / den);
-
-                        angle =  (float) Math.atan2(eventX - selectedCenterX, eventY - selectedCenterY);
-                        //angle = (float)Math.toDegrees(angle);
-                        setAngleFromSelectedView(view, angle);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                            updatePos();
-
-                        break;
-
-                    default:
-                        return false;
-                }
-                return true;
+            public void onClick(View view) {
+                selectedView.setRotation(selectedView.getRotation() - 90);
             }
         });
-    }
 
-    private void setScale(View view, float scale) {
-        view.setScaleX(scale);
-        view.setScaleY(scale);
-    }
+        rotateRight = new ImageButton(context);
+        initButton(rotateRight, R.drawable.small_square, 90);
+        rotateRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedView.setRotation(selectedView.getRotation() + 90);
+            }
+        });
 
-    public void toggleButtonsVisible(){
-        toggleView(rotate);
-        toggleView(delete);
-    }
+        delete = new ImageButton(context);
+        initButton(delete, R.drawable.small_square, 0);
+        delete.setColorFilter(R.color.purple_200);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            //TODO Delete selected image view method
+            }
+        });
 
-    public void toggleView(View view) {
-        if (view.getVisibility() == View.GONE)
-            view.setVisibility(View.VISIBLE);
-
-        else if (view.getVisibility() == View.VISIBLE)
-            view.setVisibility(View.GONE);
+        viewDeselected();
     }
 
     //On tap code to go here, eg, info for selected item (name)
     public void viewSelected(View view){
         updatePos();
-        rotate.bringToFront();
-        rotate.setVisibility(View.VISIBLE);
 
-        delete.bringToFront();
-        delete.setVisibility(View.VISIBLE);
+        for (ImageButton imageButton: buttonArray){
+            imageButton.bringToFront();
+            imageButton.setVisibility(View.VISIBLE);
+        }
+
+        selectedView = view;
     }
 
     public void viewDeselected()
     {
-        rotate.setVisibility(View.GONE);
-        delete.setVisibility(View.GONE);
+        for (ImageButton view: buttonArray
+             ) {
+            view.setVisibility(View.GONE);
+        }
     }
 
     public void update(View view)
@@ -132,13 +113,20 @@ public class EditButtons {
 
     private void updatePos() {
 
-        setAngleFromSelectedView(rotate, 0);
-
-        setAngleFromSelectedView(delete, 2);
+        setAngleFromSelectedViewDeg(rotateLeft, -90);
+        setAngleFromSelectedViewDeg(rotateRight, 90);
+        setAngleFromSelectedViewDeg(delete, 180);
     }
 
-    private void setAngleFromSelectedView(View view, float angle)
+    private void setAngleFromSelectedViewRad(View view, float angleRad)
     {
+        if(angleRad == 0)
+        {
+            float angle = 0;
+        }
+        else{
+            float angle = (float)Math.PI / angleRad;
+        }
         newX = (float) (selectedCenterX + radius * Math.sin(angle));
         newY = (float) (selectedCenterY + radius * Math.cos(angle));
 
@@ -147,5 +135,27 @@ public class EditButtons {
                 .y(newY- view.getHeight() / 2)
                 .setDuration(0)
                 .start();
+    }
+
+    private void setAngleFromSelectedViewDeg(View view, float deg)
+    {
+        float angle = (float)Math.toRadians(deg);
+        newX = (float) (selectedCenterX + radius * Math.sin(angle));
+        newY = (float) (selectedCenterY + radius * Math.cos(angle));
+
+        view.animate()
+                .x(newX - view.getWidth() / 2)
+                .y(newY- view.getHeight() / 2)
+                .setDuration(0)
+                .start();
+    }
+
+    private void initButton(ImageButton imageButton, int image, int angle)
+    {
+        imageButton.setImageResource(image);
+        imageButton.setRotation(angle);
+        imageButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        plannerAreaLayout.addView(imageButton);
+        buttonArray.add(imageButton);
     }
 }
