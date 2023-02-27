@@ -2,6 +2,7 @@ package com.example.fibre_system_android.planner_layout;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
 import com.example.fibre_system_android.Vector2;
@@ -49,7 +52,7 @@ public class EditButtons {
     private void initControls() {
 
         rotateLeft = new ImageButton(context);
-        initButton(rotateLeft, R.drawable.small_square, -90);
+        initButton(rotateLeft, R.drawable.small_square, -90, R.color.edit_rotate);
         rotateLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,7 +61,7 @@ public class EditButtons {
         });
 
         rotateRight = new ImageButton(context);
-        initButton(rotateRight, R.drawable.small_square, 90);
+        initButton(rotateRight, R.drawable.small_square, 90, R.color.edit_rotate);
         rotateRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,12 +70,12 @@ public class EditButtons {
         });
 
         delete = new ImageButton(context);
-        initButton(delete, R.drawable.small_square, 0);
-        delete.setColorFilter(R.color.purple_200);
+        initButton(delete, R.drawable.small_square, 0, R.color.edit_delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //TODO Delete selected image view method
+                plannerAreaLayout.removeView(selectedView);
+                viewDeselected();
             }
         });
 
@@ -81,6 +84,7 @@ public class EditButtons {
 
     //On tap code to go here, eg, info for selected item (name)
     public void viewSelected(View view){
+        selectedView = view;
         updatePos();
 
         for (ImageButton imageButton: buttonArray){
@@ -88,7 +92,6 @@ public class EditButtons {
             imageButton.setVisibility(View.VISIBLE);
         }
 
-        selectedView = view;
     }
 
     public void viewDeselected()
@@ -150,12 +153,15 @@ public class EditButtons {
                 .start();
     }
 
-    private void initButton(ImageButton imageButton, int image, int angle)
+    private void initButton(ImageButton imageButton, int image, int angle, int tintColour)
     {
         imageButton.setImageResource(image);
         imageButton.setRotation(angle);
         imageButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        imageButton.setColorFilter(ContextCompat.getColor(context, tintColour));
+
         plannerAreaLayout.addView(imageButton);
         buttonArray.add(imageButton);
     }
+
 }

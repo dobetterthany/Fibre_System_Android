@@ -10,5 +10,8 @@
 
     //Planner area colours
     <color name="planner_selected_object">#8FFFFB00</color>
+    <color name="edit_delete">#8FFF0000</color>
+    <color name="edit_rotate">#8F62FF00</color>
+    <color name="tint_transparent">#0062FF00</color>
 
 </resources>
