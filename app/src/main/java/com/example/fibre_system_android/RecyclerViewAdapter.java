@@ -62,16 +62,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     public Filter getFilter() {
         return new Filter() {
             @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
                 ArrayList<RecyclerViewItems> filteredItemsList = new ArrayList<>();
 
-                if (charSequence == null || charSequence.length() == 0){
+
+                if (charString == null || charString.length() == 0){
                     filteredItemsList.addAll(itemsArrayListFull);
                 } else {
-                    String filterPattern = charSequence.toString().toLowerCase().trim();
+
 
                     for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
-                        if(recyclerViewItems.name.toLowerCase().contains(filterPattern)){
+                        if(recyclerViewItems.name.toLowerCase().contains(charString)){
                             filteredItemsList.add(recyclerViewItems);
                         }
                     }
@@ -82,7 +84,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                 return results;
             }
             @Override
-            protected void publishResults(CharSequence charSequence, FilterResults results) {
+            protected void publishResults(CharSequence constraint, FilterResults results) {
                 itemsArrayList.clear();
                 itemsArrayList.addAll((ArrayList)results.values);
                 notifyDataSetChanged();
