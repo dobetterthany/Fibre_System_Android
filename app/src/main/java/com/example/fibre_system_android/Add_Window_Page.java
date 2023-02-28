@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.app.ActionBar;
+import android.content.ContentValues;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -20,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.DisplayMetrics;
 import android.widget.Button;
+import android.content.Intent;
 
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
@@ -35,23 +37,36 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designWidth = 1280;
     private int designHeight = 800;
 
+
+
     //Planner area layout variables
     RelativeLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
+
+    Intent intent = getIntent();
+    int inputHeight = intent.getIntExtra("inputHeight",0);
+    int inputWidth = intent.getIntExtra("inputWidth",0);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_window_page);
 
+
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea);
+
+        //AddImage(R.drawable.square);
+
 
         setSpinner();
         initSearchWidget();
         setRecyclerView();
         makeResponsive();
+        AddImage(R.drawable.square);
+
+
 
     }
 
@@ -152,6 +167,27 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         //Create image view in planner area layout
         bathroomPlannerLayout.AddImage((int) imageView.getTag());
+    }
+
+
+    public void AddImage(int imageID)
+    {
+
+
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        lParams.height = inputHeight;
+        lParams.width = inputWidth;
+
+        // Change the parameter of shapeImage(choose size page)
+
+        ImageView icon = findViewById(R.id.shapeImage2);
+        icon.setImageResource(imageID);
+        icon.setLayoutParams(lParams);
+
+
     }
 
 
