@@ -1,5 +1,8 @@
 package com.example.fibre_system_android;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class RecyclerViewItems {
 
     String name;
@@ -7,11 +10,18 @@ public class RecyclerViewItems {
     int height; //top to bottom measurement
     int image;
 
-    public RecyclerViewItems(String name, int length, int height, int image) {
+    Map<String, Boolean> colours;
+    public RecyclerViewItems(String name, int length, int width, int image) {
         this.name = name;
         this.length = length;
-        this.height = height;
+        this.height = width;
         this.image = image;
+
+        colours.put("black", false);
+        colours.put("chrome", false);
+        colours.put("white", false);
+        colours.put("gunmetal", false);
+
     }
 
     public int getLength() {
