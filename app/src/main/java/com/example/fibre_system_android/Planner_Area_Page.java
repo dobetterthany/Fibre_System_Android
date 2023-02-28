@@ -168,6 +168,4 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         //Create image view in planner area layout
         bathroomPlannerLayout.AddImage((int) imageView.getTag());
     }
-
-
 }
