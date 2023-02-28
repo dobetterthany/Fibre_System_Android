@@ -1,6 +1,7 @@
 package com.example.fibre_system_android;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class RecyclerViewItems {
@@ -10,13 +11,14 @@ public class RecyclerViewItems {
     int height; //top to bottom measurement
     int image;
 
-    Map<String, Boolean> colours;
+    HashMap<String, Boolean> colours;
     public RecyclerViewItems(String name, int length, int width, int image) {
         this.name = name;
         this.length = length;
         this.height = width;
         this.image = image;
 
+        colours = new HashMap<String, Boolean>();
         colours.put("black", false);
         colours.put("chrome", false);
         colours.put("white", false);
