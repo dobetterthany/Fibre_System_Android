@@ -147,11 +147,11 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
-    public void onItemSelected(ImageView imageView) {
+    public void onItemSelected(RecyclerViewItems item) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
         //Create image view in planner area layout
-        bathroomPlannerLayout.AddImage((int) imageView.getTag());
+        bathroomPlannerLayout.AddItem(item);
     }
 
 

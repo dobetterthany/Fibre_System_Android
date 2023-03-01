@@ -91,15 +91,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
 
     private void getData() {
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.toilet));
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("large shower", 9, 9, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.square, false, true, false, false));
+        itemsArrayList.add(new RecyclerViewItems("small shower", 9, 9, R.drawable.large_square, false, false, true, false));
 
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.small_square));
-        itemsArrayList.add(new RecyclerViewItems("square", 9, 9, R.drawable.square));
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.large_square));
-
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
         recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
@@ -162,10 +157,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     }
 
     @Override
-    public void onItemSelected(ImageView imageView) {
+    public void onItemSelected(RecyclerViewItems item) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
         //Create image view in planner area layout
-        bathroomPlannerLayout.AddImage((int) imageView.getTag());
+        bathroomPlannerLayout.AddItem(item);
     }
 }

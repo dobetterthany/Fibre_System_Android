@@ -47,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
         holder.imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                listener.onItemSelected(holder.imageView);
+                listener.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
                 return false;
             }
         });

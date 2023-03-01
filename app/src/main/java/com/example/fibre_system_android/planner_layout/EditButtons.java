@@ -1,23 +1,17 @@
 package com.example.fibre_system_android.planner_layout;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.util.Log;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
-import com.example.fibre_system_android.Vector2;
+import com.example.fibre_system_android.RecyclerViewItems;
 
 import java.util.ArrayList;
 
@@ -27,13 +21,13 @@ public class EditButtons {
     RelativeLayout plannerAreaLayout;
 
     ArrayList<ImageButton> buttonArray;
-
+    ArrayList<RecyclerViewItems> plannerItemArray;
     ImageButton rotateLeft, rotateRight, delete;
-    TextView degCounter;
 
     View selectedView;
+    RecyclerViewItems selectedItem;
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
-    float dX = 0, dY = 0;
+
     float newX, newY;
     float radius = 400; //Radius of buttons from target view
     float selectedCenterX, selectedCenterY;
@@ -41,9 +35,10 @@ public class EditButtons {
     //Rotation
     float angle;
 
-    EditButtons(Context context, RelativeLayout plannerAreaLayout) {
+    EditButtons(Context context, RelativeLayout plannerAreaLayout,  ArrayList<RecyclerViewItems> plannerItemArray) {
         this.plannerAreaLayout = plannerAreaLayout;
         this.context = context;
+        this.plannerItemArray = plannerItemArray;
         buttonArray = new ArrayList<>();
         initControls();
 
@@ -53,38 +48,27 @@ public class EditButtons {
 
         rotateLeft = new ImageButton(context);
         initButton(rotateLeft, R.drawable.small_square, -90, R.color.edit_rotate);
-        rotateLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedView.setRotation(selectedView.getRotation() - 90);
-            }
-        });
+        rotateLeft.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() - 90));
 
         rotateRight = new ImageButton(context);
         initButton(rotateRight, R.drawable.small_square, 90, R.color.edit_rotate);
-        rotateRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedView.setRotation(selectedView.getRotation() + 90);
-            }
-        });
+        rotateRight.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() + 90));
 
         delete = new ImageButton(context);
         initButton(delete, R.drawable.small_square, 0, R.color.edit_delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                plannerAreaLayout.removeView(selectedView);
-                viewDeselected();
-            }
+        delete.setOnClickListener(view -> {
+            plannerAreaLayout.removeView(selectedView);
+            plannerItemArray.remove(selectedItem);
+            viewDeselected();
         });
 
         viewDeselected();
     }
 
     //On tap code to go here, eg, info for selected item (name)
-    public void viewSelected(View view){
+    public void viewSelected(View view, RecyclerViewItems item){
         selectedView = view;
+        selectedItem = item;
         updatePos();
 
         for (ImageButton imageButton: buttonArray){
@@ -123,12 +107,13 @@ public class EditButtons {
 
     private void setAngleFromSelectedViewRad(View view, float angleRad)
     {
+        float angle;
         if(angleRad == 0)
         {
-            float angle = 0;
+            angle = 0;
         }
         else{
-            float angle = (float)Math.PI / angleRad;
+            angle = (float)Math.PI / angleRad;
         }
         newX = (float) (selectedCenterX + radius * Math.sin(angle));
         newY = (float) (selectedCenterY + radius * Math.cos(angle));

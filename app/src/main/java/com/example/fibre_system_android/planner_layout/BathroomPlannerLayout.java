@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
+import com.example.fibre_system_android.RecyclerViewItems;
 
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ public class BathroomPlannerLayout {
 
 
     //Stores all items added to array.
-    ArrayList<ImageView> plannerItemArray;
+    ArrayList<RecyclerViewItems> plannerItemArray;
     float dX = 0, dY = 0;
     Context context;
 
@@ -34,13 +35,18 @@ public class BathroomPlannerLayout {
         //Init variables
         this.context = context;
         this.plannerArea = plannerAreaLayout;
-        plannerItemArray = new ArrayList<ImageView>();
+        plannerItemArray = new ArrayList<RecyclerViewItems>();
 
-        editButtons = new EditButtons(context, plannerAreaLayout);
+        editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
+    }
+
+    public ArrayList<RecyclerViewItems> getItemArray()
+    {
+        return plannerItemArray;
     }
 
     //Add image to planner view
-    public void AddImage(int tag)
+    public void AddItem(RecyclerViewItems item)
     {
         deselectItem(selectedView);
 
@@ -49,7 +55,7 @@ public class BathroomPlannerLayout {
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         ImageView icon = new ImageView(context);
-        icon.setImageResource(tag);
+        icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
 
         icon.setOnTouchListener(new View.OnTouchListener() {
@@ -60,7 +66,7 @@ public class BathroomPlannerLayout {
                     case MotionEvent.ACTION_DOWN:
 
                         deselectItem(selectedView);
-                        selectItem((ImageView) view);
+                        selectItem((ImageView) view, item);
                         editButtons.update(view);
 
                         dX = view.getX() - event.getRawX();
@@ -85,13 +91,14 @@ public class BathroomPlannerLayout {
         } );
 
         plannerArea.addView(icon);
+        plannerItemArray.add(item);
     }
 
-    private void selectItem(ImageView imageView)
+    private void selectItem(ImageView imageView, RecyclerViewItems item)
     {
         selectedView = imageView;
         selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));
-        editButtons.viewSelected(imageView);
+        editButtons.viewSelected(imageView, item);
         editButtons.update(imageView);
     }
 

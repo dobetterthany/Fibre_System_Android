@@ -5,6 +5,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 public interface SelectItemListener {
-    void onItemSelected(ImageView imageView);
+    void onItemSelected(RecyclerViewItems item);
 
 }
