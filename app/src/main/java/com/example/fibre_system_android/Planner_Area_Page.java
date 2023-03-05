@@ -39,7 +39,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<RecyclerViewItems> itemsArrayList;
     RecyclerView recyclerView;
-    Button button = (Button) findViewById(R.id.buttonSubmit);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,14 +89,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         return (int) (dpWidth * (value / designWidth));
     }
 
-//    public void filterData() {
-//
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(String userText){
-//                recyclerViewAdapter.getFilter().filter(userText);
-//            }
-//        });
-//    }
 
     private void getData() {
         itemsArrayList.add(new RecyclerViewItems("large shower", 9, 9, R.drawable.small_square, true, true, true, false));
@@ -159,7 +151,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
             @Override
             public boolean onQueryTextChange(String userText) {
-                recyclerViewAdapter.getFilter().filter(userText);
+
                 return true;
             }
         });
