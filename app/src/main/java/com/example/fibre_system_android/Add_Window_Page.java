@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -35,6 +36,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designWidth = 1280;
     private int designHeight = 800;
 
+
+
     //Planner area layout variables
     RelativeLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
@@ -48,10 +51,15 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         AddwindowArea = findViewById(R.id.AddwindowArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea);
 
+        Intent i = getIntent();
+        int inputHeight = i.getIntExtra("InputHeight", 0);
+        int inputWidth = i.getIntExtra("InputWidth",0);
+
         setSpinner();
         initSearchWidget();
         setRecyclerView();
         makeResponsive();
+        inheritImage(inputHeight,inputWidth);
 
     }
 
@@ -153,6 +161,22 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         //Create image view in planner area layout
         bathroomPlannerLayout.AddItem(item);
     }
+    public void inheritImage(int InputHeight, int InputWidth)
+    {
 
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        lParams.height = InputHeight;
+        lParams.width = InputWidth;
+
+
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage2);
+        icon.setImageResource(R.drawable.square);
+        icon.setLayoutParams(lParams);
+
+
+    }
 
 }

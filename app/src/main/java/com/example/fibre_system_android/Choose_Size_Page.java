@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Choose_Size_Page extends AppCompatActivity {
 
     private int Height;
+
+
     private int Width;
 
     /* Context context; */
@@ -32,10 +34,10 @@ public class Choose_Size_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_size_page);
 
-        widthInput = (EditText) findViewById(R.id.widthInput);
-        heightInput = (EditText) findViewById(R.id.heightInput);
+        widthInput = findViewById(R.id.widthInput);
+        heightInput = findViewById(R.id.heightInput);
 
-        confirmButton = (Button) findViewById(R.id.confirmButton);
+        confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,16 +45,20 @@ public class Choose_Size_Page extends AppCompatActivity {
             }
         });
 
-        nextButton = (Button)findViewById(R.id.goAddwindowButton);
+        nextButton = findViewById(R.id.goAddwindowButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
+
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
+                intent.putExtra("InputWidth", Width);
+                intent.putExtra("InputHeight", Height);
                 startActivity(intent);
             }
         });
 
     }
+
 
     public void AddImage(int imageID)
     {
@@ -71,10 +77,7 @@ public class Choose_Size_Page extends AppCompatActivity {
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
 
-        ImageView icon2 = (ImageView) findViewById(R.id.shapeImage2);
-        icon2.setImageResource(imageID);
-        icon2.setLayoutParams(lParams);
-
 
     }
+
 }
