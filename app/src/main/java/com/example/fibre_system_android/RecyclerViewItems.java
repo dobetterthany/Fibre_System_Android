@@ -1,10 +1,11 @@
 package com.example.fibre_system_android;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RecyclerViewItems {
+public class RecyclerViewItems implements Serializable {
 
     String name;
     int length; //side to side measurement

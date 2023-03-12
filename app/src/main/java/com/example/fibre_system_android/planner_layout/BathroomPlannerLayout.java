@@ -111,4 +111,9 @@ public class BathroomPlannerLayout {
             editButtons.viewDeselected();
         }
     }
+
+    public ArrayList<RecyclerViewItems> GetItemList()
+    {
+        return plannerItemArray;
+    }
 }

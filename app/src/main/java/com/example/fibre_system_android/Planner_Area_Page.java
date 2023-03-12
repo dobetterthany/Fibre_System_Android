@@ -5,17 +5,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.Spinner;
 import android.widget.Toast;
 import android.util.DisplayMetrics;
 import android.widget.Button;
@@ -23,7 +21,6 @@ import android.widget.Button;
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
@@ -40,21 +37,33 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     ArrayList<RecyclerViewItems> itemsArrayList;
     RecyclerView recyclerView;
 
+    Button finishButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_planner_area);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.plannerItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
         itemsArrayList  = new ArrayList<RecyclerViewItems>();
 
+        finishButton = findViewById(R.id.button_planner_page_finish);
+
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Planner_Area_Page.this, Finalize_Page.class);
+                i.putExtra("planner_item_array", bathroomPlannerLayout.GetItemList());
+                startActivity(i);
+            }
+        });
+
         initSearchWidget();
         makeResponsive();
         getData();
-
     }
 
     private void makeResponsive() {
@@ -65,8 +74,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         dDensity = (displayMetrics.scaledDensity);
 
         SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        Button finishButton = (Button) findViewById(R.id.button3);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
+        Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
 
         ViewGroup.LayoutParams searchViewParams = (ViewGroup.MarginLayoutParams) searchView.getLayoutParams();
         searchViewParams.width = calcWidth(300);

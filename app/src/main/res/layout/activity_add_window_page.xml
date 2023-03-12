@@ -9,7 +9,7 @@
     tools:context=".Add_Window_Page">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_planner_page_finish"
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
@@ -53,7 +53,7 @@
                 android:layout_marginTop="32dp" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/plannerItemList"
                 android:layout_width="300dp"
                 android:layout_height="440dp"
                 android:layout_marginStart="32dp"

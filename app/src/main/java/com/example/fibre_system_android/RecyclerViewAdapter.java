@@ -22,8 +22,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
     ArrayList<RecyclerViewItems> itemsArrayListFull;
     private SelectItemListener listener;
 
-    RelativeLayout plannerLayout;
-
     public RecyclerViewAdapter(Context context, ArrayList<RecyclerViewItems> itemsArrayList, SelectItemListener listener) {
         this.context = context;
 //        this.itemsArrayListFull = itemsArrayList;

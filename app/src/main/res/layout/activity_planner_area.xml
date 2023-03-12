@@ -9,7 +9,7 @@
     tools:context=".Planner_Area_Page">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_planner_page_finish"
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
@@ -48,7 +48,7 @@
             </SearchView>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/plannerItemList"
                 android:layout_width="300dp"
                 android:layout_height="585dp"
                 android:layout_marginStart="32dp"
@@ -61,8 +61,7 @@
             android:id="@+id/plannerArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            ></RelativeLayout>
+            android:orientation="horizontal"></RelativeLayout>
 
     </LinearLayout>
 

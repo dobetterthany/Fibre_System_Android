@@ -7,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,7 +23,6 @@ import android.widget.Button;
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
@@ -72,8 +69,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        Button finishButton = (Button) findViewById(R.id.button3);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
+        Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
 
         ViewGroup.LayoutParams spinnerParams = (ViewGroup.MarginLayoutParams) spinner.getLayoutParams();
         spinnerParams.width = calcWidth(300);
@@ -101,7 +98,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     private void setRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.plannerItemList);
 
         ArrayList<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
         items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginTop="1dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_finalize"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="10dp"
+
+            />
+
+        <LinearLayout
+            android:layout_width="348dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name_finalize"
+                android:layout_width="348dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/imageview_finalize"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                tools:text="Product Name" />
+
+            <TextView
+                android:id="@+id/size_finalize"
+                android:layout_width="347dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name_finalize"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/imageview_finalize"
+                android:textColor="@color/black"
+                tools:text="Size" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/spinner_colour"
+            android:layout_width="809dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="0dp"
+            android:background="@color/cardview_dark_background"
+            android:theme="@style/Widget.AppCompat.Spinner"
+            android:verticalScrollbarPosition="defaultPosition"
+            android:visibility="visible"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </LinearLayout>
+
+</LinearLayout>
