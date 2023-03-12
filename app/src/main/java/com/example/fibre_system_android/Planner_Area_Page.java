@@ -64,6 +64,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         initSearchWidget();
         makeResponsive();
         getData();
+
+        recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
+        recyclerView.setAdapter(recyclerViewAdapter);
+        recyclerViewAdapter.notifyDataSetChanged();
     }
 
     private void makeResponsive() {
@@ -106,9 +110,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
 
-        recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerViewAdapter.notifyDataSetChanged();
     }
     //set searchview on the menubar
     @Override
