@@ -65,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                     filteredItemsList.addAll(itemsArrayListFull);
                 } else {
                     for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
-                        if(recyclerViewItems.name.toLowerCase().contains(charString)){
+                        if(recyclerViewItems.name.toLowerCase().replace(" ","").contains(charString)){
                             filteredItemsList.add(recyclerViewItems);
                         }
                     }
