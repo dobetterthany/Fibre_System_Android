@@ -48,7 +48,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
-        itemsArrayList  = new ArrayList<RecyclerViewItems>();
+        itemsArrayList  = new ArrayList<>();
 
         finishButton = findViewById(R.id.button_planner_page_finish);
 
@@ -107,10 +107,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new RecyclerViewItems("large shower", 9, 9, R.drawable.small_square, true, true, true, false));
         itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.square, false, true, false, false));
         itemsArrayList.add(new RecyclerViewItems("small shower", 9, 9, R.drawable.large_square, true, false, true, false));
-
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-
     }
+
     //set searchview on the menubar
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -129,7 +128,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
             @Override
             public boolean onQueryTextChange(String userText) {
-//                recyclerViewAdapter.getFilter().filter(userText);
+                recyclerViewAdapter.getFilter().filter(userText);
                 return true;
             }
         });

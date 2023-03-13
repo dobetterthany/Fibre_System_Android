@@ -1,33 +1,28 @@
 package com.example.fibre_system_android;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Filter;
 import android.widget.Filterable;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder> implements Filterable{
 
     Context context;
-    ArrayList<RecyclerViewItems> itemsArrayList;
+    ArrayList<RecyclerViewItems> filteredItemsArrayList;
     ArrayList<RecyclerViewItems> itemsArrayListFull;
     private SelectItemListener listener;
 
     public RecyclerViewAdapter(Context context, ArrayList<RecyclerViewItems> itemsArrayList, SelectItemListener listener) {
         this.context = context;
-//        this.itemsArrayListFull = itemsArrayList;
-//        this.itemsArrayList = new ArrayList<>(itemsArrayListFull);
-        this.itemsArrayList = itemsArrayList;
-        this.itemsArrayListFull = new ArrayList<>(itemsArrayList);
+        this.itemsArrayListFull = itemsArrayList;
+        this.filteredItemsArrayList = new ArrayList<>(itemsArrayListFull);
         this.listener = listener;
     }
 
@@ -39,15 +34,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-        holder.nameView.setText(itemsArrayListFull.get(position).getName());
-        holder.sizeView.setText(itemsArrayListFull.get(position).getSizeString());
-        holder.imageView.setImageResource(itemsArrayListFull.get(position).getImage());
-        holder.imageView.setTag(itemsArrayListFull.get(position).getImage());
+        holder.nameView.setText(filteredItemsArrayList.get(position).getName());
+        holder.sizeView.setText(filteredItemsArrayList.get(position).getSizeString());
+        holder.imageView.setImageResource(filteredItemsArrayList.get(position).getImage());
+        holder.imageView.setTag(filteredItemsArrayList.get(position).getImage());
 
         holder.imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                listener.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
+                listener.onItemSelected(filteredItemsArrayList.get(holder.getBindingAdapterPosition()));
                 return false;
             }
         });
@@ -55,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
 
     @Override
     public int getItemCount() {
-        return itemsArrayListFull.size();
+        return filteredItemsArrayList.size();
     }
 
     @Override
@@ -66,12 +61,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
                 String charString = constraint.toString();
                 ArrayList<RecyclerViewItems> filteredItemsList = new ArrayList<>();
 
-
                 if (charString == null || charString.length() == 0){
                     filteredItemsList.addAll(itemsArrayListFull);
                 } else {
-
-
                     for(RecyclerViewItems recyclerViewItems : itemsArrayListFull){
                         if(recyclerViewItems.name.toLowerCase().contains(charString)){
                             filteredItemsList.add(recyclerViewItems);
@@ -85,11 +77,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             }
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
-                itemsArrayList.clear();
-                itemsArrayList.addAll((ArrayList)results.values);
+                filteredItemsArrayList.clear();
+                filteredItemsArrayList.addAll((ArrayList)results.values);
                 notifyDataSetChanged();
             }
         };
+
+
     }
 }
 
