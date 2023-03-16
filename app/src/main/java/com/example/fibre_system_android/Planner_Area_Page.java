@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
@@ -42,13 +44,19 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //hide menu bar
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getSupportActionBar().hide();
+
         setContentView(R.layout.activity_planner_area);
         recyclerView = findViewById(R.id.plannerItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
-        itemsArrayList  = new ArrayList<RecyclerViewItems>();
+        itemsArrayList  = new ArrayList<>();
 
         finishButton = findViewById(R.id.button_planner_page_finish);
 
@@ -106,36 +114,35 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     private void getData() {
         itemsArrayList.add(new RecyclerViewItems("large shower", 9, 9, R.drawable.small_square, true, true, true, false));
         itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.square, false, true, false, false));
-        itemsArrayList.add(new RecyclerViewItems("small shower", 9, 9, R.drawable.large_square, false, false, true, false));
-
+        itemsArrayList.add(new RecyclerViewItems("small shower", 9, 9, R.drawable.large_square, true, false, true, false));
         itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-
     }
+
     //set searchview on the menubar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_item,menu);
-        MenuItem menuItem = menu.findItem(R.id.app_bar_search );
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-        searchView.setQueryHint("Search Here!");
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String userText) {
-                recyclerViewAdapter.getFilter().filter(userText);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String userText) {
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu){
+//        getMenuInflater().inflate(R.menu.menu_item,menu);
+//        MenuItem menuItem = menu.findItem(R.id.app_bar_search );
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//        searchView.setMaxWidth(Integer.MAX_VALUE);
+//        searchView.setQueryHint("Search Here!");
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String userText) {
 //                recyclerViewAdapter.getFilter().filter(userText);
-                return true;
-            }
-        });
-
-        return super.onCreateOptionsMenu(menu);
-    }
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String userText) {
+//                recyclerViewAdapter.getFilter().filter(userText);
+//                return true;
+//            }
+//        });
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
 
     @Override
@@ -161,7 +168,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
             @Override
             public boolean onQueryTextChange(String userText) {
-
+                recyclerViewAdapter.getFilter().filter(userText);
                 return true;
             }
         });
