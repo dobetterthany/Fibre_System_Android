@@ -86,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolder
             @Override
             protected void publishResults(CharSequence constraint, FilterResults results) {
                 itemsArrayList.clear();
-                itemsArrayList.addAll((ArrayList)results.values);
+//                itemsArrayList.addAll((ArrayList)results.values);
                 notifyDataSetChanged();
             }
         };
