@@ -39,5 +39,15 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    // Optional -- Robolectric environment
+    testImplementation "androidx.test:core:core:1.5.0"
+    androidTestImplementation "androidx.test:espresso:espresso-core:3.5.1"
+    // Required for AndroidJUnitRunner
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+
+    // Required for ActivityTestRule
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+
 }
