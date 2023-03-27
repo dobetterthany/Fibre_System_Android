@@ -80,9 +80,12 @@ public class Choose_Size_Page extends AppCompatActivity {
         lParams.height = Height;
         lParams.width = Width;
 
+
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
+
+
     }
 
 }
