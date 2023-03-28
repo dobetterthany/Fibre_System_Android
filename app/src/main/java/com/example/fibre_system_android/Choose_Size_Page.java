@@ -17,10 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Choose_Size_Page extends AppCompatActivity {
 
-    private int Height;
-
-
-    private int Width;
+     int Height;
+     int Width;
 
     /* Context context; */
 
@@ -29,7 +27,10 @@ public class Choose_Size_Page extends AppCompatActivity {
     Button confirmButton;
     Button nextButton;
 
-
+    public void TestInit(int height, int width){
+        this.Height = height;
+        this.Width = width;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
