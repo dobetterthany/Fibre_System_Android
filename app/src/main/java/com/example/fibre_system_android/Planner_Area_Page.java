@@ -110,12 +110,19 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         return (int) (dpWidth * (value / designWidth));
     }
 
-
     private void getData() {
-        itemsArrayList.add(new RecyclerViewItems("large shower", 9, 9, R.drawable.small_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("shower", 9, 9, R.drawable.square, false, true, false, false));
-        itemsArrayList.add(new RecyclerViewItems("small shower", 9, 9, R.drawable.large_square, true, false, true, false));
-        itemsArrayList.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Eline Round", 10, 10, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new RecyclerViewItems("Eline Round", 9, 9, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new RecyclerViewItems("Squareline", 9, 9, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new RecyclerViewItems("Squareline", 10, 10, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new RecyclerViewItems("Square", 1, 1, R.drawable.large_square, true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
     }
 
     //set searchview on the menubar
