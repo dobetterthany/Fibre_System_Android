@@ -16,16 +16,17 @@ import java.util.ArrayList;
 
 public class BathroomPlannerLayout {
 
-    //Layout where all shapes are placed
+    //Layout where item views are placed
     RelativeLayout plannerArea;
 
-    //When a view is clicked it will be "selected"
+    //Current selected view
     ImageView selectedView;
 
-
-    //Stores all items added to array.
+    //Stores all items added to array
     ArrayList<RecyclerViewItems> plannerItemArray;
     float dX = 0, dY = 0;
+
+    //Context of activity this is created in
     Context context;
 
     EditButtons editButtons;
@@ -40,12 +41,12 @@ public class BathroomPlannerLayout {
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
     }
 
-    public ArrayList<RecyclerViewItems> getItemArray()
+    public ArrayList<RecyclerViewItems> GetItemList()
     {
         return plannerItemArray;
     }
 
-    //Add image to planner view
+    //Add item to planner view
     public void AddItem(RecyclerViewItems item)
     {
         deselectItem(selectedView);
@@ -58,6 +59,7 @@ public class BathroomPlannerLayout {
         icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
 
+        //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
@@ -94,6 +96,7 @@ public class BathroomPlannerLayout {
         plannerItemArray.add(item);
     }
 
+    //Set selected item
     private void selectItem(ImageView imageView, RecyclerViewItems item)
     {
         selectedView = imageView;
@@ -102,6 +105,7 @@ public class BathroomPlannerLayout {
         editButtons.update(imageView);
     }
 
+    //Deselect item
     private void deselectItem(ImageView imageView)
     {
         //imageView.setColorFilter(Color.argb(255,0,0,1));
@@ -112,8 +116,5 @@ public class BathroomPlannerLayout {
         }
     }
 
-    public ArrayList<RecyclerViewItems> GetItemList()
-    {
-        return plannerItemArray;
-    }
+
 }

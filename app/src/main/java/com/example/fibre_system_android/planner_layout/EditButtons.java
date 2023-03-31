@@ -15,6 +15,10 @@ import com.example.fibre_system_android.RecyclerViewItems;
 
 import java.util.ArrayList;
 
+/*
+Shows a radial menu of buttons a view is passed in.
+These buttons change the views orientation removes the view from its layout.
+ */
 public class EditButtons {
     String TAG = "editButtons";
     Context context;
@@ -86,6 +90,7 @@ public class EditButtons {
         }
     }
 
+    //Updates the position of the buttons
     public void update(View view)
     {
         selectedViewX = view.getX();
@@ -105,6 +110,7 @@ public class EditButtons {
         setAngleFromSelectedViewDeg(delete, 180);
     }
 
+    //Set the angle of a button in relation to the selected view in radians
     private void setAngleFromSelectedViewRad(View view, float angleRad)
     {
         float angle;
@@ -125,6 +131,7 @@ public class EditButtons {
                 .start();
     }
 
+    //Set the angle of a button in relation to the selected view in degrees
     private void setAngleFromSelectedViewDeg(View view, float deg)
     {
         float angle = (float)Math.toRadians(deg);
@@ -138,6 +145,7 @@ public class EditButtons {
                 .start();
     }
 
+    //Initialises an image button
     private void initButton(ImageButton imageButton, int image, int angle, int tintColour)
     {
         imageButton.setImageResource(image);
