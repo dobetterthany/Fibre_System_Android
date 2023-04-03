@@ -19,6 +19,8 @@ public class StartPage extends AppCompatActivity {
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    Button startButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +32,13 @@ public class StartPage extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        startButton = findViewById(R.id.start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goNextPage();
+            }
+        });
         makeResponsive();
     }
 
@@ -40,7 +49,7 @@ public class StartPage extends AppCompatActivity {
         dpWidth = (displayMetrics.widthPixels);
         dDensity = (displayMetrics.scaledDensity);
 
-        Button startButton = (Button) findViewById(R.id.button);
+        Button startButton = (Button) findViewById(R.id.start_button);
 
         ViewGroup.LayoutParams buttonParams = (ViewGroup.MarginLayoutParams) startButton.getLayoutParams();
         buttonParams.height = calcHeight(644);
@@ -55,7 +64,7 @@ public class StartPage extends AppCompatActivity {
         return (int) (dpWidth * (value/designWidth));
     }
 
-    public void goNextPage(View v) {
+    public void goNextPage() {
         //launch a new activity
         Intent i = new Intent(this, Planning_Method_Selection_Page.class);
         startActivity(i);

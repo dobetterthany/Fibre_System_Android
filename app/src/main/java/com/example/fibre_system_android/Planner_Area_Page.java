@@ -110,6 +110,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         return (int) (dpWidth * (value / designWidth));
     }
 
+    //Data for item list
     private void getData() {
         itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false));
         itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false));
@@ -125,33 +126,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
     }
 
-    //set searchview on the menubar
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        getMenuInflater().inflate(R.menu.menu_item,menu);
-//        MenuItem menuItem = menu.findItem(R.id.app_bar_search );
-//        SearchView searchView = (SearchView) menuItem.getActionView();
-//        searchView.setMaxWidth(Integer.MAX_VALUE);
-//        searchView.setQueryHint("Search Here!");
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String userText) {
-//                recyclerViewAdapter.getFilter().filter(userText);
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String userText) {
-//                recyclerViewAdapter.getFilter().filter(userText);
-//                return true;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
@@ -161,7 +135,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     private void initSearchWidget() {
@@ -181,11 +154,11 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         });
     }
 
+    //Item list on click event
     @Override
     public void onItemSelected(RecyclerViewItems item) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
-        //Create image view in planner area layout
         bathroomPlannerLayout.AddItem(item);
     }
 }
