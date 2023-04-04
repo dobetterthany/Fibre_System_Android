@@ -9,89 +9,106 @@
     tools:context=".Add_Window_Page">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/AddwindowArea"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:layout_width="349dp"
+        android:layout_height="413dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="16dp">
+
+        <SearchView
+            android:id="@+id/productListSearchView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="64dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Product Name"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="301dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/plannerItemList"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productListSearchView"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/plannerItemList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="@+id/spinner"
+            app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 
-            <SearchView
-                android:id="@+id/productListSearchView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="64dp"
-                android:iconifiedByDefault="false"
-                android:queryHint="Product Name"
-                app:layout_constraintBottom_toTopOf="@+id/spinner"
-                app:layout_constraintEnd_toEndOf="@+id/spinner"
-                app:layout_constraintStart_toStartOf="@+id/spinner"
-                app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="300dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginBottom="24dp"
-                app:layout_constraintBottom_toTopOf="@+id/plannerItemList"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productListSearchView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AddwindowArea"
+        android:layout_width="381dp"
+        android:layout_height="409dp"
+        android:layout_marginStart="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/plannerItemList"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/spinner"
-                app:layout_constraintStart_toStartOf="@+id/spinner"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-            <Button
-                android:id="@+id/button_planner_page_finish"
-                android:layout_width="88dp"
-                android:layout_height="48dp"
-                android:backgroundTint="#c6d8f5"
-                android:text="Finish"
-                android:textColor="#1a2536"
-                tools:layout_editor_absoluteX="627dp"
-                tools:layout_editor_absoluteY="347dp" />
-
-            <ImageView
-                android:id="@+id/shapeImage2"
-                android:layout_width="252dp"
-                android:layout_height="210dp"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/square"
-                tools:layout_editor_absoluteX="406dp"
-                tools:layout_editor_absoluteY="118dp" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="107dp"
-                android:layout_height="117dp"
-                app:layout_constraintBottom_toBottomOf="@+id/shapeImage2"
-                app:layout_constraintEnd_toEndOf="@+id/shapeImage2"
-                app:layout_constraintHorizontal_bias="0.517"
-                app:layout_constraintStart_toStartOf="@+id/shapeImage2"
-                app:layout_constraintTop_toTopOf="@+id/shapeImage2"
-                app:layout_constraintVertical_bias="0.526"
-                app:srcCompat="@drawable/toilet" />
+        <Button
+            android:id="@+id/button_planner_page_finish"
+            android:layout_width="88dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="#c6d8f5"
+            android:text="Finish"
+            android:textColor="#1a2536"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" /><![CDATA[
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="110dp" />
+
+        ]]>
+
+        <ImageView
+            android:id="@+id/shapeImage2"
+            android:layout_width="252dp"
+            android:layout_height="210dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/square"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.497" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@+id/shapeImage2"
+            app:layout_constraintEnd_toEndOf="@+id/shapeImage2"
+            app:layout_constraintStart_toStartOf="@+id/shapeImage2"
+            app:layout_constraintTop_toTopOf="@+id/shapeImage2"
+            app:layout_constraintVertical_bias="0.163"
+            app:srcCompat="@drawable/toilet" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
