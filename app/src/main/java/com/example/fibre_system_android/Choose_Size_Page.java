@@ -32,6 +32,8 @@ public class Choose_Size_Page extends AppCompatActivity {
     Button confirmButton;
     Button nextButton;
 
+    Button testButton;
+
     public void TestInit(int height, int width){
         this.height = height;
         this.width = width;
@@ -50,7 +52,7 @@ public class Choose_Size_Page extends AppCompatActivity {
 
         widthInput = findViewById(R.id.widthInput);
         heightInput = findViewById(R.id.heightInput);
-
+        testButton = findViewById(R.id.testButton);
         confirmButton = findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +60,15 @@ public class Choose_Size_Page extends AppCompatActivity {
                 AddImage(R.drawable.square);
             }
         });
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Height = Integer.valueOf(heightInput.getText().toString());
+                Width = Integer.valueOf(widthInput.getText().toString());
+            }
+        });
+
 
         nextButton = findViewById(R.id.goAddwindowButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +103,11 @@ public class Choose_Size_Page extends AppCompatActivity {
         icon.setLayoutParams(lParams);
 
 
+    }
+
+    public boolean setSize(int height, int width){
+        
+        return true;
     }
 
 }

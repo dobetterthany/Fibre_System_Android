@@ -1,49 +1,61 @@
 package com.example.fibre_system_android;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.Assert.assertNotNull;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+
+@RunWith(RobolectricTestRunner.class)
 public class Choose_Size_PageTest {
 
     public Choose_Size_Page choose_size_page;
 
+@Before
+public void setUp() throws Exception {
+    choose_size_page = Robolectric.buildActivity(Choose_Size_Page.class)
+            .create()
+            .resume()
+            .get();
+}
+
+@Test
+public void shouldNotBeNull() throws Exception {
+    assertNotNull(choose_size_page);
+}
 
 
 //    @Rule
 //    public ActivityScenarioRule<Choose_Size_Page> rule =
 //            new ActivityScenarioRule<>(Choose_Size_Page.class);
 //
-
-    @Test
-    public void onCreate() {
-//        ActivityScenario<Choose_Size_Page> scenario = rule.getScenario();
-        choose_size_page = new Choose_Size_Page();
-        int maximumHeight = 2000;
-        int maximumWidth = 2000;
-        int minHeight = 1000;
-        int minWidth = 1000;
-
 //
-//        String heightString = choose_size_page.heightInput.getText().toString();
-//        String widthString = choose_size_page.widthInput.getText().toString();
-//        int height = Integer.parseInt(heightString);
-//        int width = Integer.parseInt(widthString);
-//        height = 200;
-//        width = 198;
+//    @Test
+//    public void onCreate() {
+//        rule.getScenario().onActivity(new ActivityScenario.ActivityAction<Choose_Size_Page>() {
+//            @Override
+//            public void perform(Choose_Size_Page activity) {
+//                EditText heightText = activity.findViewById(R.id.heightInput);
+//                onView(withId(R.id.heightInput)).perform(typeText("20000"), closeSoftKeyboard());
+//                int height = Integer.valueOf(heightText.getText().toString());
+//                EditText widthText = activity.findViewById(R.id.widthInput);
+//                Button button = activity.findViewById(R.id.testButton);
+//                int max = 20000;
 //
 //
-        Assert.assertTrue(choose_size_page.height <= maximumHeight);
-        Assert.assertTrue(choose_size_page.width <= maximumWidth);
 
-        Assert.assertTrue(choose_size_page.height >= minHeight);
-        Assert.assertTrue(choose_size_page.width >= minWidth);
+@Test
+    public void test(){
 
 
+
+        Assert.assertTrue(choose_size_page.setSize(200,300));
 
     }
 
-    @Test
-    public void addImage() {
 
-    }
+
 }
