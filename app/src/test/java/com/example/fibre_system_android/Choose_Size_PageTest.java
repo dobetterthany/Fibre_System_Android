@@ -32,11 +32,11 @@ public class Choose_Size_PageTest {
 //        width = 198;
 //
 //
-        Assert.assertTrue(choose_size_page.Height <= maximumHeight);
-        Assert.assertTrue(choose_size_page.Width <= maximumWidth);
+        Assert.assertTrue(choose_size_page.height <= maximumHeight);
+        Assert.assertTrue(choose_size_page.width <= maximumWidth);
 
-        Assert.assertTrue(choose_size_page.Height >= minHeight);
-        Assert.assertTrue(choose_size_page.Width >= minWidth);
+        Assert.assertTrue(choose_size_page.height >= minHeight);
+        Assert.assertTrue(choose_size_page.width >= minWidth);
 
 
 

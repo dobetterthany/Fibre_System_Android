@@ -17,8 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Choose_Size_Page extends AppCompatActivity {
 
-     int Height;
-     int Width;
+     int height;
+     int width;
+
+     int minWidth;
+     int minHeight;
+     int maxWidth;
+     int maxHeight;
 
     /* Context context; */
 
@@ -28,8 +33,8 @@ public class Choose_Size_Page extends AppCompatActivity {
     Button nextButton;
 
     public void TestInit(int height, int width){
-        this.Height = height;
-        this.Width = width;
+        this.height = height;
+        this.width = width;
     }
 
     @Override
@@ -60,8 +65,8 @@ public class Choose_Size_Page extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
-                intent.putExtra("InputWidth", Width);
-                intent.putExtra("InputHeight", Height);
+                intent.putExtra("InputWidth", width);
+                intent.putExtra("InputHeight", height);
                 startActivity(intent);
             }
         });
@@ -71,15 +76,15 @@ public class Choose_Size_Page extends AppCompatActivity {
 
     public void AddImage(int imageID)
     {
-        Height = Integer.valueOf(heightInput.getText().toString());
-        Width = Integer.valueOf(widthInput.getText().toString());
+        height = Integer.valueOf(heightInput.getText().toString());
+        width = Integer.valueOf(widthInput.getText().toString());
 
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
-        lParams.height = Height;
-        lParams.width = Width;
+        lParams.height = height;
+        lParams.width = width;
 
 
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
