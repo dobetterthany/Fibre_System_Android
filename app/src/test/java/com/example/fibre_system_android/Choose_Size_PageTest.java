@@ -48,14 +48,19 @@ public void shouldNotBeNull() throws Exception {
 //
 
 @Test
-    public void test(){
+    public void setSizeTest(){
+        //Returns True
+        Assert.assertTrue(choose_size_page.setSize(1500,1500));
+        Assert.assertTrue(choose_size_page.setSize(Choose_Size_Page.minHeight,Choose_Size_Page.minWidth));
+        Assert.assertTrue(choose_size_page.setSize(Choose_Size_Page.maxHeight,Choose_Size_Page.maxWidth));
+        Assert.assertTrue(choose_size_page.setSize(Choose_Size_Page.minHeight+1000,Choose_Size_Page.minWidth+1000));
+        Assert.assertTrue(Choose_Size_Page.minHeight<Choose_Size_Page.maxHeight);
+        Assert.assertTrue(Choose_Size_Page.minWidth<Choose_Size_Page.maxWidth);
 
 
-
-        Assert.assertTrue(choose_size_page.setSize(200,300));
-
+        //Returns false
+        Assert.assertFalse(choose_size_page.setSize(Choose_Size_Page.minHeight-1,Choose_Size_Page.minWidth-1));
+        Assert.assertFalse(choose_size_page.setSize(Choose_Size_Page.maxHeight+1,Choose_Size_Page.maxWidth+1));
     }
-
-
 
 }

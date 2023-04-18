@@ -20,10 +20,11 @@ public class Choose_Size_Page extends AppCompatActivity {
      int height;
      int width;
 
-     int minWidth;
-     int minHeight;
-     int maxWidth;
-     int maxHeight;
+     public final static int minWidth = 1000;
+     public final static int minHeight = 1000;
+
+    public final static int maxWidth = 8000;
+    public final static int maxHeight = 8000;
 
     /* Context context; */
 
@@ -64,8 +65,8 @@ public class Choose_Size_Page extends AppCompatActivity {
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Height = Integer.valueOf(heightInput.getText().toString());
-                Width = Integer.valueOf(widthInput.getText().toString());
+                height = Integer.valueOf(heightInput.getText().toString());
+                width = Integer.valueOf(widthInput.getText().toString());
             }
         });
 
@@ -106,7 +107,12 @@ public class Choose_Size_Page extends AppCompatActivity {
     }
 
     public boolean setSize(int height, int width){
-        
+        if(height<minHeight||width<minWidth){
+            return false;
+        }
+        if(height>maxHeight||width>maxWidth){
+            return false;
+        }
         return true;
     }
 
