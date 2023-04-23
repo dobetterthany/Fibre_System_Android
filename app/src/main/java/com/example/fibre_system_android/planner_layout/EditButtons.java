@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
@@ -22,7 +23,7 @@ These buttons change the views orientation removes the view from its layout.
 public class EditButtons {
     String TAG = "editButtons";
     Context context;
-    RelativeLayout plannerAreaLayout;
+    ConstraintLayout plannerAreaLayout;
 
     ArrayList<ImageButton> buttonArray;
     ArrayList<RecyclerViewItems> plannerItemArray;
@@ -39,7 +40,7 @@ public class EditButtons {
     //Rotation
     float angle;
 
-    EditButtons(Context context, RelativeLayout plannerAreaLayout,  ArrayList<RecyclerViewItems> plannerItemArray) {
+    EditButtons(Context context, ConstraintLayout plannerAreaLayout, ArrayList<RecyclerViewItems> plannerItemArray) {
         this.plannerAreaLayout = plannerAreaLayout;
         this.context = context;
         this.plannerItemArray = plannerItemArray;

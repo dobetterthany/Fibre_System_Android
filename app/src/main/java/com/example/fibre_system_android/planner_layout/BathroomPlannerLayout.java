@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 public class BathroomPlannerLayout {
 
     //Layout where item views are placed
-    RelativeLayout plannerArea;
+    ConstraintLayout plannerArea;
 
     //Current selected view
     ImageView selectedView;
@@ -31,7 +33,7 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
-    public BathroomPlannerLayout(Context context, RelativeLayout plannerAreaLayout)
+    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout)
     {
         //Init variables
         this.context = context;

@@ -1,6 +1,7 @@
 package com.example.fibre_system_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -36,9 +37,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designHeight = 800;
 
 
-
     //Planner area layout variables
-    RelativeLayout AddwindowArea;
+    ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
 
     @Override
@@ -47,7 +47,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         //hide menu bar
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_add_window_page);
@@ -58,13 +58,13 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         Intent i = getIntent();
         int inputHeight = i.getIntExtra("InputHeight", 0);
-        int inputWidth = i.getIntExtra("InputWidth",0);
+        int inputWidth = i.getIntExtra("InputWidth", 0);
 
         setSpinner();
         initSearchWidget();
         setRecyclerView();
         makeResponsive();
-        inheritImage(inputHeight,inputWidth);
+        inheritImage(inputHeight, inputWidth);
 
     }
 
@@ -166,13 +166,13 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         //Create image view in planner area layout
         bathroomPlannerLayout.AddItem(item);
     }
-    public void inheritImage(int InputHeight, int InputWidth)
-    {
 
-        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+    public void inheritImage(int InputHeight, int InputWidth) {
+
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+
         lParams.height = InputHeight;
         lParams.width = InputWidth;
 
@@ -181,6 +181,20 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         icon.setImageResource(R.drawable.square);
         icon.setLayoutParams(lParams);
 
+    }
+    public void snapping() {
+
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        lParams.topToTop = R.id.shapeImage2;
+        lParams.bottomToBottom = R.id.shapeImage2;
+        lParams.leftToLeft = R.id.shapeImage2;
+        lParams.rightToRight = R.id.shapeImage2;
+
+
+        ImageView icon1 = (ImageView) findViewById(R.id.imageView2);
+        icon1.setImageResource(R.drawable.toilet);// set Image resource to selected product.
 
     }
 

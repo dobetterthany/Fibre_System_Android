@@ -1,6 +1,7 @@
 package com.example.fibre_system_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,7 +34,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     private int designHeight = 800;
 
     //Planner area layout variables
-    RelativeLayout plannerArea;
+    ConstraintLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<RecyclerViewItems> itemsArrayList;
