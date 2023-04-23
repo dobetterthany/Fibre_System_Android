@@ -1,25 +1,22 @@
 package com.example.fibre_system_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.RelativeLayout;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
-import android.util.DisplayMetrics;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
@@ -37,11 +34,14 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     ConstraintLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     RecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<RecyclerViewItems> itemsArrayList;
+    ArrayList<Recycler_item> itemsArrayList;
     RecyclerView recyclerView;
 
+    Main_RecyclerViewAdapter adapter;
+    ArrayList<String> name = new ArrayList<>();
     Button finishButton;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,9 +74,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         makeResponsive();
         getData();
 
-        recyclerViewAdapter = new RecyclerViewAdapter(getApplicationContext(), itemsArrayList, this);
-        recyclerView.setAdapter(recyclerViewAdapter);
-        recyclerViewAdapter.notifyDataSetChanged();
+        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void makeResponsive() {
@@ -113,18 +113,23 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Data for item list
     private void getData() {
-        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Eline Round", 10, 10, R.drawable.square, true, false, false, false));
-        itemsArrayList.add(new RecyclerViewItems("Eline Round", 9, 9, R.drawable.square, true, false, false, false));
-        itemsArrayList.add(new RecyclerViewItems("Squareline", 9, 9, R.drawable.square, true, false, false, false));
-        itemsArrayList.add(new RecyclerViewItems("Squareline", 10, 10, R.drawable.square, true, false, false, false));
-        itemsArrayList.add(new RecyclerViewItems("Square", 1, 1, R.drawable.large_square, true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
-        itemsArrayList.add(new RecyclerViewItems("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Eline Round", 10, 10, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new Recycler_item("Eline Round", 9, 9, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new Recycler_item("Squareline", 9, 9, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new Recycler_item("Squareline", 10, 10, R.drawable.square, true, false, false, false));
+        itemsArrayList.add(new Recycler_item("Square", 1, 1, R.drawable.large_square, true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false));
+
+        name.add("서울");
+        name.add("부산");
+        name.add("경기");
+        name.add("포항");
     }
 
     @Override

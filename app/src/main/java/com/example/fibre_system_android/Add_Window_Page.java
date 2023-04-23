@@ -1,27 +1,25 @@
 package com.example.fibre_system_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.util.DisplayMetrics;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
@@ -193,7 +191,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         lParams.rightToRight = R.id.shapeImage2;
 
 
-        ImageView icon1 = (ImageView) findViewById(R.id.imageView2);
+        ImageView icon1 = (ImageView) findViewById(R.id.shapeImage2);
         icon1.setImageResource(R.drawable.toilet);// set Image resource to selected product.
 
     }
