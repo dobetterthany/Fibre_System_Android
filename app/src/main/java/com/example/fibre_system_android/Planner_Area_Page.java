@@ -22,7 +22,7 @@ import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
 
-public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener1 {
 
     private int dpHeight;
     private int dpWidth;
@@ -126,10 +126,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false));
         itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false));
 
-        name.add("서울");
-        name.add("부산");
-        name.add("경기");
-        name.add("포항");
+        name.add("Square");
+        name.add("Alcove");
+        name.add("Round");
+        name.add("Rectangle");
     }
 
     @Override
@@ -162,9 +162,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Item list on click event
     @Override
-    public void onItemSelected(RecyclerViewItems item) {
+    public void onItemSelected(Recycler_item items) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
-        bathroomPlannerLayout.AddItem(item);
+        bathroomPlannerLayout.AddItem(items);
     }
 }

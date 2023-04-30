@@ -25,7 +25,7 @@ import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
 
-public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener1 {
 
     Spinner spinner;
     private int dpHeight;
@@ -38,6 +38,11 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     //Planner area layout variables
     ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
+
+    ArrayList<Recycler_item> itemsArrayList;
+
+    ArrayList<String> name = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,15 +111,18 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.plannerItemList);
 
-        ArrayList<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-
+        itemsArrayList  = new ArrayList<>();
+        itemsArrayList.add(new Recycler_item("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new Recycler_item("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new Recycler_item("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new Recycler_item("toilet", 9, 9, R.drawable.toilet));
+        itemsArrayList.add(new Recycler_item("toilet", 9, 9, R.drawable.toilet));
+        name.add("Square");
+        name.add("Alcove");
+        name.add("Round");
+        name.add("Rectangle");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), items, this));
+        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList));
     }
 
     private void setSpinner() {
@@ -158,7 +166,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     @Override
-    public void onItemSelected(RecyclerViewItems item) {
+    public void onItemSelected(Recycler_item item) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
         //Create image view in planner area layout

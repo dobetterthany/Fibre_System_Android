@@ -1,18 +1,16 @@
 package com.example.fibre_system_android.planner_layout;
 
 import android.content.Context;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
-import com.example.fibre_system_android.RecyclerViewItems;
+import com.example.fibre_system_android.Recycler_item;
 
 import java.util.ArrayList;
 
@@ -26,11 +24,11 @@ public class EditButtons {
     ConstraintLayout plannerAreaLayout;
 
     ArrayList<ImageButton> buttonArray;
-    ArrayList<RecyclerViewItems> plannerItemArray;
+    ArrayList<Recycler_item> plannerItemArray;
     ImageButton rotateLeft, rotateRight, delete;
 
     View selectedView;
-    RecyclerViewItems selectedItem;
+    Recycler_item selectedItem;
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
 
     float newX, newY;
@@ -40,7 +38,7 @@ public class EditButtons {
     //Rotation
     float angle;
 
-    EditButtons(Context context, ConstraintLayout plannerAreaLayout, ArrayList<RecyclerViewItems> plannerItemArray) {
+    EditButtons(Context context, ConstraintLayout plannerAreaLayout, ArrayList<Recycler_item> plannerItemArray) {
         this.plannerAreaLayout = plannerAreaLayout;
         this.context = context;
         this.plannerItemArray = plannerItemArray;
@@ -71,7 +69,7 @@ public class EditButtons {
     }
 
     //On tap code to go here, eg, info for selected item (name)
-    public void viewSelected(View view, RecyclerViewItems item){
+    public void viewSelected(View view, Recycler_item item){
         selectedView = view;
         selectedItem = item;
         updatePos();

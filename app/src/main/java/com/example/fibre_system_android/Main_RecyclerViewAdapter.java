@@ -44,7 +44,7 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     public void onBindViewHolder(@NonNull Main_RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //리사이클러뷰 넣는 부분
         holder.recyclerView.setLayoutManager( new LinearLayoutManager(context));
-        adapter = new Second_Recyclerview_Adapter(context.getApplicationContext(), itemsArrayListFull, listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
+        adapter = new Second_Recyclerview_Adapter(context, itemsArrayListFull, listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
         holder.recyclerView.setAdapter(adapter);
 
         holder.onBind(position);
