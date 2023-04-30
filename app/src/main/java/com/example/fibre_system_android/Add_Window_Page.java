@@ -122,7 +122,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         name.add("Round");
         name.add("Rectangle");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList));
+        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList,this));
     }
 
     private void setSpinner() {

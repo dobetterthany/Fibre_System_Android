@@ -74,7 +74,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         makeResponsive();
         getData();
 
-        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList);
+        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

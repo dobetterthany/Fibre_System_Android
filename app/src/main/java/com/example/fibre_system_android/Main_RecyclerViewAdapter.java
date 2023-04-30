@@ -27,9 +27,10 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     private int prePosition = -1;
     SelectItemListener1 listener1;
 
-    public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items){
+    public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener1 listener1){
         this.listData = data;
         this.itemsArrayListFull = items;
+        this.listener1 = listener1;
     }
 
     @NonNull
