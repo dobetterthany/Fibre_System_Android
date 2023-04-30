@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,7 +18,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -52,6 +53,119 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         setContentView(R.layout.activity_add_window_page);
 
+        final ImageView imageView1 = findViewById(R.id.imageViewA);
+
+        final ImageView imageView2 = findViewById(R.id.shapeImage2);
+
+
+
+        imageView1.setOnTouchListener(new View.OnTouchListener() {
+
+            float x, y;
+
+
+
+            @Override
+
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+
+                    case MotionEvent.ACTION_DOWN:
+
+                        // save the x and y coordinates of the touch
+
+                        x = event.getX();
+
+                        y = event.getY();
+
+                        break;
+
+
+
+                    case MotionEvent.ACTION_MOVE:
+
+                        // get the new x and y coordinates of the touch
+
+                        float newX = event.getX();
+
+                        float newY = event.getY();
+
+
+
+                        // get the dimensions of the imageviews
+
+                        float image1Width = imageView1.getWidth();
+
+                        float image1Height = imageView1.getHeight();
+
+                        float image2Width = imageView2.getWidth();
+
+                        float image2Height = imageView2.getHeight();
+
+
+
+                        // calculate the new position of the imageview
+
+                        float image1X = imageView1.getX() + newX - x;
+
+                        float image1Y = imageView1.getY() + newY - y;
+
+
+
+                        // make sure the imageview stays on the border of the other imageview
+
+                        if (image1X < 0) {
+
+                            image1X = 0;
+
+                        }
+
+                        if (image1X > (image2Width - image1Width)) {
+
+                            image1X = image2Width - image1Width;
+
+                        }
+
+                        if (image1Y < 0) {
+
+                            image1Y = 0;
+
+                        }
+
+                        if (image1Y > (image2Height - image1Height)) {
+
+                            image1Y = image2Height - image1Height;
+
+                        }
+
+
+
+                        // set the new position of the imageview
+
+                        imageView1.setX(image1X);
+
+                        imageView1.setY(image1Y);
+
+                        break;
+
+
+
+                    case MotionEvent.ACTION_UP:
+
+                        break;
+
+                }
+
+                return true;
+
+            }
+
+        });
+
+
+
+
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea);
@@ -65,6 +179,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
+        AddImage();
 
     }
 
@@ -182,7 +297,24 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         icon.setLayoutParams(lParams);
 
     }
-    public void snapping() {
+    public void AddImage() {
+
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+
+        lParams.height = 500;
+        lParams.width = 500;
+
+
+        ImageView icon = (ImageView) findViewById(R.id.imageViewA);
+        icon.setImageResource(R.drawable.toilet);
+        icon.setLayoutParams(lParams);
+
+    }
+
+
+    /*public void snapping() {
 
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -193,9 +325,9 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         lParams.rightToRight = R.id.shapeImage2;
 
 
-        ImageView icon1 = (ImageView) findViewById(R.id.imageView2);
+        ImageView icon1 = (ImageView) findViewById(R.id.shapeImage2);
         icon1.setImageResource(R.drawable.toilet);// set Image resource to selected product.
 
     }
-
+*/
 }

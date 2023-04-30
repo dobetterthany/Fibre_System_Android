@@ -56,7 +56,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/AddwindowArea"
         android:layout_width="671dp"
-        android:layout_height="774dp"
+        android:layout_height="768dp"
         android:layout_marginStart="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -89,6 +89,16 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageViewA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/shapeImage2"
+            app:layout_constraintEnd_toEndOf="@+id/shapeImage2"
+            app:layout_constraintStart_toStartOf="@+id/shapeImage2"
+            app:layout_constraintTop_toTopOf="@+id/shapeImage2"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
