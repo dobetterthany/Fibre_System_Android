@@ -10,24 +10,25 @@ public class Recycler_item implements Serializable {
     int image;
 
     boolean isGeneric;
-
     HashMap<String, Boolean> colours;
-
-    public Recycler_item(String name, int length, int width, int image) {
+    ShowerRange showerRange;
+    public Recycler_item(String name, int length, int width, int image ) {
         this.name = name;
         this.length = length;
         this.height = width;
         this.image = image;
+        this.showerRange = ShowerRange.NON_PRODUCT;
 
         initColours();
         isGeneric = true;
     }
 
-    public Recycler_item(String name, int length, int width, int image, Boolean chrome, boolean black, boolean white, boolean gunmetal) {
+    public Recycler_item(String name, int length, int width, int image, Boolean chrome, boolean black, boolean white, boolean gunmetal,ShowerRange showerRange) {
         this.name = name;
         this.length = length;
         this.height = width;
         this.image = image;
+        this.showerRange = showerRange;
 
         initColours();
         isGeneric = false;

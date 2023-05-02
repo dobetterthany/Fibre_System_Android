@@ -1,23 +1,16 @@
 package com.example.fibre_system_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.RelativeLayout;
-import android.widget.SearchView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
@@ -31,7 +24,7 @@ public class Finalize_Page extends AppCompatActivity{
 
     RelativeLayout plannerArea;
     FinalizeRecyclerViewAdapter recyclerViewAdapter;
-    ArrayList<RecyclerViewItems> itemsArrayList;
+    ArrayList<Recycler_item> itemsArrayList;
     RecyclerView recyclerView;
 
     @Override
@@ -47,13 +40,13 @@ public class Finalize_Page extends AppCompatActivity{
         recyclerView = findViewById(R.id.finalizeItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        itemsArrayList  = new ArrayList<RecyclerViewItems>();
+        itemsArrayList  = new ArrayList<Recycler_item>();
 
         makeResponsive();
         getData();
 
         Intent i = getIntent();
-        itemsArrayList = (ArrayList<RecyclerViewItems>)i.getSerializableExtra("planner_item_array");
+        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
     }
 
     private void makeResponsive() {
@@ -83,7 +76,7 @@ public class Finalize_Page extends AppCompatActivity{
 
     private void getData() {
         Intent i = getIntent();
-        itemsArrayList = (ArrayList<RecyclerViewItems>)i.getSerializableExtra("planner_item_array");
+        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
         recyclerViewAdapter = new FinalizeRecyclerViewAdapter(getApplicationContext(), itemsArrayList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
