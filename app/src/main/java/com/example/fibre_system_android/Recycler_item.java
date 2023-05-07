@@ -11,6 +11,11 @@ public class Recycler_item implements Serializable {
 
     boolean isGeneric;
     HashMap<String, Boolean> colours;
+
+    public ShowerRange getShowerRange() {
+        return showerRange;
+    }
+
     ShowerRange showerRange;
     public Recycler_item(String name, int length, int width, int image ) {
         this.name = name;

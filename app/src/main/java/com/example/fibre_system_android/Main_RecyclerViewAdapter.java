@@ -7,6 +7,8 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,22 +17,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_RecyclerViewAdapter.ViewHolder> {
+public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_RecyclerViewAdapter.ViewHolder> implements Filterable {
 
     // 리사이클러뷰 안 리사이클러뷰 관련
     // 두 번째 어댑터와 연결
     Second_Recyclerview_Adapter adapter;
     ArrayList<Recycler_item> itemsArrayListFull;
+    ArrayList<Recycler_item> filteredItemsList;
     ArrayList<String> listData;
     private Context context;
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
     private int prePosition = -1;
     SelectItemListener1 listener1;
+    Recycler_item recycler_item;
+
+
 
     public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener1 listener1){
         this.listData = data;
         this.itemsArrayListFull = items;
         this.listener1 = listener1;
+        this.filteredItemsList = new ArrayList<>(itemsArrayListFull);
     }
 
     @NonNull
@@ -40,12 +47,22 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_item, parent, false);
         return new ViewHolder(v);
     }
+    private void filterShower(ShowerRange showerRange) {
+        ArrayList<Recycler_item> filteredList = new ArrayList<>();
+        for(Recycler_item recycler_item : itemsArrayListFull)
+            if(recycler_item.getShowerRange()==showerRange){
+                filteredItemsList.add(recycler_item);
+            }
 
+    }
     @Override
     public void onBindViewHolder(@NonNull Main_RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         //리사이클러뷰 넣는 부분
         holder.recyclerView.setLayoutManager( new LinearLayoutManager(context));
-        adapter = new Second_Recyclerview_Adapter(context, itemsArrayListFull, listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
+
+        filterShower(ShowerRange.LSHAPE);
+
+        adapter = new Second_Recyclerview_Adapter(context, filteredItemsList, listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
         holder.recyclerView.setAdapter(adapter);
 
         holder.onBind(position);
@@ -120,5 +137,43 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
             // Animation start
             va.start();
         }
+    }
+
+
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+
+
+                if (charString == null || charString.length() == 0){
+                    filteredItemsList.addAll(itemsArrayListFull);
+                } else {
+                    for(Recycler_item recyclerItems : itemsArrayListFull){
+                        if(recyclerItems.name.toLowerCase().replace(" ","").contains(charString)){
+                            filteredItemsList.add(recyclerItems);
+                        }
+                    }
+                }
+                FilterResults results = new FilterResults();
+                results.values = filteredItemsList;
+                results.count = filteredItemsList.size();
+                return results;
+            }
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+
+                filteredItemsList.clear();
+                filteredItemsList.addAll((ArrayList)results.values);
+
+                notifyDataSetChanged();
+            }
+        };
+
+
     }
 }
