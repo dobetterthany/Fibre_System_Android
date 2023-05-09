@@ -19,21 +19,16 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
     ArrayList<Recycler_item> itemsArrayListFull;
     private SelectItemListener1 listener1;
 
-    private RecyclerView mainRecyclerView;
-
-    public Second_Recyclerview_Adapter(Context context, ArrayList<Recycler_item> itemsArrayList, SelectItemListener1 listener1,RecyclerView mainRecyclerView) {
+    public Second_Recyclerview_Adapter(Context context, ArrayList<Recycler_item> itemsArrayList, SelectItemListener1 listener1) {
         this.context = context;
         this.itemsArrayListFull = itemsArrayList;
         this.listener1 = listener1;
-        this.mainRecyclerView = mainRecyclerView;
     }
-
-
 
     @NonNull
     @Override
     public Second_Recyclerview_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.recyclerview_items_layout, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.second_recyclerview_item, parent, false));
 
     }
 
@@ -44,19 +39,34 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
         holder.imageView.setImageResource(itemsArrayListFull.get(position).getImage());
         holder.imageView.setTag(itemsArrayListFull.get(position).getImage());
 
-        holder.imageView.setOnTouchListener(new View.OnTouchListener() {
-
+        holder.emptyview.setOnTouchListener(new View.OnTouchListener(){
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    mainRecyclerView.requestDisallowInterceptTouchEvent(true);
-                    view.requestFocus();
-                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    mainRecyclerView.requestDisallowInterceptTouchEvent(false);
+            public boolean onTouch(View v, MotionEvent event) {
+                listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+
+                        break;
                 }
                 return false;
             }
         });
+
     }
 
 
@@ -70,12 +80,13 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
 
         ImageView imageView;
         TextView nameView,sizeView;
-
+        View emptyview;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageview);
             nameView = itemView.findViewById(R.id.name);
             sizeView = itemView.findViewById(R.id.size) ;
+            emptyview = itemView.findViewById(R.id.emptyview);
         }
     }
 }

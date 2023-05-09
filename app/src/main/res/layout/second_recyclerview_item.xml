@@ -5,7 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="1dp"
-    android:nestedScrollingEnabled="false">
+    android:id="@+id/childview"
+    >
+
+    <View
+        android:id="@+id/emptyview"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        />
 
     <ImageView
         android:layout_width="48dp"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Planner_Area_Page"
-    android:nestedScrollingEnabled="false">
+    android:nestedScrollingEnabled="true">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/main_recyclerView"

@@ -31,9 +31,6 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     SelectItemListener1 listener1;
     Recycler_item recycler_item;
 
-    private RecyclerView mainRecyclerView;
-
-
 
     public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener1 listener1){
         this.listData = data;
@@ -55,7 +52,6 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
             if(recycler_item.getShowerRange()==showerRange){
                 filteredList.add(recycler_item);
             }
-
     }
     @Override
     public void onBindViewHolder(@NonNull Main_RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
@@ -64,7 +60,7 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
 
         filterShower(ShowerRange.LSHAPE);
 
-        adapter = new Second_Recyclerview_Adapter(context, filteredItemsList, listener1, mainRecyclerView);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
+        adapter = new Second_Recyclerview_Adapter(context, filteredItemsList, listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
         holder.recyclerView.setAdapter(adapter);
 
         holder.onBind(position);
@@ -91,11 +87,6 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
 
         });
     }
-
-
-
-
-
 
     @Override
     public int getItemCount() {
