@@ -8,11 +8,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
 
 import com.example.fibre_system_android.R;
-import com.example.fibre_system_android.RecyclerViewItems;
+import com.example.fibre_system_android.Recycler_item;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,7 @@ public class BathroomPlannerLayout {
     ImageView selectedView;
 
     //Stores all items added to array
-    ArrayList<RecyclerViewItems> plannerItemArray;
+    ArrayList<Recycler_item> plannerItemArray;
     float dX = 0, dY = 0;
 
     //Context of activity this is created in
@@ -38,18 +37,18 @@ public class BathroomPlannerLayout {
         //Init variables
         this.context = context;
         this.plannerArea = plannerAreaLayout;
-        plannerItemArray = new ArrayList<RecyclerViewItems>();
+        plannerItemArray = new ArrayList<Recycler_item>();
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
     }
 
-    public ArrayList<RecyclerViewItems> GetItemList()
+    public ArrayList<Recycler_item> GetItemList()
     {
         return plannerItemArray;
     }
 
     //Add item to planner view
-    public void AddItem(RecyclerViewItems item)
+    public void AddItem(Recycler_item item)
     {
         deselectItem(selectedView);
 
@@ -99,7 +98,7 @@ public class BathroomPlannerLayout {
     }
 
     //Set selected item
-    private void selectItem(ImageView imageView, RecyclerViewItems item)
+    private void selectItem(ImageView imageView, Recycler_item item)
     {
         selectedView = imageView;
         selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));

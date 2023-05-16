@@ -10,16 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FinalizeRecyclerViewAdapter extends RecyclerView.Adapter<FinalizeRecyclerViewHolder>{
 
     Context context;
-    ArrayList<RecyclerViewItems> itemsArrayListFull;
+    ArrayList<Recycler_item> itemsArrayListFull;
 
-    public FinalizeRecyclerViewAdapter(Context context, ArrayList<RecyclerViewItems> itemsArrayList) {
+    public FinalizeRecyclerViewAdapter(Context context, ArrayList<Recycler_item> itemsArrayList) {
         this.context = context;
         this.itemsArrayListFull = new ArrayList<>(itemsArrayList);
     }

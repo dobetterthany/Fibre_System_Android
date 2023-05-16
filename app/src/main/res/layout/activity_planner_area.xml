@@ -57,11 +57,11 @@
 
         </LinearLayout>
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/plannerArea"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"></RelativeLayout>
+            android:orientation="horizontal"></androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
