@@ -130,17 +130,18 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
         itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
 
-        name.add("LShape");
+
         name.add("Luxury Frameless");
-        name.add("Entry Level Showers");
+        name.add("LShape");
         name.add("Square");
+        name.add("Entry Level Showers");
     }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
 
-//        Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
+     Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
     }
 
     @Override
