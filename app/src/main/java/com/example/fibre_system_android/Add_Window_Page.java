@@ -11,11 +11,9 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SearchView;
-import android.widget.Spinner;
+
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,13 +26,13 @@ import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 import java.util.ArrayList;
 
 public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
-
-    Spinner spinner;
     private int dpHeight;
     private int dpWidth;
     private float dDensity;
     private int designWidth = 1280;
     private int designHeight = 800;
+
+    ArrayList<String> name = new ArrayList<>();
 
 
     //Planner area layout variables
@@ -55,6 +53,11 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         final ImageView imageView1 = findViewById(R.id.imageViewA);
 
         final ImageView imageView2 = findViewById(R.id.shapeImage2);
+
+        name.add("Luxury Frameless");
+        name.add("LShape");
+        name.add("Square");
+        name.add("Entry Level Showers");
 
 
 
@@ -185,8 +188,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         int inputHeight = i.getIntExtra("InputHeight", 0);
         int inputWidth = i.getIntExtra("InputWidth", 0);
 
-        setSpinner();
-        initSearchWidget();
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
@@ -201,18 +202,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         dpWidth = (displayMetrics.widthPixels);
         dDensity = (displayMetrics.scaledDensity);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
         Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
-
-        ViewGroup.LayoutParams spinnerParams = (ViewGroup.MarginLayoutParams) spinner.getLayoutParams();
-        spinnerParams.width = calcWidth(300);
-        spinnerParams.height = calcHeight(60);
-
-        ViewGroup.LayoutParams searchViewParams = (ViewGroup.MarginLayoutParams) searchView.getLayoutParams();
-        searchViewParams.width = calcWidth(300);
-        searchViewParams.height = calcHeight(60);
 
         ViewGroup.LayoutParams recyclerViewParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
         recyclerViewParams.width = calcWidth(300);
@@ -234,28 +225,29 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private void setRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.plannerItemList);
 
-        ArrayList<RecyclerViewItems> items = new ArrayList<RecyclerViewItems>();
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
-        items.add(new RecyclerViewItems("toilet", 9, 9, R.drawable.toilet));
+        ArrayList<Recycler_item> itemsArrayList = new ArrayList<>();
+        itemsArrayList.add(new Recycler_item("LShape", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Square", 1, 1, R.drawable.large_square, true, true, true, false, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new RecyclerViewAdapter(getApplicationContext(), items, this));
+        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList,this));
     }
 
-    private void setSpinner() {
-        spinner = findViewById(R.id.spinner);
-        //gets items from products array in string file, and plug it into spinner item list
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.products, android.R.layout.simple_spinner_item);
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(this);
-    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -269,24 +261,24 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     }
 
-    private void initSearchWidget() {
-        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                return false;
-            }
-        });
-    }
+//    private void initSearchWidget() {
+//        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                return false;
+//            }
+//        });
+//    }
 
     @Override
-    public void onItemSelected(RecyclerViewItems item) {
+    public void onItemSelected(Recycler_item item) {
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
         //Create image view in planner area layout
@@ -323,7 +315,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         icon.setLayoutParams(lParams);
 
     }
-
 
     /*public void snapping() {
 

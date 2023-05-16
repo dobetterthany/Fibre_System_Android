@@ -22,7 +22,7 @@ import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
 import java.util.ArrayList;
 
-public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener1 {
+public class Planner_Area_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
 
     private int dpHeight;
     private int dpWidth;
@@ -33,7 +33,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     //Planner area layout variables
     ConstraintLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
-    RecyclerViewAdapter recyclerViewAdapter;
     ArrayList<Recycler_item> itemsArrayList;
     RecyclerView recyclerView;
 
@@ -70,7 +69,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
 
-        initSearchWidget();
+//        initSearchWidget();
         makeResponsive();
         getData();
 
@@ -148,22 +147,22 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-    private void initSearchWidget() {
-        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String userText) {
-                recyclerViewAdapter.getFilter().filter(userText);
-                return true;
-            }
-        });
-    }
+//    private void initSearchWidget() {
+//        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String userText) {
+//                recyclerViewAdapter.getFilter().filter(userText);
+//                return true;
+//            }
+//        });
+//    }
 
     //Item list on click event
     @Override

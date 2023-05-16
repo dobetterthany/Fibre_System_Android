@@ -26,11 +26,11 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     private Context context;
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
     private int prePosition = -1;
-    SelectItemListener1 listener1;
+    SelectItemListener listener1;
     Recycler_item recycler_item;
 
 
-    public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener1 listener1){
+    public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener listener1){
         this.listData = data;
         this.itemsArrayListFull = items;
         this.listener1 = listener1;

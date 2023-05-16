@@ -17,9 +17,9 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
 
     Context context;
     ArrayList<Recycler_item> itemsArrayListFull;
-    private SelectItemListener1 listener1;
+    private SelectItemListener listener1;
 
-    public Second_Recyclerview_Adapter(Context context, ArrayList<Recycler_item> itemsArrayList, SelectItemListener1 listener1) {
+    public Second_Recyclerview_Adapter(Context context, ArrayList<Recycler_item> itemsArrayList, SelectItemListener listener1) {
         this.context = context;
         this.itemsArrayListFull = itemsArrayList;
         this.listener1 = listener1;
@@ -45,13 +45,12 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
                 int action = event.getAction();
                 switch (action) {
                     case MotionEvent.ACTION_DOWN:
-
+                        listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
                         v.getParent().requestDisallowInterceptTouchEvent(true);
 
                         break;
 
                     case MotionEvent.ACTION_UP:
-
                         listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
                         v.getParent().requestDisallowInterceptTouchEvent(false);
 
