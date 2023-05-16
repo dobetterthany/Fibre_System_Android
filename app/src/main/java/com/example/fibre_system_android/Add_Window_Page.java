@@ -1,15 +1,10 @@
 package com.example.fibre_system_android;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +12,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
-import android.util.DisplayMetrics;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 
@@ -65,6 +64,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
 
 
+            @SuppressLint("ClickableViewAccessibility")
             @Override
 
             public boolean onTouch(View v, MotionEvent event) {
@@ -81,8 +81,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
                         break;
 
-
-
                     case MotionEvent.ACTION_MOVE:
 
                         // get the new x and y coordinates of the touch
@@ -91,19 +89,15 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
                         float newY = event.getY();
 
-
-
                         // get the dimensions of the imageviews
 
-                        float image1Width = imageView1.getWidth();
+                        float itemWidth = imageView1.getWidth();
 
-                        float image1Height = imageView1.getHeight();
+                        float itemHeight = imageView1.getHeight();
 
-                        float image2Width = imageView2.getWidth();
+                        float boarderWidth = imageView2.getWidth();
 
-                        float image2Height = imageView2.getHeight();
-
-
+                        float boarderHeight = imageView2.getHeight();
 
                         // calculate the new position of the imageview
 
@@ -121,9 +115,9 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
                         }
 
-                        if (image1X > (image2Width - image1Width)) {
+                        if (image1X > (boarderWidth - itemWidth)) {
 
-                            image1X = image2Width - image1Width;
+                            image1X = boarderWidth - itemWidth;
 
                         }
 
@@ -133,13 +127,32 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
                         }
 
-                        if (image1Y > (image2Height - image1Height)) {
+                        if (image1Y > (boarderHeight - itemHeight)) {
 
-                            image1Y = image2Height - image1Height;
+                            image1Y = boarderHeight - itemHeight;
 
                         }
+                        //Snapping logic
 
+                        if(image1X > 0 && image1X < 100)
+                        {
+                            image1X = 0;
+                        }
 
+                        if(image1Y > 0 && image1Y < 100)
+                        {
+                            image1Y = 0;
+                        }
+
+                        if(image1X < boarderWidth && image1X > (boarderWidth - 100 - itemWidth))
+                        {
+                            image1X = boarderWidth - itemWidth;
+                        }
+
+                        if(image1Y < boarderHeight && image1Y > (boarderHeight - 100 - itemHeight))
+                        {
+                            image1Y = boarderHeight - itemHeight;
+                        }
 
                         // set the new position of the imageview
 
@@ -148,8 +161,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
                         imageView1.setY(image1Y);
 
                         break;
-
-
 
                     case MotionEvent.ACTION_UP:
 
