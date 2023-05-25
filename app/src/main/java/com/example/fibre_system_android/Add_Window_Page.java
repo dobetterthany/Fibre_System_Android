@@ -261,21 +261,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     }
 
-//    private void initSearchWidget() {
-//        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String s) {
-//                return false;
-//            }
-//        });
-//    }
 
     @Override
     public void onItemSelected(Recycler_item item) {
@@ -316,20 +301,4 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     }
 
-    /*public void snapping() {
-
-        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
-                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-
-        lParams.topToTop = R.id.shapeImage2;
-        lParams.bottomToBottom = R.id.shapeImage2;
-        lParams.leftToLeft = R.id.shapeImage2;
-        lParams.rightToRight = R.id.shapeImage2;
-
-
-        ImageView icon1 = (ImageView) findViewById(R.id.shapeImage2);
-        icon1.setImageResource(R.drawable.toilet);// set Image resource to selected product.
-
-    }
-*/
 }

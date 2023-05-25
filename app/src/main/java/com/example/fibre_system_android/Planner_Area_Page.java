@@ -147,22 +147,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
-//    private void initSearchWidget() {
-//        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String s) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String userText) {
-//                recyclerViewAdapter.getFilter().filter(userText);
-//                return true;
-//            }
-//        });
-//    }
 
     //Item list on click event
     @Override

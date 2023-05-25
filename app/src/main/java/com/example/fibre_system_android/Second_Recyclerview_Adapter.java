@@ -1,6 +1,8 @@
 package com.example.fibre_system_android;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,12 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Recyclerview_Adapter.ViewHolder>{
 
     Context context;
     ArrayList<Recycler_item> itemsArrayListFull;
     private SelectItemListener listener1;
+
+    Vector<Point> points = new Vector<Point>();
+
+    Bitmap[] monsterTypes = new Bitmap[3];
+
+    Vector<Integer> distanceMovedX = new Vector<Integer>();
+    Vector<Integer> distanceMovedY = new Vector<Integer>();
+
+    int mNewX = -1;
+    int mNewY = -1;
 
     public Second_Recyclerview_Adapter(Context context, ArrayList<Recycler_item> itemsArrayList, SelectItemListener listener1) {
         this.context = context;
@@ -42,23 +55,21 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
         holder.emptyview.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 int action = event.getAction();
                 switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-
-                        break;
-
                     case MotionEvent.ACTION_UP:
                         listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
                         v.getParent().requestDisallowInterceptTouchEvent(false);
 
                         break;
 
-                    case MotionEvent.ACTION_BUTTON_RELEASE:
-                        listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
+                    case MotionEvent.ACTION_DOWN:
+
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+
                         break;
+
 
                     case MotionEvent.ACTION_MOVE:
 
@@ -66,7 +77,7 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
 
                         break;
                 }
-                return false;
+                return true;
             }
         });
 
