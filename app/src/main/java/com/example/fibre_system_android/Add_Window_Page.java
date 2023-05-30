@@ -72,8 +72,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
             public void onClick(View view) {
 
                 Intent intent = new Intent(Add_Window_Page.this, Planner_Area_Page.class);
-                intent.putExtra("InputWidth", inputHeight);
-                intent.putExtra("InputHeight", inputWidth);
+                intent.putExtra("BackgroundWidth", inputHeight);
+                intent.putExtra("BackgroundHeight", inputWidth);
                 startActivity(intent);
             }
         });

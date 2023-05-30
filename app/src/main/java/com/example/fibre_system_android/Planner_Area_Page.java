@@ -61,8 +61,11 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background);
         itemsArrayList  = new ArrayList<>();
 
-        finishButton = findViewById(R.id.button_planner_page_finish);
+        Intent intent = getIntent();
+        int inputHeight = intent.getIntExtra("BackgroundHeight", 0);
+        int inputWidth = intent.getIntExtra("BackgroundWidth", 0);
 
+        finishButton = findViewById(R.id.button_planner_page_finish);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,9 +75,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
 
-        Intent i = getIntent();
-        int inputHeight = i.getIntExtra("inputHeight", 0);
-        int inputWidth = i.getIntExtra("inputWidth", 0);
+
 
 //      initSearchWidget();
         makeResponsive();
@@ -174,8 +175,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         lParams.width = InputWidth;
 
 
-        ImageView icon = (ImageView) findViewById(R.id.shapeImage2);
-        icon.setImageResource(R.drawable.toilet);
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
+        icon.setImageResource(R.drawable.square);
         icon.setLayoutParams(lParams);
 
 
