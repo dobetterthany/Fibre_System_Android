@@ -15,7 +15,6 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#c6d8f5"
-        android:onClick="goChooseShapePage"
         android:text="Straight into planning"
         android:textColor="#1a2536"
         app:layout_constraintBottom_toBottomOf="parent"

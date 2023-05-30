@@ -85,7 +85,6 @@ public class Choose_Size_Page extends AppCompatActivity {
 
     }
 
-
     public void AddImage(int imageID)
     {
         height = Integer.valueOf(heightInput.getText().toString());
@@ -102,8 +101,6 @@ public class Choose_Size_Page extends AppCompatActivity {
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
-
-
     }
 
     public boolean setSize(int height, int width){

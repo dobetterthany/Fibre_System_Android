@@ -34,7 +34,7 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
-    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background )
+    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
     {
         //Init variables
         this.context = context;
@@ -43,6 +43,33 @@ public class BathroomPlannerLayout {
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
         this.background = background;
+    }
+
+    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background, ArrayList<Recycler_item> doorsWindowsList)
+    {
+        //Init variables
+        this.context = context;
+        this.plannerArea = plannerAreaLayout;
+        plannerItemArray = doorsWindowsList;
+
+        editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
+        this.background = background;
+
+        for (Recycler_item item : doorsWindowsList)
+        {
+            RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
+                    ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+            lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+            ImageView icon = new ImageView(context);
+            icon.setImageResource(item.getImage());
+            icon.setLayoutParams(lParams);
+
+            icon.setX(item.GetX());
+            icon.setY(item.GetY());
+
+            plannerAreaLayout.addView(icon);
+        }
     }
 
     public ArrayList<Recycler_item> GetItemList()
@@ -67,8 +94,6 @@ public class BathroomPlannerLayout {
         icon.setOnTouchListener(new View.OnTouchListener() {
 
             float x, y;
-
-
 
             @SuppressLint("ClickableViewAccessibility")
             @Override
@@ -165,6 +190,8 @@ public class BathroomPlannerLayout {
                         icon.setX(image1X);
 
                         icon.setY(image1Y);
+
+                        item.SetPos(image1X, image1Y);
 
                         break;
 

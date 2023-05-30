@@ -45,8 +45,8 @@ public class Finalize_Page extends AppCompatActivity{
         makeResponsive();
         getData();
 
-        Intent i = getIntent();
-        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
+//        Intent i = getIntent();
+//        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
     }
 
     private void makeResponsive() {

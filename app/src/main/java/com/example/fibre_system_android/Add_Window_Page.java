@@ -33,8 +33,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designHeight = 800;
 
     ArrayList<String> name = new ArrayList<>();
-
-
+    ArrayList<ShowerRange> categories = new ArrayList<>();
     //Planner area layout variables
     ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
@@ -52,11 +51,13 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         ImageView background = findViewById(R.id.shapeImage2);
 
-        name.add("Luxury Frameless");
-        name.add("LShape");
-        name.add("Square");
-        name.add("Entry Level Showers");
+        name.add("Doors");
+        name.add("Windows");
+        name.add("Walls");
 
+        categories.add(ShowerRange.DOOR);
+        categories.add(ShowerRange.WINDOW);
+        categories.add(ShowerRange.WALL);
 
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
@@ -74,6 +75,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
                 Intent intent = new Intent(Add_Window_Page.this, Planner_Area_Page.class);
                 intent.putExtra("BackgroundWidth", inputHeight);
                 intent.putExtra("BackgroundHeight", inputWidth);
+                intent.putExtra("WindowDoorItems", bathroomPlannerLayout.GetItemList());
+                intent.putExtra("SkipChooseSize", 0);
                 startActivity(intent);
             }
         });
@@ -114,26 +117,12 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         RecyclerView recyclerView = findViewById(R.id.plannerItemList);
 
         ArrayList<Recycler_item> itemsArrayList = new ArrayList<>();
-        itemsArrayList.add(new Recycler_item("LShape", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Square", 1, 1, R.drawable.large_square, true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-
+        itemsArrayList.add(new Recycler_item("Door", 14, 1, R.drawable.small_square, ShowerRange.DOOR));
+        itemsArrayList.add(new Recycler_item("Window", 14, 1, R.drawable.window, ShowerRange.WINDOW));
+        itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.WALL));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList,this));
+        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList,categories,this));
     }
 
 

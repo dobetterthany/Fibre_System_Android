@@ -9,6 +9,8 @@ public class Recycler_item implements Serializable {
     int height; //top to bottom measurement
     int image;
 
+    float posX,posY;
+
     boolean isGeneric;
     HashMap<String, Boolean> colours;
 
@@ -17,12 +19,13 @@ public class Recycler_item implements Serializable {
     }
 
     ShowerRange showerRange;
-    public Recycler_item(String name, int length, int width, int image ) {
+
+    public Recycler_item(String name, int length, int width, int image ,ShowerRange showerRange) {
         this.name = name;
         this.length = length;
         this.height = width;
         this.image = image;
-        this.showerRange = ShowerRange.NON_PRODUCT;
+        this.showerRange = showerRange;
 
         initColours();
         isGeneric = true;
@@ -98,5 +101,21 @@ public class Recycler_item implements Serializable {
         colours.put("black", black);
         colours.put("white", white);
         colours.put("gunmetal", gunmetal);
+    }
+
+    public void SetPos(float x, float y)
+    {
+        this.posX = x;
+        this.posY = y;
+    }
+
+    public float GetX()
+    {
+        return this.posX;
+    }
+
+    public float GetY()
+    {
+        return this.posY;
     }
 }

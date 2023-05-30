@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     ConstraintLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     ArrayList<Recycler_item> itemsArrayList;
+    ArrayList<ShowerRange> categories;
     RecyclerView recyclerView;
 
     ImageView background;
@@ -59,13 +61,26 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
         ImageView background = findViewById(R.id.shapeImage3);
-        bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background);
-        itemsArrayList  = new ArrayList<>();
 
+        itemsArrayList  = new ArrayList<>();
+        categories = new ArrayList<>();
 
         Intent intent = getIntent();
         int inputHeight = intent.getIntExtra("BackgroundHeight", 0);
         int inputWidth = intent.getIntExtra("BackgroundWidth", 0);
+        int isSkipSize = intent.getIntExtra("SkipChooseSize", 0);
+        ArrayList<Recycler_item> WindowDoorItems = (ArrayList<Recycler_item>) intent.getSerializableExtra("WindowDoorItems");
+
+        if(isSkipSize == 1){//Skip choose size = true
+            AddDefaultImage();
+            bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background);
+        }
+        else
+        {//Skip choose size = false
+            bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background, WindowDoorItems);
+            inheritImage(inputHeight, inputWidth);
+        }
+
 
         finishButton = findViewById(R.id.button_planner_page_finish);
         finishButton.setOnClickListener(new View.OnClickListener() {
@@ -77,14 +92,12 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
 
-
-
 //      initSearchWidget();
         makeResponsive();
         getData();
-        inheritImage(inputHeight, inputWidth);
 
-        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,this);
+
+        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,categories,this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -145,6 +158,11 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         name.add("LShape");
         name.add("Square");
         name.add("Entry Level Showers");
+
+        categories.add(ShowerRange.LUXURY_FRAMELESS);
+        categories.add(ShowerRange.LSHAPE);
+        categories.add(ShowerRange.SQUARE);
+        categories.add(ShowerRange.ELS);
     }
 
     @Override
@@ -180,8 +198,23 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
         icon.setImageResource(R.drawable.square);
         icon.setLayoutParams(lParams);
+    }
 
 
+    public void AddDefaultImage()
+    {
+        int height = 1000;
+        int width = 1000;
 
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        lParams.height = height;
+        lParams.width = width;
+
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
+        icon.setImageResource(R.drawable.square);
+        icon.setLayoutParams(lParams);
     }
 }

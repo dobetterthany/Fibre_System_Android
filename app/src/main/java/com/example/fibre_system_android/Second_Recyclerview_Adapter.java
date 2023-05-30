@@ -80,10 +80,7 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
                 return true;
             }
         });
-
     }
-
-
 
     @Override
     public int getItemCount() {

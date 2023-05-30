@@ -22,7 +22,8 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     Second_Recyclerview_Adapter adapter;
     ArrayList<Recycler_item> itemsArrayListFull;
     ArrayList<ArrayList<Recycler_item>> filteredItemsListArray;
-    ArrayList<String> listData;
+    ArrayList<String> titleNames;
+    ArrayList<ShowerRange> categoryTypes;
     private Context context;
     private SparseBooleanArray selectedItems = new SparseBooleanArray();
     private int prePosition = -1;
@@ -30,9 +31,10 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
     Recycler_item recycler_item;
 
 
-    public Main_RecyclerViewAdapter(ArrayList<String> data,  ArrayList<Recycler_item> items, SelectItemListener listener1){
-        this.listData = data;
+    public Main_RecyclerViewAdapter(ArrayList<String> names,  ArrayList<Recycler_item> items, ArrayList<ShowerRange> categoryTypes, SelectItemListener listener1){
+        this.titleNames = names;
         this.itemsArrayListFull = items;
+        this.categoryTypes = categoryTypes;
         this.listener1 = listener1;
         this.filteredItemsListArray = new ArrayList<ArrayList<Recycler_item>>();
     }
@@ -44,29 +46,32 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main_item, parent, false);
         return new ViewHolder(v);
     }
+
     private void filterShower(int position) {
         ArrayList<Recycler_item> filteredList = new ArrayList<>();
             for (Recycler_item recycler_item : itemsArrayListFull) {
-                if (recycler_item.getShowerRange().ordinal() == position ) {
+                if (recycler_item.getShowerRange().ordinal() == categoryTypes.get(position).ordinal() ) {
                     filteredList.add(recycler_item);
                 }
             }
             filteredItemsListArray.add(filteredList);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull Main_RecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        //리사이클러뷰 넣는 부분
+
         holder.recyclerView.setLayoutManager( new LinearLayoutManager(context));
 
         filterShower(position);
 
-        adapter = new Second_Recyclerview_Adapter(context, filteredItemsListArray.get(position), listener1);   // 메인에서 받아온 items를 두 번째 리사이클러뷰 어댑터로 넘기기
+
+        // Create nested recycler view
+        adapter = new Second_Recyclerview_Adapter(context, filteredItemsListArray.get(position), listener1);
         holder.recyclerView.setAdapter(adapter);
 
         holder.onBind(position);
-        holder.textView1.setText(listData.get(position));   // textView 데이터 설정
+
+        holder.textView1.setText(titleNames.get(position));   // Set text for nested recycler view
         holder.textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +97,7 @@ public class Main_RecyclerViewAdapter extends RecyclerView.Adapter<Main_Recycler
 
     @Override
     public int getItemCount() {
-        return listData.size();
+        return titleNames.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

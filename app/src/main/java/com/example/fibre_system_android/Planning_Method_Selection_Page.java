@@ -20,7 +20,7 @@ public class Planning_Method_Selection_Page extends AppCompatActivity {
     private int designHeight = 800;
 
     Button buttonChooseSize;
-
+    Button buttonSkipSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,16 @@ public class Planning_Method_Selection_Page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Planning_Method_Selection_Page.this,Choose_Size_Page.class);
+                startActivity(i);
+            }
+        });
+
+        buttonSkipSize = (Button) findViewById(R.id.button_skip_to_planning);
+        buttonSkipSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Planning_Method_Selection_Page.this, Planner_Area_Page.class);
+                i.putExtra("SkipChooseSize", 1);
                 startActivity(i);
             }
         });
