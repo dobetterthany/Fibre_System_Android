@@ -58,8 +58,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
+        ImageView background = findViewById(R.id.shapeImage3);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background);
         itemsArrayList  = new ArrayList<>();
+
 
         Intent intent = getIntent();
         int inputHeight = intent.getIntExtra("BackgroundHeight", 0);
