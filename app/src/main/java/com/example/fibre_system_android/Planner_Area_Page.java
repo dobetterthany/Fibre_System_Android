@@ -1,6 +1,7 @@
 package com.example.fibre_system_android;
 
 import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -10,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     ArrayList<Recycler_item> itemsArrayList;
     RecyclerView recyclerView;
 
+    ImageView background;
     Main_RecyclerViewAdapter adapter;
     ArrayList<String> name = new ArrayList<>();
     Button finishButton;
@@ -55,7 +58,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
-        bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea);
+        bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background);
         itemsArrayList  = new ArrayList<>();
 
         finishButton = findViewById(R.id.button_planner_page_finish);
@@ -69,9 +72,14 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             }
         });
 
-//        initSearchWidget();
+        Intent i = getIntent();
+        int inputHeight = i.getIntExtra("inputHeight", 0);
+        int inputWidth = i.getIntExtra("inputWidth", 0);
+
+//      initSearchWidget();
         makeResponsive();
         getData();
+        inheritImage(inputHeight, inputWidth);
 
         adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,this);
         recyclerView.setAdapter(adapter);
@@ -154,5 +162,23 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
 
         bathroomPlannerLayout.AddItem(items);
+    }
+
+    public void inheritImage(int InputHeight, int InputWidth) {
+
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+
+        lParams.height = InputHeight;
+        lParams.width = InputWidth;
+
+
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage2);
+        icon.setImageResource(R.drawable.toilet);
+        icon.setLayoutParams(lParams);
+
+
+
     }
 }

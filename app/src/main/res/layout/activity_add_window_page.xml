@@ -42,13 +42,13 @@
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/button_planner_page_finish"
+            android:id="@+id/AddWindowsPageNextButton"
             android:layout_width="88dp"
             android:layout_height="48dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="15dp"
             android:backgroundTint="#c6d8f5"
-            android:text="Finish"
+            android:text="Next"
             android:textColor="#1a2536"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -65,15 +65,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/imageViewA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/shapeImage2"
-            app:layout_constraintEnd_toEndOf="@+id/shapeImage2"
-            app:layout_constraintStart_toStartOf="@+id/shapeImage2"
-            app:layout_constraintTop_toTopOf="@+id/shapeImage2"
-            tools:srcCompat="@tools:sample/avatars" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

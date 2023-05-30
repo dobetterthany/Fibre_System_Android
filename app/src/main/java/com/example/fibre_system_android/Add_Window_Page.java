@@ -38,7 +38,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     //Planner area layout variables
     ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
-
+    Button nextButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +50,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
         setContentView(R.layout.activity_add_window_page);
 
-        final ImageView imageView1 = findViewById(R.id.imageViewA);
-
-        final ImageView imageView2 = findViewById(R.id.shapeImage2);
+        ImageView background = findViewById(R.id.shapeImage2);
 
         name.add("Luxury Frameless");
         name.add("LShape");
@@ -60,138 +58,28 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         name.add("Entry Level Showers");
 
 
-
-        imageView1.setOnTouchListener(new View.OnTouchListener() {
-
-            float x, y;
-
-
-
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-
-                    case MotionEvent.ACTION_DOWN:
-
-                        // save the x and y coordinates of the touch
-
-                        x = event.getX();
-
-                        y = event.getY();
-
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-
-                        // get the new x and y coordinates of the touch
-
-                        float newX = event.getX();
-
-                        float newY = event.getY();
-
-                        // get the dimensions of the imageviews
-
-                        float itemWidth = imageView1.getWidth();
-
-                        float itemHeight = imageView1.getHeight();
-
-                        float boarderWidth = imageView2.getWidth();
-
-                        float boarderHeight = imageView2.getHeight();
-
-                        // calculate the new position of the imageview
-
-                        float image1X = imageView1.getX() + newX - x;
-
-                        float image1Y = imageView1.getY() + newY - y;
-
-
-
-                        // make sure the imageview stays on the border of the other imageview
-
-                        if (image1X < 0) {
-
-                            image1X = 0;
-
-                        }
-
-                        if (image1X > (boarderWidth - itemWidth)) {
-
-                            image1X = boarderWidth - itemWidth;
-
-                        }
-
-                        if (image1Y < 0) {
-
-                            image1Y = 0;
-
-                        }
-
-                        if (image1Y > (boarderHeight - itemHeight)) {
-
-                            image1Y = boarderHeight - itemHeight;
-
-                        }
-                        //Snapping logic
-
-                        if(image1X > 0 && image1X < 100)
-                        {
-                            image1X = 0;
-                        }
-
-                        if(image1Y > 0 && image1Y < 100)
-                        {
-                            image1Y = 0;
-                        }
-
-                        if(image1X < boarderWidth && image1X > (boarderWidth - 100 - itemWidth))
-                        {
-                            image1X = boarderWidth - itemWidth;
-                        }
-
-                        if(image1Y < boarderHeight && image1Y > (boarderHeight - 100 - itemHeight))
-                        {
-                            image1Y = boarderHeight - itemHeight;
-                        }
-
-                        // set the new position of the imageview
-
-                        imageView1.setX(image1X);
-
-                        imageView1.setY(image1Y);
-
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-
-                        break;
-
-                }
-
-                return true;
-
-            }
-
-        });
-
-
-
-
         //Planner area layout init
         AddwindowArea = findViewById(R.id.AddwindowArea);
-        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea);
+        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea, background);
+
 
         Intent i = getIntent();
         int inputHeight = i.getIntExtra("InputHeight", 0);
         int inputWidth = i.getIntExtra("InputWidth", 0);
 
+        nextButton = findViewById(R.id.AddWindowsPageNextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Add_Window_Page.this, Planner_Area_Page.class);
+                intent.putExtra("InputWidth", inputHeight);
+                intent.putExtra("InputHeight", inputWidth);
+                startActivity(intent);
+            }
+        });
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
-        AddImage();
 
     }
 
@@ -203,15 +91,15 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         dDensity = (displayMetrics.scaledDensity);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
-        Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
+        Button nextButton = (Button) findViewById(R.id.AddWindowsPageNextButton);
 
         ViewGroup.LayoutParams recyclerViewParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
         recyclerViewParams.width = calcWidth(300);
         recyclerViewParams.height = calcHeight(440);
 
-        ViewGroup.LayoutParams finishButtonParams = (ViewGroup.MarginLayoutParams) finishButton.getLayoutParams();
-        finishButtonParams.width = calcWidth(130);
-        finishButtonParams.height = calcHeight(70);
+        ViewGroup.LayoutParams nextButtonParams = (ViewGroup.MarginLayoutParams) nextButton.getLayoutParams();
+        nextButtonParams.width = calcWidth(130);
+        nextButtonParams.height = calcHeight(70);
     }
 
     public int calcHeight(float value) {
@@ -285,7 +173,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         icon.setLayoutParams(lParams);
 
     }
-    public void AddImage() {
+    /*public void AddImage() {
 
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -299,6 +187,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         icon.setImageResource(R.drawable.toilet);
         icon.setLayoutParams(lParams);
 
-    }
+    }*/
 
 }

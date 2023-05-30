@@ -1,5 +1,6 @@
 package com.example.fibre_system_android.planner_layout;
 
+import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ public class BathroomPlannerLayout {
 
     //Current selected view
     ImageView selectedView;
+    ImageView background;
 
     //Stores all items added to array
     ArrayList<Recycler_item> plannerItemArray;
@@ -32,7 +34,7 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
-    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout)
+    public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background )
     {
         //Init variables
         this.context = context;
@@ -40,6 +42,7 @@ public class BathroomPlannerLayout {
         plannerItemArray = new ArrayList<Recycler_item>();
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
+        this.background = background;
     }
 
     public ArrayList<Recycler_item> GetItemList()
@@ -62,36 +65,120 @@ public class BathroomPlannerLayout {
 
         //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {
+
+            float x, y;
+
+
+
+            @SuppressLint("ClickableViewAccessibility")
             @Override
-            public boolean onTouch(View view, MotionEvent event) {
+
+            public boolean onTouch(View v, MotionEvent event) {
 
                 switch (event.getAction()) {
+
                     case MotionEvent.ACTION_DOWN:
 
-                        deselectItem(selectedView);
-                        selectItem((ImageView) view, item);
-                        editButtons.update(view);
+                        // save the x and y coordinates of the touch
 
-                        dX = view.getX() - event.getRawX();
-                        dY = view.getY() - event.getRawY();
+                        x = event.getX();
+
+                        y = event.getY();
+
                         break;
 
                     case MotionEvent.ACTION_MOVE:
 
-                        view.animate()
-                                .x(event.getRawX() + dX)
-                                .y(event.getRawY() + dY)
-                                .setDuration(0)
-                                .start();
-                        editButtons.update(view);
+                        // get the new x and y coordinates of the touch
+
+                        float newX = event.getX();
+
+                        float newY = event.getY();
+
+                        // get the dimensions of the imageviews
+
+                        float itemWidth = icon.getWidth();
+
+                        float itemHeight = icon.getHeight();
+
+                        float boarderWidth = background.getWidth();
+
+                        float boarderHeight = background.getHeight();
+
+                        // calculate the new position of the imageview
+
+                        float image1X = icon.getX() + newX - x;
+
+                        float image1Y = icon.getY() + newY - y;
+
+
+
+                        // make sure the imageview stays on the border of the other imageview
+
+                        if (image1X < 0) {
+
+                            image1X = 0;
+
+                        }
+
+                        if (image1X > (boarderWidth - itemWidth)) {
+
+                            image1X = boarderWidth - itemWidth;
+
+                        }
+
+                        if (image1Y < 0) {
+
+                            image1Y = 0;
+
+                        }
+
+                        if (image1Y > (boarderHeight - itemHeight)) {
+
+                            image1Y = boarderHeight - itemHeight;
+
+                        }
+                        //Snapping logic
+
+                        if(image1X > 0 && image1X < 100)
+                        {
+                            image1X = 0;
+                        }
+
+                        if(image1Y > 0 && image1Y < 100)
+                        {
+                            image1Y = 0;
+                        }
+
+                        if(image1X < boarderWidth && image1X > (boarderWidth - 100 - itemWidth))
+                        {
+                            image1X = boarderWidth - itemWidth;
+                        }
+
+                        if(image1Y < boarderHeight && image1Y > (boarderHeight - 100 - itemHeight))
+                        {
+                            image1Y = boarderHeight - itemHeight;
+                        }
+
+                        // set the new position of the imageview
+
+                        icon.setX(image1X);
+
+                        icon.setY(image1Y);
+
                         break;
 
-                    default:
-                        return false;
+                    case MotionEvent.ACTION_UP:
+
+                        break;
+
                 }
+
                 return true;
+
             }
-        } );
+
+        });
 
         plannerArea.addView(icon);
         plannerItemArray.add(item);
