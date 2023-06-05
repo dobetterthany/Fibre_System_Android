@@ -3,6 +3,7 @@ package com.example.fibre_system_android;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 
 public class Choose_Size_Page extends AppCompatActivity {
@@ -23,8 +24,8 @@ public class Choose_Size_Page extends AppCompatActivity {
      public final static int minWidth = 1000;
      public final static int minHeight = 1000;
 
-    public final static int maxWidth = 8000;
-    public final static int maxHeight = 8000;
+     public final static int maxWidth = 5000;
+     public final static int maxHeight = 5000;
 
     /* Context context; */
 
@@ -33,9 +34,10 @@ public class Choose_Size_Page extends AppCompatActivity {
     Button confirmButton;
     Button nextButton;
 
-    Button testButton;
 
-    public void TestInit(int height, int width){
+
+    //unit test function
+   public void TestInit(int height, int width){
         this.height = height;
         this.width = width;
     }
@@ -51,22 +53,16 @@ public class Choose_Size_Page extends AppCompatActivity {
 
         setContentView(R.layout.activity_choose_size_page);
 
+
         widthInput = findViewById(R.id.widthInput);
         heightInput = findViewById(R.id.heightInput);
-        testButton = findViewById(R.id.testButton);
         confirmButton = findViewById(R.id.confirmButton);
+
+
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AddImage(R.drawable.square);
-            }
-        });
-
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                height = Integer.valueOf(heightInput.getText().toString());
-                width = Integer.valueOf(widthInput.getText().toString());
             }
         });
 
@@ -87,16 +83,15 @@ public class Choose_Size_Page extends AppCompatActivity {
 
     public void AddImage(int imageID)
     {
+
         height = Integer.valueOf(heightInput.getText().toString());
         width = Integer.valueOf(widthInput.getText().toString());
 
-        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         lParams.height = height;
         lParams.width = width;
-
 
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
         icon.setImageResource(imageID);
