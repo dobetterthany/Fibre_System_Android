@@ -155,22 +155,22 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     public void inheritImage(int InputHeight, int InputWidth) {
 
-//        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
-//                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
 //        lParams.bottomToBottom = R.id.AddwindowArea;
 //        lParams.topToTop = R.id.AddwindowArea;
 //        lParams.leftToLeft = R.id.AddwindowArea;
 //        lParams.rightToRight = R.id.AddwindowArea;
-//        lParams.height = InputHeight;
-//        lParams.width = InputWidth;
+        lParams.height = InputHeight;
+        lParams.width = InputWidth;
 
 
 
 
-//        background.setLayoutParams(lParams);
-        background.setScaleX(inputWidth/background.getWidth());
-        background.setScaleY(inputHeight/background.getHeight());
+        background.setLayoutParams(lParams);
+//        background.setScaleX(inputWidth/background.getWidth());
+//        background.setScaleY(inputHeight/background.getHeight());
 
     }
     /*public void AddImage() {
