@@ -32,12 +32,16 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designWidth = 1280;
     private int designHeight = 800;
 
+    int inputHeight;
+    int inputWidth;
     ArrayList<String> name = new ArrayList<>();
     ArrayList<ShowerRange> categories = new ArrayList<>();
     //Planner area layout variables
     ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     Button nextButton;
+
+    ImageView background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,27 +50,11 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
-
         setContentView(R.layout.activity_add_window_page);
 
-        ImageView background = findViewById(R.id.shapeImage2);
-
-        name.add("Doors");
-        name.add("Windows");
-        name.add("Walls");
-
-        categories.add(ShowerRange.DOOR);
-        categories.add(ShowerRange.WINDOW);
-        categories.add(ShowerRange.WALL);
-
-        //Planner area layout init
-        AddwindowArea = findViewById(R.id.AddwindowArea);
-        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea, background);
-
-
         Intent i = getIntent();
-        int inputHeight = i.getIntExtra("InputHeight", 0);
-        int inputWidth = i.getIntExtra("InputWidth", 0);
+        inputHeight = i.getIntExtra("InputHeight", 0);
+        inputWidth = i.getIntExtra("InputWidth", 0);
 
         nextButton = findViewById(R.id.AddWindowsPageNextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +68,27 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
                 startActivity(intent);
             }
         });
+
+        background = findViewById(R.id.shapeImage2);
+        background.setImageResource(R.drawable.square);
+
+
+        name.add("Doors");
+        name.add("Windows");
+        name.add("Walls");
+
+        categories.add(ShowerRange.DOOR);
+        categories.add(ShowerRange.WINDOW);
+        categories.add(ShowerRange.WALL);
+
+        //Planner area layout init
+        AddwindowArea = findViewById(R.id.AddwindowArea);
+        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea, background);
+
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
+
 
     }
 
@@ -149,17 +155,22 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     public void inheritImage(int InputHeight, int InputWidth) {
 
-        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
-                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+//        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+//                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+//        lParams.bottomToBottom = R.id.AddwindowArea;
+//        lParams.topToTop = R.id.AddwindowArea;
+//        lParams.leftToLeft = R.id.AddwindowArea;
+//        lParams.rightToRight = R.id.AddwindowArea;
+//        lParams.height = InputHeight;
+//        lParams.width = InputWidth;
 
 
-        lParams.height = InputHeight;
-        lParams.width = InputWidth;
 
 
-        ImageView icon = (ImageView) findViewById(R.id.shapeImage2);
-        icon.setImageResource(R.drawable.square);
-        icon.setLayoutParams(lParams);
+//        background.setLayoutParams(lParams);
+        background.setScaleX(inputWidth/background.getWidth());
+        background.setScaleY(inputHeight/background.getHeight());
 
     }
     /*public void AddImage() {

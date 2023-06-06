@@ -3,6 +3,7 @@ package com.example.fibre_system_android.planner_layout;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,9 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
+    float centreX = 0, centreY = 0;
+
+
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
     {
         //Init variables
@@ -44,6 +48,7 @@ public class BathroomPlannerLayout {
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
         this.background = background;
     }
+
 
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background, ArrayList<Recycler_item> doorsWindowsList)
     {
@@ -89,6 +94,8 @@ public class BathroomPlannerLayout {
         ImageView icon = new ImageView(context);
         icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
+
+
 
         //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {

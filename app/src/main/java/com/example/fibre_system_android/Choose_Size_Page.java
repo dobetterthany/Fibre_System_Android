@@ -87,15 +87,22 @@ public class Choose_Size_Page extends AppCompatActivity {
         height = Integer.valueOf(heightInput.getText().toString());
         width = Integer.valueOf(widthInput.getText().toString());
 
-        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
-                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+//        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+//                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+//
+//        lParams.height = height;
+//        lParams.width = width;
 
-        lParams.height = height;
-        lParams.width = width;
+       /* lParams.bottomToBottom = R.id.AddwindowArea;
+        lParams.topToTop = R.id.AddwindowArea;
+        lParams.leftToLeft = R.id.AddwindowArea;
+        lParams.rightToRight = R.id.AddwindowArea;*/
 
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
-        icon.setImageResource(imageID);
-        icon.setLayoutParams(lParams);
+        icon.setScaleX(width/icon.getWidth());
+        icon.setScaleY(height/icon.getHeight());
+//        icon.setImageResource(imageID);
+//        icon.setLayoutParams(lParams);
     }
 
     public boolean setSize(int height, int width){

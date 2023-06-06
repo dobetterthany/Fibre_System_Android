@@ -193,6 +193,10 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
         lParams.height = InputHeight;
         lParams.width = InputWidth;
+        lParams.bottomToBottom = R.id.plannerArea;
+        lParams.topToTop = R.id.plannerArea;
+        lParams.leftToLeft = R.id.plannerArea;
+        lParams.rightToRight = R.id.plannerArea;
 
 
         ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
