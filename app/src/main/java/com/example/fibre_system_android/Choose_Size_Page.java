@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,11 +22,14 @@ public class Choose_Size_Page extends AppCompatActivity {
      int height;
      int width;
 
-     public final static int minWidth = 1000;
-     public final static int minHeight = 1000;
+     final static float BGScale = 0.5f;
 
-     public final static int maxWidth = 5000;
-     public final static int maxHeight = 5000;
+// 760mm is the smallest shower size available (as of 07/06/2023 10:54AM)
+     public final static int minWidth = 760;
+     public final static int minHeight = 760;
+
+     public final static int maxWidth = 3000;
+     public final static int maxHeight = 3000;
 
     /* Context context; */
 
@@ -62,7 +66,11 @@ public class Choose_Size_Page extends AppCompatActivity {
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AddImage(R.drawable.square);
+                height = Integer.valueOf(heightInput.getText().toString());
+                width = Integer.valueOf(widthInput.getText().toString());
+                if(CheckInput()) {
+                    AddImage(R.drawable.square);
+                }
             }
         });
 
@@ -73,8 +81,8 @@ public class Choose_Size_Page extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
-                intent.putExtra("InputWidth", width);
-                intent.putExtra("InputHeight", height);
+                intent.putExtra("InputWidth", Math.round(width * BGScale));
+                intent.putExtra("InputHeight", Math.round(height * BGScale));
                 startActivity(intent);
             }
         });
@@ -84,14 +92,11 @@ public class Choose_Size_Page extends AppCompatActivity {
     public void AddImage(int imageID)
     {
 
-        height = Integer.valueOf(heightInput.getText().toString());
-        width = Integer.valueOf(widthInput.getText().toString());
-
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        lParams.height = height;
-        lParams.width = width;
+        lParams.height = Math.round(height * BGScale);
+        lParams.width = Math.round(width * BGScale);
 
        /* lParams.bottomToBottom = R.id.AddwindowArea;
         lParams.topToTop = R.id.AddwindowArea;
@@ -115,4 +120,24 @@ public class Choose_Size_Page extends AppCompatActivity {
         return true;
     }
 
+    private boolean CheckInput() {
+
+        if (height < minHeight) {
+            Toast.makeText(getApplicationContext(), "Height should be between " + minHeight + " and " + maxHeight, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (height > maxHeight) {
+            Toast.makeText(getApplicationContext(), "Height should be between " + minHeight + " and " + maxHeight, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (width < minWidth) {
+            Toast.makeText(getApplicationContext(), "Width should be between " + minWidth + " and " + maxWidth, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (width > maxWidth) {
+            Toast.makeText(getApplicationContext(), "Width should be between " + minWidth + " and " + maxWidth, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 }

@@ -31,7 +31,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/RelativeLayout"
             android:layout_width="332dp"
-            android:layout_height="788dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
 
@@ -92,7 +92,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/AddwindowArea"
             android:layout_width="950dp"
-            android:layout_height="800dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"

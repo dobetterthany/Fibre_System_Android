@@ -35,7 +35,9 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
-    float centreX = 0, centreY = 0;
+    float pScale = 0.5f;
+
+
 
 
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
@@ -92,6 +94,8 @@ public class BathroomPlannerLayout {
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         ImageView icon = new ImageView(context);
+        lParams.height = Math.round(item.getHeight() * pScale);
+        lParams.width = Math.round(item.getLength() * pScale);
         icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
 
