@@ -22,6 +22,9 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
     ArrayList<Recycler_item> itemsArrayListFull;
     private SelectItemListener listener1;
 
+
+    private boolean isScrolling = false;
+
     Vector<Point> points = new Vector<Point>();
 
     Bitmap[] monsterTypes = new Bitmap[3];
@@ -47,39 +50,24 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
 
     @Override
     public void onBindViewHolder(@NonNull Second_Recyclerview_Adapter.ViewHolder holder, int position) {
-        holder.nameView.setText(itemsArrayListFull.get(position).getName());
-        holder.sizeView.setText(itemsArrayListFull.get(position).getSizeString());
-        holder.imageView.setImageResource(itemsArrayListFull.get(position).getImage());
-        holder.imageView.setTag(itemsArrayListFull.get(position).getImage());
+        Recycler_item item = itemsArrayListFull.get(position);
+        holder.nameView.setText(item.getName());
+        holder.sizeView.setText(item.getSizeString());
+        holder.imageView.setImageResource(item.getImage());
 
-        holder.emptyview.setOnTouchListener(new View.OnTouchListener(){
+        holder.emptyview.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_UP:
-
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-
-                        break;
-
-                    case MotionEvent.ACTION_DOWN:
-
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-
-                        break;
-
-
-                    case MotionEvent.ACTION_MOVE:
-
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-
-                        break;
+                int adapterPosition = holder.getBindingAdapterPosition();
+                if (adapterPosition != RecyclerView.NO_POSITION) {
+                    listener.onItemTouch(adapterPosition);
                 }
-                return true;
+                return false;
             }
         });
+
+
+
     }
 
     @Override
