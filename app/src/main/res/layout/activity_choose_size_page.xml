@@ -28,9 +28,9 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:id="@+id/RelativeLayout"
-            android:layout_width="332dp"
+            android:layout_width="256dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -39,82 +39,75 @@
                 android:id="@+id/widthInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_centerInParent="true"
                 android:autofillHints=""
-                android:digits="0123456789"
                 android:ems="10"
-                android:hint="Width: mm"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:hint="Width: "
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/heightInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_above="@id/widthInput"
+                android:layout_centerHorizontal="true"
                 android:autofillHints=""
-                android:digits="0123456789"
                 android:ems="10"
-                android:hint="Height: mm"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@id/widthInput"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                android:hint="Height: "
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="209dp"
-                android:layout_height="22dp"
-                android:text="Input Bathroom Size in mm"
-                app:layout_constraintBottom_toTopOf="@+id/heightInput"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="115dp"
+                android:text="Input Bathroom Size in cm" />
 
             <Button
                 android:id="@+id/confirmButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/heightInput"
                 android:layout_marginTop="116dp"
                 android:text="Confirm"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/heightInput"
                 tools:ignore="HardcodedText" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/testButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/heightInput"
+                android:layout_marginTop="116dp"
+                android:text="Confirm"
+                tools:ignore="HardcodedText" />
+            />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:id="@+id/AddwindowArea"
-            android:layout_width="950dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/linearLayout2"
-            app:layout_constraintTop_toTopOf="parent">
-
+            android:orientation="horizontal" >
 
             <ImageView
                 android:id="@+id/shapeImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/square"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintCircleRadius="0dp"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_centerInParent="true"
+                android:background="@drawable/square" />
+        </RelativeLayout>
+
 
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

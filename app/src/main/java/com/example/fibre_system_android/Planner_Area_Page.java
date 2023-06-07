@@ -109,13 +109,13 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         dpWidth = (displayMetrics.widthPixels);
         dDensity = (displayMetrics.scaledDensity);
 
-       // SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
+        SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
         Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
 
-//        ViewGroup.LayoutParams searchViewParams = (ViewGroup.MarginLayoutParams) searchView.getLayoutParams();
-//        searchViewParams.width = calcWidth(300);
-//        searchViewParams.height = calcHeight(60);
+        ViewGroup.LayoutParams searchViewParams = (ViewGroup.MarginLayoutParams) searchView.getLayoutParams();
+        searchViewParams.width = calcWidth(300);
+        searchViewParams.height = calcHeight(60);
 
         ViewGroup.LayoutParams recyclerViewParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
         recyclerViewParams.width = calcWidth(300);

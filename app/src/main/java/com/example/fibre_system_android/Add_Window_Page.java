@@ -32,16 +32,12 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     private int designWidth = 1280;
     private int designHeight = 800;
 
-    int inputHeight;
-    int inputWidth;
     ArrayList<String> name = new ArrayList<>();
     ArrayList<ShowerRange> categories = new ArrayList<>();
     //Planner area layout variables
     ConstraintLayout AddwindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     Button nextButton;
-
-    ImageView background;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,28 +46,10 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_add_window_page);
 
-        Intent i = getIntent();
-        inputHeight = i.getIntExtra("InputHeight", 0);
-        inputWidth = i.getIntExtra("InputWidth", 0);
-
-        nextButton = findViewById(R.id.AddWindowsPageNextButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-                Intent intent = new Intent(Add_Window_Page.this, Planner_Area_Page.class);
-                intent.putExtra("BackgroundWidth", inputHeight);
-                intent.putExtra("BackgroundHeight", inputWidth);
-                intent.putExtra("WindowDoorItems", bathroomPlannerLayout.GetItemList());
-                intent.putExtra("SkipChooseSize", 0);
-                startActivity(intent);
-            }
-        });
-
-        background = findViewById(R.id.shapeImage2);
-        background.setImageResource(R.drawable.square);
-
+        ImageView background = findViewById(R.id.shapeImage2);
 
         name.add("Doors");
         name.add("Windows");
@@ -85,10 +63,26 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         AddwindowArea = findViewById(R.id.AddwindowArea);
         bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea, background);
 
+
+        Intent i = getIntent();
+        int inputHeight = i.getIntExtra("InputHeight", 0);
+        int inputWidth = i.getIntExtra("InputWidth", 0);
+
+        nextButton = findViewById(R.id.AddWindowsPageNextButton);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Add_Window_Page.this, Planner_Area_Page.class);
+                intent.putExtra("BackgroundWidth", inputHeight);
+                intent.putExtra("BackgroundHeight", inputWidth);
+                intent.putExtra("WindowDoorItems", bathroomPlannerLayout.GetItemList());
+                intent.putExtra("SkipChooseSize", 0);
+                startActivity(intent);
+            }
+        });
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
-
 
     }
 
@@ -158,19 +152,14 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-//        lParams.bottomToBottom = R.id.AddwindowArea;
-//        lParams.topToTop = R.id.AddwindowArea;
-//        lParams.leftToLeft = R.id.AddwindowArea;
-//        lParams.rightToRight = R.id.AddwindowArea;
+
         lParams.height = InputHeight;
         lParams.width = InputWidth;
 
 
-
-
-        background.setLayoutParams(lParams);
-//        background.setScaleX(inputWidth/background.getWidth());
-//        background.setScaleY(inputHeight/background.getHeight());
+        ImageView icon = (ImageView) findViewById(R.id.shapeImage2);
+        icon.setImageResource(R.drawable.square);
+        icon.setLayoutParams(lParams);
 
     }
     /*public void AddImage() {
