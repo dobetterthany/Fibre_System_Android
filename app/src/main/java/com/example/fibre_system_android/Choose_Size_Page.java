@@ -3,7 +3,6 @@ package com.example.fibre_system_android;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -11,10 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+
 
 
 public class Choose_Size_Page extends AppCompatActivity {
@@ -22,14 +20,11 @@ public class Choose_Size_Page extends AppCompatActivity {
      int height;
      int width;
 
-     final static float BGScale = 0.5f;
+     public final static int minWidth = 1000;
+     public final static int minHeight = 1000;
 
-// 760mm is the smallest shower size available (as of 07/06/2023 10:54AM)
-     public final static int minWidth = 760;
-     public final static int minHeight = 760;
-
-     public final static int maxWidth = 3000;
-     public final static int maxHeight = 3000;
+    public final static int maxWidth = 8000;
+    public final static int maxHeight = 8000;
 
     /* Context context; */
 
@@ -38,10 +33,9 @@ public class Choose_Size_Page extends AppCompatActivity {
     Button confirmButton;
     Button nextButton;
 
+    Button testButton;
 
-
-    //unit test function
-   public void TestInit(int height, int width){
+    public void TestInit(int height, int width){
         this.height = height;
         this.width = width;
     }
@@ -57,20 +51,22 @@ public class Choose_Size_Page extends AppCompatActivity {
 
         setContentView(R.layout.activity_choose_size_page);
 
-
         widthInput = findViewById(R.id.widthInput);
         heightInput = findViewById(R.id.heightInput);
+        testButton = findViewById(R.id.testButton);
         confirmButton = findViewById(R.id.confirmButton);
-
-
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AddImage(R.drawable.square);
+            }
+        });
+
+        testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 height = Integer.valueOf(heightInput.getText().toString());
                 width = Integer.valueOf(widthInput.getText().toString());
-                if(CheckInput()) {
-                    AddImage(R.drawable.square);
-                }
             }
         });
 
@@ -81,8 +77,8 @@ public class Choose_Size_Page extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
-                intent.putExtra("InputWidth", Math.round(width * BGScale));
-                intent.putExtra("InputHeight", Math.round(height * BGScale));
+                intent.putExtra("InputWidth", width);
+                intent.putExtra("InputHeight", height);
                 startActivity(intent);
             }
         });
@@ -91,21 +87,18 @@ public class Choose_Size_Page extends AppCompatActivity {
 
     public void AddImage(int imageID)
     {
+        height = Integer.valueOf(heightInput.getText().toString());
+        width = Integer.valueOf(widthInput.getText().toString());
 
-        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-        lParams.height = Math.round(height * BGScale);
-        lParams.width = Math.round(width * BGScale);
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        lParams.height = height;
+        lParams.width = width;
 
-       /* lParams.bottomToBottom = R.id.AddwindowArea;
-        lParams.topToTop = R.id.AddwindowArea;
-        lParams.leftToLeft = R.id.AddwindowArea;
-        lParams.rightToRight = R.id.AddwindowArea;*/
 
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
-//        icon.setScaleX(width/icon.getWidth());
-//        icon.setScaleY(height/icon.getHeight());
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
     }
@@ -120,24 +113,4 @@ public class Choose_Size_Page extends AppCompatActivity {
         return true;
     }
 
-    private boolean CheckInput() {
-
-        if (height < minHeight) {
-            Toast.makeText(getApplicationContext(), "Height should be between " + minHeight + " and " + maxHeight, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (height > maxHeight) {
-            Toast.makeText(getApplicationContext(), "Height should be between " + minHeight + " and " + maxHeight, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (width < minWidth) {
-            Toast.makeText(getApplicationContext(), "Width should be between " + minWidth + " and " + maxWidth, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (width > maxWidth) {
-            Toast.makeText(getApplicationContext(), "Width should be between " + minWidth + " and " + maxWidth, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        return true;
-    }
 }
