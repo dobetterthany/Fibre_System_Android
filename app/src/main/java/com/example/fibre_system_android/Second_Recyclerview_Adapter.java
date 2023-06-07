@@ -60,7 +60,6 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
                 switch (action) {
                     case MotionEvent.ACTION_UP:
                         listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
-
                         v.getParent().requestDisallowInterceptTouchEvent(false);
 
                         break;
