@@ -34,6 +34,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     private int designHeight = 800;
 
     //Planner area layout variables
+    //merge line
     ConstraintLayout plannerArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     ArrayList<Recycler_item> itemsArrayList;
