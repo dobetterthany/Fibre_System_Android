@@ -144,6 +144,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
         itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
         itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
         itemsArrayList.add(new Recycler_item("Eline Round", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
         itemsArrayList.add(new Recycler_item("Eline Round", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
         itemsArrayList.add(new Recycler_item("Squareline", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
