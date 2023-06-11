@@ -104,8 +104,9 @@ public class BathroomPlannerLayout {
 
                     case MotionEvent.ACTION_DOWN:
 
-                        // save the x and y coordinates of the touch
+                        selectItem(icon, item);
 
+                        // save the x and y coordinates of the touch
                         x = event.getX();
 
                         y = event.getY();
@@ -193,6 +194,8 @@ public class BathroomPlannerLayout {
 
                         item.SetPos(image1X, image1Y);
 
+                        editButtons.update(icon);
+
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -209,6 +212,7 @@ public class BathroomPlannerLayout {
 
         plannerArea.addView(icon);
         plannerItemArray.add(item);
+        editButtons.update(icon);
     }
 
     //Set selected item
