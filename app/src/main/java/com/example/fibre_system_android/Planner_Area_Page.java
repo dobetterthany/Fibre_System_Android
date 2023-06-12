@@ -137,22 +137,22 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Data for item list
     private void getData() {
-        itemsArrayList.add(new Recycler_item("LShape", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 14, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 1, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 9, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 12, 8, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 9, 9, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 10, 10, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Square", 1, 1, R.drawable.large_square, true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 9, 9, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("LShape", 1400, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 800, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1400, 1000, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 800, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 1000, 1000, R.drawable.square, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 900, 900, R.drawable.square, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 900, 900, R.drawable.square, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 1000, 1000, R.drawable.square, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Square", 1000, 1000, R.drawable.large_square, true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
 
 
         name.add("Luxury Frameless");

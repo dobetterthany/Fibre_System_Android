@@ -31,7 +31,7 @@ public class Recycler_item implements Serializable {
         isGeneric = true;
     }
 
-    public Recycler_item(String name, int length, int width, int image, Boolean chrome, boolean black, boolean white, boolean gunmetal,ShowerRange showerRange) {
+    public Recycler_item(String name, int length, int width, int image, Boolean chrome, boolean black, boolean white,ShowerRange showerRange) {
         this.name = name;
         this.length = length;
         this.height = width;
@@ -44,7 +44,6 @@ public class Recycler_item implements Serializable {
         colours.put("chrome", chrome);
         colours.put("black", black);
         colours.put("white", white);
-        colours.put("gunmetal", gunmetal);
     }
 
     public int getLength() {
