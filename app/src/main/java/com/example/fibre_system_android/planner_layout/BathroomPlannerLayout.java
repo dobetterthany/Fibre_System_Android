@@ -3,6 +3,7 @@ package com.example.fibre_system_android.planner_layout;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,6 +35,11 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
+    float pScale = 0.5f;
+
+
+
+
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
     {
         //Init variables
@@ -44,6 +50,7 @@ public class BathroomPlannerLayout {
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
         this.background = background;
     }
+
 
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background, ArrayList<Recycler_item> doorsWindowsList)
     {
@@ -87,8 +94,12 @@ public class BathroomPlannerLayout {
         lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
 
         ImageView icon = new ImageView(context);
+        lParams.height = Math.round(item.getHeight() * pScale);
+        lParams.width = Math.round(item.getLength() * pScale);
         icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
+
+
 
         //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {
@@ -104,9 +115,8 @@ public class BathroomPlannerLayout {
 
                     case MotionEvent.ACTION_DOWN:
 
-                        selectItem(icon, item);
-
                         // save the x and y coordinates of the touch
+
                         x = event.getX();
 
                         y = event.getY();
@@ -194,8 +204,6 @@ public class BathroomPlannerLayout {
 
                         item.SetPos(image1X, image1Y);
 
-                        editButtons.update(icon);
-
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -212,7 +220,6 @@ public class BathroomPlannerLayout {
 
         plannerArea.addView(icon);
         plannerItemArray.add(item);
-        editButtons.update(icon);
     }
 
     //Set selected item

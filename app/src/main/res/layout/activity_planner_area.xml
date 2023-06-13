@@ -25,8 +25,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="375dp"
-        android:layout_height="764dp"
+        android:layout_width="323dp"
+        android:layout_height="785dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -44,31 +44,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <SearchView
-            android:id="@+id/productListSearchView"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:iconifiedByDefault="false"
-            android:queryHint="Product Name"
-            app:layout_constraintBottom_toTopOf="@+id/plannerItemList"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <!--        <SearchView-->
+        <!--            android:id="@+id/productListSearchView"-->
+        <!--            android:layout_width="300dp"-->
+        <!--            android:layout_height="60dp"-->
+        <!--            android:iconifiedByDefault="false"-->
+        <!--            android:queryHint="Product Name"-->
+        <!--            app:layout_constraintBottom_toTopOf="@+id/plannerItemList"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
 
-        </SearchView>
+        <!--        </SearchView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plannerArea"
-        android:layout_width="631dp"
-        android:layout_height="766dp"
+        android:layout_width="950dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout6"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571">
 
         <ImageView
             android:id="@+id/shapeImage3"
