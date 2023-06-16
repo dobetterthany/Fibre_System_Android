@@ -58,10 +58,11 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_planner_area);
         recyclerView = findViewById(R.id.plannerItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(false);
+
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
-        ImageView background = findViewById(R.id.shapeImage3);
-
+        background = findViewById(R.id.shapeImage3);
         itemsArrayList  = new ArrayList<>();
         categories = new ArrayList<>();
 
@@ -136,23 +137,22 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Data for item list
     private void getData() {
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s9x9, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s10x10, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 1000, 1000, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 900, 900, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 900, 900, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 1000, 1000, R.drawable.square, true, false, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Square", 1000, 1000, R.drawable.large_square, true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, false, ShowerRange.SQUARE));
-
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s9x9, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s10x10, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 1000, 1000, R.drawable.pc1x1, true, true, true, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Eline Round", 900, 900, R.drawable.square, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 900, 900, R.drawable.pc1x1, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline", 1000, 1000, R.drawable.pc1x1, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Square", 1000, 1000, R.drawable.pc1x1, true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
 
         name.add("Luxury Frameless");
         name.add("LShape");
@@ -194,15 +194,14 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         lParams.height = InputHeight;
         lParams.width = InputWidth;
 
-
-        ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
-        icon.setImageResource(R.drawable.square);
-        icon.setLayoutParams(lParams);
+        background.setImageResource(R.drawable.bg2x2);
+        background.setLayoutParams(lParams);
     }
 
 
     public void AddDefaultImage()
     {
+        //TODO: Somehow make it scale from choose_size_page's scale.
         int height = 1000;
         int width = 1000;
 
@@ -213,8 +212,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         lParams.height = height;
         lParams.width = width;
 
-        ImageView icon = (ImageView) findViewById(R.id.shapeImage3);
-        icon.setImageResource(R.drawable.square);
-        icon.setLayoutParams(lParams);
+        background.setImageResource(R.drawable.bg2x2);
+        background.setLayoutParams(lParams);
     }
 }

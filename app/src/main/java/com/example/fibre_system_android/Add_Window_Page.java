@@ -1,11 +1,9 @@
 package com.example.fibre_system_android;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -37,7 +35,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     ArrayList<String> name = new ArrayList<>();
     ArrayList<ShowerRange> categories = new ArrayList<>();
     //Planner area layout variables
-    ConstraintLayout AddwindowArea;
+    ConstraintLayout AddWindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     Button nextButton;
 
@@ -70,7 +68,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         });
 
         background = findViewById(R.id.shapeImage2);
-        background.setImageResource(R.drawable.square);
+        background.setImageResource(R.drawable.bg2x2);
 
 
         name.add("Doors");
@@ -82,8 +80,8 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         categories.add(ShowerRange.WALL);
 
         //Planner area layout init
-        AddwindowArea = findViewById(R.id.AddwindowArea);
-        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddwindowArea, background);
+        AddWindowArea = findViewById(R.id.AddwindowArea);
+        bathroomPlannerLayout = new BathroomPlannerLayout(this, AddWindowArea, background);
 
         setRecyclerView();
         makeResponsive();

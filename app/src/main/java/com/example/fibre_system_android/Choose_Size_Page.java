@@ -69,7 +69,7 @@ public class Choose_Size_Page extends AppCompatActivity {
                 height = Integer.valueOf(heightInput.getText().toString());
                 width = Integer.valueOf(widthInput.getText().toString());
                 if(CheckInput()) {
-                    AddImage(R.drawable.square);
+                    AddImage(R.drawable.bg2x2);
                 }
             }
         });

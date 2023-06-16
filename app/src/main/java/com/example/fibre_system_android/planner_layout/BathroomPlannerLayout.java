@@ -37,9 +37,6 @@ public class BathroomPlannerLayout {
 
     float pScale = 0.5f;
 
-
-
-
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
     {
         //Init variables
@@ -48,7 +45,7 @@ public class BathroomPlannerLayout {
         plannerItemArray = new ArrayList<Recycler_item>();
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
-        this.background = background;
+        BackroundInit(background);
     }
 
 
@@ -60,7 +57,7 @@ public class BathroomPlannerLayout {
         plannerItemArray = doorsWindowsList;
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
-        this.background = background;
+        BackroundInit(background);
 
         for (Recycler_item item : doorsWindowsList)
         {
@@ -79,6 +76,16 @@ public class BathroomPlannerLayout {
         }
     }
 
+    private void BackroundInit(ImageView background){
+        this.background = background;
+        background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deselectItem();
+            }
+        });
+    }
+
     public ArrayList<Recycler_item> GetItemList()
     {
         return plannerItemArray;
@@ -87,7 +94,7 @@ public class BathroomPlannerLayout {
     //Add item to planner view
     public void AddItem(Recycler_item item)
     {
-        deselectItem(selectedView);
+        deselectItem();
 
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
                 ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
@@ -114,6 +121,7 @@ public class BathroomPlannerLayout {
                 switch (event.getAction()) {
 
                     case MotionEvent.ACTION_DOWN:
+                        selectItem(icon, item);
 
                         // save the x and y coordinates of the touch
 
@@ -204,6 +212,8 @@ public class BathroomPlannerLayout {
 
                         item.SetPos(image1X, image1Y);
 
+                        editButtons.update(icon);
+
                         break;
 
                     case MotionEvent.ACTION_UP:
@@ -220,11 +230,14 @@ public class BathroomPlannerLayout {
 
         plannerArea.addView(icon);
         plannerItemArray.add(item);
+        editButtons.update(icon);
     }
 
     //Set selected item
     private void selectItem(ImageView imageView, Recycler_item item)
     {
+        deselectItem();
+
         selectedView = imageView;
         selectedView.setColorFilter(ContextCompat.getColor(context, R.color.planner_selected_object));
         editButtons.viewSelected(imageView, item);
@@ -232,12 +245,12 @@ public class BathroomPlannerLayout {
     }
 
     //Deselect item
-    private void deselectItem(ImageView imageView)
+    private void deselectItem()
     {
         //imageView.setColorFilter(Color.argb(255,0,0,1));
 
-        if(imageView != null) {
-            imageView.clearColorFilter();
+        if(selectedView != null) {
+            selectedView.clearColorFilter();
             editButtons.viewDeselected();
         }
     }
