@@ -3,7 +3,6 @@ package com.example.fibre_system_android.planner_layout;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.content.Context;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -45,9 +44,8 @@ public class BathroomPlannerLayout {
         plannerItemArray = new ArrayList<Recycler_item>();
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
-        BackroundInit(background);
+        BackgroundInit(background);
     }
-
 
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background, ArrayList<Recycler_item> doorsWindowsList)
     {
@@ -57,7 +55,7 @@ public class BathroomPlannerLayout {
         plannerItemArray = doorsWindowsList;
 
         editButtons = new EditButtons(context, plannerAreaLayout, plannerItemArray);
-        BackroundInit(background);
+        BackgroundInit(background);
 
         for (Recycler_item item : doorsWindowsList)
         {
@@ -76,9 +74,18 @@ public class BathroomPlannerLayout {
         }
     }
 
-    private void BackroundInit(ImageView background){
+    private void BackgroundInit(ImageView background){
+
+        //Deselect on clicking background or main planner view.
         this.background = background;
         background.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deselectItem();
+            }
+        });
+
+        plannerArea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 deselectItem();
@@ -105,8 +112,6 @@ public class BathroomPlannerLayout {
         lParams.width = Math.round(item.getLength() * pScale);
         icon.setImageResource(item.getImage());
         icon.setLayoutParams(lParams);
-
-
 
         //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {
@@ -154,8 +159,6 @@ public class BathroomPlannerLayout {
                         float image1X = icon.getX() + newX - x;
 
                         float image1Y = icon.getY() + newY - y;
-
-
 
                         // make sure the imageview stays on the border of the other imageview
 
@@ -254,6 +257,4 @@ public class BathroomPlannerLayout {
             editButtons.viewDeselected();
         }
     }
-
-
 }

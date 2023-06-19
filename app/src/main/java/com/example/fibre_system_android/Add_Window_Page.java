@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -24,6 +25,7 @@ import com.example.fibre_system_android.planner_layout.BathroomPlannerLayout;
 import java.util.ArrayList;
 
 public class Add_Window_Page extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SelectItemListener {
+    String TAG = "Add_Window_Page";
     private int dpHeight;
     private int dpWidth;
     private float dDensity;
@@ -34,12 +36,15 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     int inputWidth;
     ArrayList<String> name = new ArrayList<>();
     ArrayList<ShowerRange> categories = new ArrayList<>();
+    ArrayList<Recycler_item> itemsArrayList;
     //Planner area layout variables
     ConstraintLayout AddWindowArea;
     BathroomPlannerLayout bathroomPlannerLayout;
     Button nextButton;
-
     ImageView background;
+    Main_RecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +53,10 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_add_window_page);
+        recyclerView = findViewById(R.id.plannerItemList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Intent i = getIntent();
         inputHeight = i.getIntExtra("InputHeight", 0);
@@ -67,27 +75,23 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
             }
         });
 
+        AddWindowArea = findViewById(R.id.AddWindowArea);
         background = findViewById(R.id.shapeImage2);
         background.setImageResource(R.drawable.bg2x2);
 
-
-        name.add("Doors");
-        name.add("Windows");
-        name.add("Walls");
-
-        categories.add(ShowerRange.DOOR);
-        categories.add(ShowerRange.WINDOW);
-        categories.add(ShowerRange.WALL);
+        itemsArrayList = new ArrayList<>();
 
         //Planner area layout init
-        AddWindowArea = findViewById(R.id.AddwindowArea);
+
         bathroomPlannerLayout = new BathroomPlannerLayout(this, AddWindowArea, background);
 
         setRecyclerView();
         makeResponsive();
         inheritImage(inputHeight, inputWidth);
 
-
+        adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,categories,this);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     private void makeResponsive() {
@@ -118,22 +122,23 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     private void setRecyclerView() {
-        RecyclerView recyclerView = findViewById(R.id.plannerItemList);
-
-        ArrayList<Recycler_item> itemsArrayList = new ArrayList<>();
-        itemsArrayList.add(new Recycler_item("Door", 14, 1, R.drawable.small_square, ShowerRange.DOOR));
+        itemsArrayList.add(new Recycler_item("Door860", 860, 1, R.drawable.door860, ShowerRange.DOOR));
         itemsArrayList.add(new Recycler_item("Window", 14, 1, R.drawable.window, ShowerRange.WINDOW));
         itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.WALL));
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new Main_RecyclerViewAdapter(name, itemsArrayList,categories,this));
+        name.add("Doors");
+        name.add("Windows");
+        name.add("Walls");
+
+        categories.add(ShowerRange.DOOR);
+        categories.add(ShowerRange.WINDOW);
+        categories.add(ShowerRange.WALL);
     }
 
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
-
 //        Toast.makeText(getApplicationContext(), choice, Toast.LENGTH_SHORT).show();
     }
 
@@ -145,9 +150,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(Recycler_item item) {
-        Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
-
-        //Create image view in planner area layout
         bathroomPlannerLayout.AddItem(item);
     }
 

@@ -39,7 +39,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     ArrayList<Recycler_item> itemsArrayList;
     ArrayList<ShowerRange> categories;
     RecyclerView recyclerView;
-
     ImageView background;
     Main_RecyclerViewAdapter adapter;
     ArrayList<String> name = new ArrayList<>();
@@ -58,7 +57,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         setContentView(R.layout.activity_planner_area);
         recyclerView = findViewById(R.id.plannerItemList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(false);
 
         //Planner area layout init
         plannerArea = findViewById(R.id.plannerArea);
@@ -82,7 +80,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
             inheritImage(inputHeight, inputWidth);
         }
 
-
         finishButton = findViewById(R.id.button_planner_page_finish);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +93,6 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 //      initSearchWidget();
         makeResponsive();
         getData();
-
 
         adapter = new Main_RecyclerViewAdapter(name, itemsArrayList,categories,this);
         recyclerView.setAdapter(adapter);
@@ -137,32 +133,31 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Data for item list
     private void getData() {
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s9x9, true, true, true, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.s10x10, true, true, true, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("LShape", 1200, 1000, R.drawable.small_square, true, true, true, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless", 1200, 900, R.drawable.small_square, true, true, true, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 1000, 1000, R.drawable.pc1x1, true, true, true, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Eline Round", 900, 900, R.drawable.square, true, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 900, 900, R.drawable.pc1x1, true, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline", 1000, 1000, R.drawable.pc1x1, true, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Square", 1000, 1000, R.drawable.pc1x1, true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Square", 900, 900, R.drawable.large_square , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 1", 1200, 1000, R.drawable.s9x9, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 9", 1200, 900, R.drawable.s10x10, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 8", 1200, 800, R.drawable.small_square, true, true, false, ShowerRange.LSHAPE));
 
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 1", 1200, 1000, R.drawable.s9x9, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 9", 1200, 900, R.drawable.s10x10, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 8", 1200, 800, R.drawable.small_square, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+
+        itemsArrayList.add(new Recycler_item("E-Line Round 1000", 1000, 1000, R.drawable.ps1x1, true, false, true, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("E-Line Round 900", 900, 900, R.drawable.square, true, false, true, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline 900", 900, 900, R.drawable.ps1x1, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline 1000", 1000, 1000, R.drawable.ps1x1, true, false, false, ShowerRange.ELS));
+
+        itemsArrayList.add(new Recycler_item("1000 Square", 1000, 1000, R.drawable.ps1x1, true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("900 Square", 900, 900, R.drawable.door860 , true, true, true, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.SQUARE));
         name.add("Luxury Frameless");
         name.add("LShape");
-        name.add("Square");
         name.add("Entry Level Showers");
+        name.add("Square");
 
         categories.add(ShowerRange.LUXURY_FRAMELESS);
         categories.add(ShowerRange.LSHAPE);
-        categories.add(ShowerRange.SQUARE);
         categories.add(ShowerRange.ELS);
+        categories.add(ShowerRange.SQUARE);
     }
 
     @Override
@@ -179,10 +174,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Item list on click event
     @Override
-    public void onItemSelected(Recycler_item items) {
-        Toast.makeText(this, "click", Toast.LENGTH_SHORT).show();
-
-        bathroomPlannerLayout.AddItem(items);
+    public void onItemSelected(Recycler_item item) {
+        bathroomPlannerLayout.AddItem(item);
     }
 
     public void inheritImage(int InputHeight, int InputWidth) {

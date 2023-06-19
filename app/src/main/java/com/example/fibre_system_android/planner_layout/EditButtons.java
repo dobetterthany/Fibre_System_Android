@@ -50,15 +50,15 @@ public class EditButtons {
     private void initControls() {
 
         rotateLeft = new ImageButton(context);
-        initButton(rotateLeft, R.drawable.small_square, -90, R.color.edit_rotate);
+        initButton(rotateLeft, R.drawable.small_square, -90);
         rotateLeft.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() - 90));
 
         rotateRight = new ImageButton(context);
-        initButton(rotateRight, R.drawable.small_square, 90, R.color.edit_rotate);
+        initButton(rotateRight, R.drawable.small_square, 90);
         rotateRight.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() + 90));
 
         delete = new ImageButton(context);
-        initButton(delete, R.drawable.small_square, 0, R.color.edit_delete);
+        initButton(delete, R.drawable.small_square, 0);
         delete.setOnClickListener(view -> {
             plannerAreaLayout.removeView(selectedView);
             plannerItemArray.remove(selectedItem);
@@ -145,15 +145,21 @@ public class EditButtons {
     }
 
     //Initialises an image button
-    private void initButton(ImageButton imageButton, int image, int angle, int tintColour)
+    private void initButtonTinted(ImageButton imageButton, int image, int angle, int tintColour)
+    {
+        initButton(imageButton, image, angle);
+        imageButton.setColorFilter(ContextCompat.getColor(context, tintColour));
+    }
+
+    private void initButton(ImageButton imageButton, int image, int angle)
     {
         imageButton.setImageResource(image);
         imageButton.setRotation(angle);
         imageButton.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        imageButton.setColorFilter(ContextCompat.getColor(context, tintColour));
 
         plannerAreaLayout.addView(imageButton);
         buttonArray.add(imageButton);
     }
+
 
 }

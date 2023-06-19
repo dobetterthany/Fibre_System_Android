@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Choose_Size_Page extends AppCompatActivity {
 
+    String TAG = "Choose_Size_Page";
      int height;
      int width;
 
@@ -57,7 +59,6 @@ public class Choose_Size_Page extends AppCompatActivity {
 
         setContentView(R.layout.activity_choose_size_page);
 
-
         widthInput = findViewById(R.id.widthInput);
         heightInput = findViewById(R.id.heightInput);
         confirmButton = findViewById(R.id.confirmButton);
@@ -86,26 +87,18 @@ public class Choose_Size_Page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public void AddImage(int imageID)
     {
-
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
         lParams.height = Math.round(height * BGScale);
         lParams.width = Math.round(width * BGScale);
 
-       /* lParams.bottomToBottom = R.id.AddwindowArea;
-        lParams.topToTop = R.id.AddwindowArea;
-        lParams.leftToLeft = R.id.AddwindowArea;
-        lParams.rightToRight = R.id.AddwindowArea;*/
-
         ImageView icon = (ImageView) findViewById(R.id.shapeImage);
-//        icon.setScaleX(width/icon.getWidth());
-//        icon.setScaleY(height/icon.getHeight());
+        Log.d(TAG, "AddImage Height: " + height + "Width: " + width);
         icon.setImageResource(imageID);
         icon.setLayoutParams(lParams);
     }
