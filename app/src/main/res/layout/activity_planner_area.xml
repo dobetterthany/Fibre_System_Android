@@ -13,7 +13,7 @@
         android:layout_width="130dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#c6d8f5"
         android:text="Finish"
@@ -21,7 +21,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
+        app:layout_constraintVertical_bias="0.995" />
 
     <RelativeLayout
         android:id="@+id/linearLayout6"
@@ -34,13 +34,18 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plannerItemList"
-            android:layout_width="311dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_width="251dp"
+            android:layout_height="695dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="60dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,15 +53,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plannerArea"
-        android:layout_width="950dp"
-        android:layout_height="match_parent"
+        android:layout_width="541dp"
+        android:layout_height="512dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.761"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/shapeImage3"
