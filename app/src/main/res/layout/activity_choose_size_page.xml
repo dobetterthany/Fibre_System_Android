@@ -8,21 +8,6 @@
     android:focusableInTouchMode="true"
     tools:context=".Choose_Size_Page">
 
-    <Button
-        android:id="@+id/goAddwindowButton"
-        android:layout_width="125dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="#c6d8f5"
-        android:text="Next"
-        android:textColor="#1a2536"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.914" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,15 +15,30 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/RelativeLayout"
-            android:layout_width="332dp"
+            android:layout_width="315dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
             <EditText
+                android:id="@+id/heightInput"
+                android:layout_width="237dp"
+                android:layout_height="66dp"
+                android:layout_marginBottom="4dp"
+                android:autofillHints=""
+                android:digits="0123456789"
+                android:ems="10"
+                android:hint="Height: mm"
+                android:inputType="number"
+                app:layout_constraintBottom_toTopOf="@id/widthInput"
+                app:layout_constraintHorizontal_bias="0.485"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <EditText
                 android:id="@+id/widthInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="235dp"
+                android:layout_height="71dp"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:autofillHints=""
@@ -47,31 +47,21 @@
                 android:hint="Width: mm"
                 android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.485"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/heightInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:digits="0123456789"
-                android:ems="10"
-                android:hint="Height: mm"
-                android:inputType="number"
-                app:layout_constraintBottom_toTopOf="@id/widthInput"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.253" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="209dp"
-                android:layout_height="22dp"
+                android:layout_width="291dp"
+                android:layout_height="47dp"
                 android:text="Input Bathroom Size in mm"
+                android:textSize="24sp"
                 app:layout_constraintBottom_toTopOf="@+id/heightInput"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintHorizontal_bias="0.489"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
@@ -80,11 +70,13 @@
                 android:id="@+id/confirmButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="116dp"
                 android:text="Confirm"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/heightInput"
+                app:layout_constraintTop_toBottomOf="@+id/widthInput"
+                app:layout_constraintVertical_bias="0.099"
                 tools:ignore="HardcodedText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -111,6 +103,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/goAddwindowButton"
+                android:layout_width="125dp"
+                android:layout_height="60dp"
+                android:backgroundTint="#c6d8f5"
+                android:text="Next"
+                android:textColor="#1a2536"
+                tools:layout_editor_absoluteX="815dp"
+                tools:layout_editor_absoluteY="13dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
