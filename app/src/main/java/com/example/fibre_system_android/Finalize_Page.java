@@ -76,7 +76,15 @@ public class Finalize_Page extends AppCompatActivity{
 
     private void getData() {
         Intent i = getIntent();
-        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
+
+        for(Recycler_item item : (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array"))
+        {
+            if(!item.isGeneric)
+            {
+                itemsArrayList.add(item);
+            }
+        }
+
         recyclerViewAdapter = new FinalizeRecyclerViewAdapter(getApplicationContext(), itemsArrayList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
