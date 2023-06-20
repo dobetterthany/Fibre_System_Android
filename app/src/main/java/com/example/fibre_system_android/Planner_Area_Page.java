@@ -148,7 +148,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
         itemsArrayList.add(new Recycler_item("1000 Square", 1000, 1000, R.drawable.ps1x1, true, true, true, ShowerRange.SQUARE));
         itemsArrayList.add(new Recycler_item("900 Square", 900, 900, R.drawable.door860 , true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.SQUARE));
+
         name.add("Luxury Frameless");
         name.add("LShape");
         name.add("Entry Level Showers");
