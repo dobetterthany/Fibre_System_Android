@@ -44,9 +44,6 @@ public class Finalize_Page extends AppCompatActivity{
 
         makeResponsive();
         getData();
-
-//        Intent i = getIntent();
-//        itemsArrayList = (ArrayList<Recycler_item>)i.getSerializableExtra("planner_item_array");
     }
 
     private void makeResponsive() {
@@ -72,7 +69,6 @@ public class Finalize_Page extends AppCompatActivity{
     public int calcWidth(float value) {
         return (int) (dpWidth * (value / designWidth));
     }
-
 
     private void getData() {
         Intent i = getIntent();

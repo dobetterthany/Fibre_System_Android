@@ -106,8 +106,8 @@ public class BathroomPlannerLayout {
         int tWidth = drawable.getIntrinsicWidth();
         int tHeight = drawable.getIntrinsicHeight();
 
-        lParams.height = Math.round(tWidth * itemScale);
-        lParams.width = Math.round(tHeight * itemScale);
+        lParams.height = Math.round(tHeight * itemScale);
+        lParams.width = Math.round(tWidth * itemScale);
 
         return lParams;
     }

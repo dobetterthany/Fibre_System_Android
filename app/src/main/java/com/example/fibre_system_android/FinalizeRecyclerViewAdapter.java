@@ -48,6 +48,7 @@ public class FinalizeRecyclerViewAdapter extends RecyclerView.Adapter<FinalizeRe
         if(Options.isEmpty())
         {
             Options.add("No colour available");
+            holder.colourDropdown.setClickable(false);
         }
 
         initializeUnitSpinner(holder.colourDropdown, Options);

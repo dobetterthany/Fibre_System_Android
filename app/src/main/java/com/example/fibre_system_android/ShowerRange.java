@@ -4,6 +4,7 @@ public enum ShowerRange{
     LSHAPE,
     SQUARE,
     ELS, //Entry Level Showers
+    OTHER, //Baths, vanities etc
 
     //NON PRODUCTS - used in add window page
     WINDOW,
