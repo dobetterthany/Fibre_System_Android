@@ -122,17 +122,19 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     private void setRecyclerView() {
-        itemsArrayList.add(new Recycler_item("Door860", 860, 20, R.drawable.door860, ShowerRange.DOOR));
-        itemsArrayList.add(new Recycler_item("Window", 14, 1, R.drawable.window, ShowerRange.WINDOW));
-        itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.WALL));
+        itemsArrayList.add(new Recycler_item("Door860", 860, R.drawable.door860, ShowerRange.DOOR));
+
+        itemsArrayList.add(new Recycler_item("Window", 600, R.drawable.window600, ShowerRange.WINDOW));
+        itemsArrayList.add(new Recycler_item("Window", 800, R.drawable.window800, ShowerRange.WINDOW));
+        itemsArrayList.add(new Recycler_item("Window", 1000, R.drawable.window1000, ShowerRange.WINDOW));
 
         name.add("Doors");
         name.add("Windows");
-        name.add("Walls");
+        //name.add("Walls");
 
         categories.add(ShowerRange.DOOR);
         categories.add(ShowerRange.WINDOW);
-        categories.add(ShowerRange.WALL);
+        //categories.add(ShowerRange.WALL);
     }
 
     @Override

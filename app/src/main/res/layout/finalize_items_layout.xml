@@ -53,7 +53,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="50dp"
             android:layout_marginTop="0dp"
-            android:background="@color/cardview_dark_background"
+            android:background="@color/finalize_spinner_bg"
             android:theme="@style/Widget.AppCompat.Spinner"
             android:verticalScrollbarPosition="defaultPosition"
             android:visibility="visible"

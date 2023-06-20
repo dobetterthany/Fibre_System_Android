@@ -52,7 +52,7 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
         holder.imageView.setImageResource(itemsArrayListFull.get(position).getImage());
         holder.imageView.setTag(itemsArrayListFull.get(position).getImage());
 
-        holder.emptyview.setOnTouchListener(new View.OnTouchListener(){
+        holder.emptyView.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -91,13 +91,13 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
 
         ImageView imageView;
         TextView nameView,sizeView;
-        View emptyview;
+        View emptyView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageview);
             nameView = itemView.findViewById(R.id.name);
             sizeView = itemView.findViewById(R.id.size) ;
-            emptyview = itemView.findViewById(R.id.emptyview);
+            emptyView = itemView.findViewById(R.id.emptyview);
         }
     }
 }

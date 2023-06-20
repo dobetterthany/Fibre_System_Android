@@ -14,4 +14,7 @@
     <color name="edit_rotate">#8F62FF00</color>
     <color name="tint_transparent">#0062FF00</color>
 
+    //Finalize Page
+    <color name="finalize_spinner_bg">#C5C5C5</color>
+
 </resources>

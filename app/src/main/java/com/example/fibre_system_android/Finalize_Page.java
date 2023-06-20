@@ -56,8 +56,6 @@ public class Finalize_Page extends AppCompatActivity{
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.finalizeItemList);
 
         ViewGroup.LayoutParams recyclerViewParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
-//        recyclerViewParams.width = calcWidth(300);
-//        recyclerViewParams.height = calcHeight(440);
         recyclerViewParams.width = calcWidth(recyclerView.getWidth());
         recyclerViewParams.height = calcHeight(recyclerView.getHeight());
     }

@@ -136,11 +136,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 1", 1200, 1000, R.drawable.ps12x1, true, true, false, ShowerRange.LUXURY_FRAMELESS));
         itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 9", 1200, 900, R.drawable.ps12x9, true, true, false, ShowerRange.LUXURY_FRAMELESS));
         itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 8", 1200, 800, R.drawable.ps12x8, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-
-        itemsArrayList.add(new Recycler_item("E-Line Round 1000", 1000, 1000, R.drawable.ps1x1, true, false, true, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("E-Line Round 900", 900, 900, R.drawable.ps9x9, true, false, true, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline 900", 900, 900, R.drawable.ps9x9, true, false, false, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline 1000", 1000, 1000, R.drawable.ps1x1, true, false, false, ShowerRange.ELS));
+        
+        itemsArrayList.add(new Recycler_item("Squareline 900", 900, 900, R.drawable.ps9x9, true, false, true, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline 1000", 1000, 1000, R.drawable.ps1x1, true, false, true, ShowerRange.ELS));
 
         itemsArrayList.add(new Recycler_item("1000 Square", 1000, 1000, R.drawable.ps1x1, true, true, true, ShowerRange.SQUARE));
         itemsArrayList.add(new Recycler_item("900 Square", 900, 900, R.drawable.ps9x9 , true, true, true, ShowerRange.SQUARE));

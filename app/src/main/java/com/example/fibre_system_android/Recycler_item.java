@@ -28,6 +28,16 @@ public class Recycler_item implements Serializable {
         this.showerRange = showerRange;
 
         initColours();
+        isGeneric = false;
+    }
+
+    public Recycler_item(String name, int length, int image ,ShowerRange showerRange) {
+        this.name = name;
+        this.length = length;
+        this.image = image;
+        this.showerRange = showerRange;
+
+        initColours();
         isGeneric = true;
     }
 
@@ -81,7 +91,15 @@ public class Recycler_item implements Serializable {
 
     public String getSizeString()
     {
-        String sizeString = length + " X " + height;
+        String sizeString = "";
+        if(height == 0)
+        {
+            sizeString = length + "";
+        }
+        else
+        {
+            sizeString = length + " X " + height;
+        }
         return sizeString;
     }
 

@@ -12,11 +12,11 @@
         android:id="@+id/linearLayout2"
         android:layout_width="241dp"
         android:layout_height="550dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68">
+        app:layout_constraintVertical_bias="0.588">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -33,44 +33,50 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/AddWindowArea"
-        android:layout_width="632dp"
-        android:layout_height="482dp"
+        android:layout_width="723dp"
+        android:layout_height="567dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.125"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537">
+        app:layout_constraintVertical_bias="0.518">
 
         <ImageView
             android:id="@+id/shapeImage2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/AddWindowsPageNextButton"
+            android:layout_width="94dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="478dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="34dp"
+            android:backgroundTint="#c6d8f5"
+            android:text="Next"
+            android:textColor="#1a2536"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/AddWindowsPageNextButton"
-        android:layout_width="94dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#c6d8f5"
-        android:text="Next"
-        android:textColor="#1a2536"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AddWindowArea"
-        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -31,8 +31,8 @@ public class Choose_Size_Page extends AppCompatActivity {
      public final static int minWidth = 760;
      public final static int minHeight = 760;
 
-     public final static int maxWidth = 3000;
-     public final static int maxHeight = 3000;
+     public final static int maxWidth = 2900;
+     public final static int maxHeight = 2900;
 
     /* Context context; */
 

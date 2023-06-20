@@ -45,10 +45,10 @@ public class FinalizeRecyclerViewAdapter extends RecyclerView.Adapter<FinalizeRe
                 Options.add(key);
             }
         }
-        if(Options.isEmpty())
+        if(Options.isEmpty() || Options.size() == 1) //If size is <= 1 disable dropdown
         {
             Options.add("No colour available");
-            holder.colourDropdown.setClickable(false);
+            holder.colourDropdown.setEnabled(false);
         }
 
         initializeUnitSpinner(holder.colourDropdown, Options);

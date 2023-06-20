@@ -49,21 +49,21 @@ public class EditButtons {
     private void initControls() {
 
         rotateLeft = new ImageButton(context);
-        initButton(rotateLeft, R.drawable.small_square, -90);
+        initButton(rotateLeft, R.drawable.rotate_left, -90);
         rotateLeft.setOnClickListener(view -> {
             selectedView.setRotation(selectedView.getRotation() - 90);
             selectedItem.rotated -= 90;
         });
 
         rotateRight = new ImageButton(context);
-        initButton(rotateRight, R.drawable.small_square, 90);
+        initButton(rotateRight, R.drawable.rotate_right, 90);
         rotateRight.setOnClickListener(view -> {
             selectedView.setRotation(selectedView.getRotation() + 90);
             selectedItem.rotated += 90;
         });
 
         delete = new ImageButton(context);
-        initButton(delete, R.drawable.small_square, 0);
+        initButton(delete, R.drawable.trash, 0);
         delete.setOnClickListener(view -> {
             plannerAreaLayout.removeView(selectedView);
             plannerItemArray.remove(selectedItem);
