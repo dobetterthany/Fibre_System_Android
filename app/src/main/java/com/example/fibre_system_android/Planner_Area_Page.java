@@ -65,10 +65,7 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         categories = new ArrayList<>();
 
         Intent intent = getIntent();
-        int inputHeight = intent.getIntExtra("BackgroundHeight", 0);
-        int inputWidth = intent.getIntExtra("BackgroundWidth", 0);
-        int isSkipSize = intent.getIntExtra("SkipChooseSize", 0);
-        ArrayList<Recycler_item> WindowDoorItems = (ArrayList<Recycler_item>) intent.getSerializableExtra("WindowDoorItems");
+        int isSkipSize = intent.getIntExtra("SkipChooseSize", 1);
 
         if(isSkipSize == 1){//Skip choose size = true
             AddDefaultImage();
@@ -76,8 +73,11 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         }
         else
         {//Skip choose size = false
+            int inputHeight = intent.getIntExtra("BackgroundHeight", 0);
+            int inputWidth = intent.getIntExtra("BackgroundWidth", 0);
+            ArrayList<Recycler_item> WindowDoorItems = (ArrayList<Recycler_item>) intent.getSerializableExtra("WindowDoorItems");
             bathroomPlannerLayout = new BathroomPlannerLayout(this, plannerArea, background, WindowDoorItems);
-            inheritImage(inputHeight, inputWidth);
+            inheritImage(inputWidth,inputHeight );
         }
 
         finishButton = findViewById(R.id.button_planner_page_finish);
@@ -106,13 +106,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         dpWidth = (displayMetrics.widthPixels);
         dDensity = (displayMetrics.scaledDensity);
 
-       // SearchView searchView = (SearchView) findViewById(R.id.productListSearchView);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.plannerItemList);
         Button finishButton = (Button) findViewById(R.id.button_planner_page_finish);
-
-//        ViewGroup.LayoutParams searchViewParams = (ViewGroup.MarginLayoutParams) searchView.getLayoutParams();
-//        searchViewParams.width = calcWidth(300);
-//        searchViewParams.height = calcHeight(60);
 
         ViewGroup.LayoutParams recyclerViewParams = (ViewGroup.MarginLayoutParams) recyclerView.getLayoutParams();
         recyclerViewParams.width = calcWidth(300);
@@ -133,22 +128,23 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
 
     //Data for item list
     private void getData() {
-        itemsArrayList.add(new Recycler_item("Luxury 12 x 1", 1200, 1000, R.drawable.s9x9, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury 12 x 9", 1200, 900, R.drawable.s10x10, true, true, false, ShowerRange.LSHAPE));
-        itemsArrayList.add(new Recycler_item("Luxury 12 x 8", 1200, 800, R.drawable.small_square, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 1", 1200, 1000, R.drawable.ps12x1, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 9", 1200, 900, R.drawable.ps12x9, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 12 x 8", 1200, 800, R.drawable.ps12x8, true, true, false, ShowerRange.LSHAPE));
+        itemsArrayList.add(new Recycler_item("Luxury 14 x 1", 1200, 800, R.drawable.ps14x1, true, true, false, ShowerRange.LSHAPE));
 
-        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 1", 1200, 1000, R.drawable.s9x9, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 9", 1200, 900, R.drawable.s10x10, true, true, false, ShowerRange.LUXURY_FRAMELESS));
-        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 8", 1200, 800, R.drawable.small_square, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 1", 1200, 1000, R.drawable.ps12x1, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 9", 1200, 900, R.drawable.ps12x9, true, true, false, ShowerRange.LUXURY_FRAMELESS));
+        itemsArrayList.add(new Recycler_item("Luxury Frameless 12 x 8", 1200, 800, R.drawable.ps12x8, true, true, false, ShowerRange.LUXURY_FRAMELESS));
 
         itemsArrayList.add(new Recycler_item("E-Line Round 1000", 1000, 1000, R.drawable.ps1x1, true, false, true, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("E-Line Round 900", 900, 900, R.drawable.square, true, false, true, ShowerRange.ELS));
-        itemsArrayList.add(new Recycler_item("Squareline 900", 900, 900, R.drawable.ps1x1, true, false, false, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("E-Line Round 900", 900, 900, R.drawable.ps9x9, true, false, true, ShowerRange.ELS));
+        itemsArrayList.add(new Recycler_item("Squareline 900", 900, 900, R.drawable.ps9x9, true, false, false, ShowerRange.ELS));
         itemsArrayList.add(new Recycler_item("Squareline 1000", 1000, 1000, R.drawable.ps1x1, true, false, false, ShowerRange.ELS));
 
         itemsArrayList.add(new Recycler_item("1000 Square", 1000, 1000, R.drawable.ps1x1, true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("900 Square", 900, 900, R.drawable.door860 , true, true, true, ShowerRange.SQUARE));
-        itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.SQUARE));
+        itemsArrayList.add(new Recycler_item("900 Square", 900, 900, R.drawable.ps9x9 , true, true, true, ShowerRange.SQUARE));
+
         name.add("Luxury Frameless");
         name.add("LShape");
         name.add("Entry Level Showers");
@@ -183,9 +179,9 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-
         lParams.height = InputHeight;
         lParams.width = InputWidth;
+
 
         background.setImageResource(R.drawable.bg2x2);
         background.setLayoutParams(lParams);

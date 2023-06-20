@@ -44,18 +44,23 @@ public class EditButtons {
         this.plannerItemArray = plannerItemArray;
         buttonArray = new ArrayList<>();
         initControls();
-
     }
 
     private void initControls() {
 
         rotateLeft = new ImageButton(context);
         initButton(rotateLeft, R.drawable.small_square, -90);
-        rotateLeft.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() - 90));
+        rotateLeft.setOnClickListener(view -> {
+            selectedView.setRotation(selectedView.getRotation() - 90);
+            selectedItem.rotated -= 90;
+        });
 
         rotateRight = new ImageButton(context);
         initButton(rotateRight, R.drawable.small_square, 90);
-        rotateRight.setOnClickListener(view -> selectedView.setRotation(selectedView.getRotation() + 90));
+        rotateRight.setOnClickListener(view -> {
+            selectedView.setRotation(selectedView.getRotation() + 90);
+            selectedItem.rotated += 90;
+        });
 
         delete = new ImageButton(context);
         initButton(delete, R.drawable.small_square, 0);
@@ -78,7 +83,6 @@ public class EditButtons {
             imageButton.bringToFront();
             imageButton.setVisibility(View.VISIBLE);
         }
-
     }
 
     public void viewDeselected()
@@ -103,7 +107,6 @@ public class EditButtons {
     }
 
     private void updatePos() {
-
         setAngleFromSelectedViewDeg(rotateLeft, -90);
         setAngleFromSelectedViewDeg(rotateRight, 90);
         setAngleFromSelectedViewDeg(delete, 180);

@@ -60,16 +60,13 @@ public class BathroomPlannerLayout {
 
         for (Recycler_item item : doorsWindowsList)
         {
-            RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
-                    ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-            lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-
             ImageView icon = new ImageView(context);
             icon.setImageResource(item.getImage());
-            icon.setLayoutParams(lParams);
+            icon.setLayoutParams(setScale(item.getImage()));
 
             icon.setX(item.GetX());
             icon.setY(item.GetY());
+            icon.setRotation(item.rotated);
 
             plannerAreaLayout.addView(icon);
         }
@@ -99,25 +96,31 @@ public class BathroomPlannerLayout {
         return plannerItemArray;
     }
 
+    private RelativeLayout.LayoutParams setScale(int imageID)
+    {
+        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+
+        Drawable drawable = context.getResources().getDrawable(imageID);
+        int tWidth = drawable.getIntrinsicWidth();
+        int tHeight = drawable.getIntrinsicHeight();
+
+        lParams.height = Math.round(tWidth * itemScale);
+        lParams.width = Math.round(tHeight * itemScale);
+
+        return lParams;
+    }
+
     //Add item to planner view
     public void AddItem(Recycler_item item)
     {
         deselectItem();
 
-        RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-        lParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
-
         ImageView icon = new ImageView(context);
-
-        Drawable drawable = context.getResources().getDrawable(item.getImage());
-        int tWidth = drawable.getIntrinsicWidth();
-        int tHeight = drawable.getIntrinsicHeight();
-        lParams.height = Math.round(tWidth * itemScale);
-        lParams.width = Math.round(tHeight * itemScale);
-
+        icon.setScaleType(ImageView.ScaleType.FIT_XY);
         icon.setImageResource(item.getImage());
-        icon.setLayoutParams(lParams);
+        icon.setLayoutParams(setScale(item.getImage()));
 
         //Dragging selected item listener
         icon.setOnTouchListener(new View.OnTouchListener() {

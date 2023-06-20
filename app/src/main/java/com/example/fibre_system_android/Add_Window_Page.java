@@ -135,7 +135,6 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         categories.add(ShowerRange.WALL);
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
@@ -144,9 +143,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
-
 
     @Override
     public void onItemSelected(Recycler_item item) {
@@ -158,35 +155,10 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
         ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
-//        lParams.bottomToBottom = R.id.AddwindowArea;
-//        lParams.topToTop = R.id.AddwindowArea;
-//        lParams.leftToLeft = R.id.AddwindowArea;
-//        lParams.rightToRight = R.id.AddwindowArea;
         lParams.height = InputHeight;
         lParams.width = InputWidth;
 
-
-
-
         background.setLayoutParams(lParams);
-//        background.setScaleX(inputWidth/background.getWidth());
-//        background.setScaleY(inputHeight/background.getHeight());
 
     }
-    /*public void AddImage() {
-
-        ConstraintLayout.LayoutParams lParams = new ConstraintLayout.LayoutParams
-                (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
-
-
-        lParams.height = 500;
-        lParams.width = 500;
-
-
-        ImageView icon = (ImageView) findViewById(R.id.imageViewA);
-        icon.setImageResource(R.drawable.toilet);
-        icon.setLayoutParams(lParams);
-
-    }*/
-
 }

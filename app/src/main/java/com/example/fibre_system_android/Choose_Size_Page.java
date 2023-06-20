@@ -71,19 +71,19 @@ public class Choose_Size_Page extends AppCompatActivity {
                         TextUtils.isEmpty(widthInput.getText().toString().trim()))
                 {
                     Toast.makeText(getApplicationContext(), "Height and width fields cannot empty", Toast.LENGTH_SHORT).show();
-                    return;
+                    return; //If text fields are empty, return
                 }
 
                 height = Integer.valueOf(heightInput.getText().toString());
                 width = Integer.valueOf(widthInput.getText().toString());
-                if(CheckInput()) {
+                if(CheckInput()) { //If input doesn't meet requirements, skip
                     AddImage(R.drawable.bg2x2);
-                }
 
-                Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
-                intent.putExtra("InputWidth", Math.round(width * BGScale));
-                intent.putExtra("InputHeight", Math.round(height * BGScale));
-                startActivity(intent);
+                    Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
+                    intent.putExtra("InputWidth", Math.round(width * BGScale));
+                    intent.putExtra("InputHeight", Math.round(height * BGScale));
+                    startActivity(intent);
+                }
             }
         });
     }

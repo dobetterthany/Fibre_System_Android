@@ -8,7 +8,7 @@ public class Recycler_item implements Serializable {
     int length; //side to side measurement
     int height; //top to bottom measurement
     int image;
-
+    public int rotated = 0; //keep track of items rotation;
     float posX,posY;
 
     boolean isGeneric;
