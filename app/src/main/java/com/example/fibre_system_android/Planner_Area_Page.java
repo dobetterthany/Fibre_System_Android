@@ -195,8 +195,8 @@ public class Planner_Area_Page extends AppCompatActivity implements AdapterView.
     public void AddDefaultImage()
     {
         //TODO: Somehow make it scale from choose_size_page's scale.
-        int height = 650;
-        int width = 650;
+        int height = 700;
+        int width = 700;
 
         RelativeLayout.LayoutParams lParams = new RelativeLayout.LayoutParams
                 (ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
