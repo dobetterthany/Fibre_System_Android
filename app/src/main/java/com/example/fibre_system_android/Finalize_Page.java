@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -79,6 +80,11 @@ public class Finalize_Page extends AppCompatActivity{
             }
         }
 
+        if (!itemsArrayList.isEmpty())
+        {
+            TextView text = findViewById(R.id.finalEmptyText);
+            text.setEnabled(false);
+        }
         recyclerViewAdapter = new FinalizeRecyclerViewAdapter(getApplicationContext(), itemsArrayList);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
