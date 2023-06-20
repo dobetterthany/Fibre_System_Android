@@ -35,7 +35,7 @@ public class BathroomPlannerLayout {
 
     EditButtons editButtons;
 
-    float itemScale = 1/8f;
+    float itemScale = 3/16f;
 
     public BathroomPlannerLayout(Context context, ConstraintLayout plannerAreaLayout, ImageView background)
     {

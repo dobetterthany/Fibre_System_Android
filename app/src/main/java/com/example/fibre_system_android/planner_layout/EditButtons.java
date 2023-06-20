@@ -32,7 +32,7 @@ public class EditButtons {
     float selectedViewX, selectedViewY, selectedViewW, selectedViewH;
 
     float newX, newY;
-    float radius = 400; //Radius of buttons from target view
+    float radius = 200; //Radius of buttons from target view
     float selectedCenterX, selectedCenterY;
 
     //Rotation
