@@ -25,7 +25,7 @@ public class Choose_Size_Page extends AppCompatActivity {
      int height;
      int width;
 
-     final static float BGScale = 0.5f;
+     final static float BGScale = 0.25f;
 
 // 760mm is the smallest shower size available (as of 07/06/2023 10:54AM)
      public final static int minWidth = 760;
@@ -67,13 +67,17 @@ public class Choose_Size_Page extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                
-
                 if(TextUtils.isEmpty(heightInput.getText().toString().trim()) ||
                         TextUtils.isEmpty(widthInput.getText().toString().trim()))
                 {
                     Toast.makeText(getApplicationContext(), "Height and width fields cannot empty", Toast.LENGTH_SHORT).show();
                     return;
+                }
+
+                height = Integer.valueOf(heightInput.getText().toString());
+                width = Integer.valueOf(widthInput.getText().toString());
+                if(CheckInput()) {
+                    AddImage(R.drawable.bg2x2);
                 }
 
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
