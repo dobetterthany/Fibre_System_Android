@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -61,25 +62,19 @@ public class Choose_Size_Page extends AppCompatActivity {
 
         widthInput = findViewById(R.id.widthInput);
         heightInput = findViewById(R.id.heightInput);
-        confirmButton = findViewById(R.id.confirmButton);
-
-
-        confirmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                height = Integer.valueOf(heightInput.getText().toString());
-                width = Integer.valueOf(widthInput.getText().toString());
-                if(CheckInput()) {
-                    AddImage(R.drawable.bg2x2);
-                }
-            }
-        });
-
 
         nextButton = findViewById(R.id.goAddwindowButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View view) {
+
+                
+
+                if(TextUtils.isEmpty(heightInput.getText().toString().trim()) ||
+                        TextUtils.isEmpty(widthInput.getText().toString().trim()))
+                {
+                    Toast.makeText(getApplicationContext(), "Height and width fields cannot empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Intent intent = new Intent (Choose_Size_Page.this, Add_Window_Page.class);
                 intent.putExtra("InputWidth", Math.round(width * BGScale));

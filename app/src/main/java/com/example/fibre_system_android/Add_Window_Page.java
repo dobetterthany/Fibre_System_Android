@@ -122,7 +122,7 @@ public class Add_Window_Page extends AppCompatActivity implements AdapterView.On
     }
 
     private void setRecyclerView() {
-        itemsArrayList.add(new Recycler_item("Door860", 860, 1, R.drawable.door860, ShowerRange.DOOR));
+        itemsArrayList.add(new Recycler_item("Door860", 860, 20, R.drawable.door860, ShowerRange.DOOR));
         itemsArrayList.add(new Recycler_item("Window", 14, 1, R.drawable.window, ShowerRange.WINDOW));
         itemsArrayList.add(new Recycler_item("Wall", 14, 1, R.drawable.wall, ShowerRange.WALL));
 
