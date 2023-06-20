@@ -25,8 +25,8 @@
 
     <RelativeLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="323dp"
-        android:layout_height="match_parent"
+        android:layout_width="229dp"
+        android:layout_height="585dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,16 +34,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plannerItemList"
-            android:layout_width="287dp"
-            android:layout_height="wrap_content"
+            android:layout_width="187dp"
+            android:layout_height="568dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="13dp"
             android:layout_marginEnd="0dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,13 +53,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plannerArea"
-        android:layout_width="544dp"
-        android:layout_height="528dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="721dp"
+        android:layout_height="582dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.772"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
