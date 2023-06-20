@@ -55,23 +55,31 @@ public class Second_Recyclerview_Adapter extends RecyclerView.Adapter<Second_Rec
         holder.emptyview.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+
                 int action = event.getAction();
                 switch (action) {
                     case MotionEvent.ACTION_UP:
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
                         listener1.onItemSelected(itemsArrayListFull.get(holder.getBindingAdapterPosition()));
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+
                         break;
+
                     case MotionEvent.ACTION_DOWN:
+
                         v.getParent().requestDisallowInterceptTouchEvent(true);
+
                         break;
+
+
                     case MotionEvent.ACTION_MOVE:
+
                         v.getParent().requestDisallowInterceptTouchEvent(true);
+
                         break;
                 }
-                return false;
+                return true;
             }
         });
-
     }
 
     @Override

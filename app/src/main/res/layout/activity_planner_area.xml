@@ -8,6 +8,21 @@
     android:focusableInTouchMode="true"
     tools:context=".Planner_Area_Page">
 
+    <Button
+        android:id="@+id/button_planner_page_finish"
+        android:layout_width="130dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#c6d8f5"
+        android:text="Finish"
+        android:textColor="#1a2536"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914" />
+
     <RelativeLayout
         android:id="@+id/linearLayout6"
         android:layout_width="323dp"
@@ -19,17 +34,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/plannerItemList"
-            android:layout_width="282dp"
-            android:layout_height="738dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
+            android:layout_width="311dp"
+            android:layout_height="match_parent"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,21 +48,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/plannerArea"
-        android:layout_width="389dp"
-        android:layout_height="546dp"
-        android:layout_marginStart="7dp"
+        android:layout_width="950dp"
+        android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.431">
+        app:layout_constraintVertical_bias="1.0">
 
         <ImageView
             android:id="@+id/shapeImage3"
-            android:layout_width="137dp"
-            android:layout_height="145dp"
+            android:layout_width="308dp"
+            android:layout_height="364dp"
             android:layout_alignParentEnd="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -60,20 +70,6 @@
             app:layout_constraintVertical_bias="0.498" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/button_planner_page_finish"
-        android:layout_width="130dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="101dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#c6d8f5"
-        android:text="Finish"
-        android:textColor="#1a2536"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.659"
-        app:layout_constraintStart_toEndOf="@+id/plannerArea" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,16 +32,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/AddWindowArea"
-        android:layout_width="696dp"
-        android:layout_height="667dp"
+        android:layout_width="950dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.375">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/shapeImage2"
@@ -57,14 +57,14 @@
             android:id="@+id/AddWindowsPageNextButton"
             android:layout_width="94dp"
             android:layout_height="55dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="48dp"
             android:backgroundTint="#c6d8f5"
             android:text="Next"
             android:textColor="#1a2536"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.975" />
+            app:layout_constraintVertical_bias="0.934" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
