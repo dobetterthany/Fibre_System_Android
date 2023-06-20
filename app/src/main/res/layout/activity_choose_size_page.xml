@@ -83,7 +83,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/chooseSizeArea"
-            android:layout_width="950dp"
+            android:layout_width="711dp"
             android:layout_height="match_parent"
             android:layout_marginStart="1dp"
             android:orientation="horizontal"
@@ -107,12 +107,12 @@
             <Button
                 android:id="@+id/goAddwindowButton"
                 android:layout_width="125dp"
-                android:layout_height="60dp"
+                android:layout_height="34dp"
                 android:backgroundTint="#c6d8f5"
                 android:text="Next"
                 android:textColor="#1a2536"
-                tools:layout_editor_absoluteX="815dp"
-                tools:layout_editor_absoluteY="13dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
